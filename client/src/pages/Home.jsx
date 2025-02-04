@@ -1,106 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sideprofile from './sideprofile'
+import ProfileCard from '../components/ProfileCard';
+import SuggeCard from '../components/SuggeCard';
+import Sidemenu from '../components/Sidemenu';
 
 function Home() {
+    // const [isdrop, setdrop] = useState(false);
     return (
         <>
-            <div className='justify-between grid grid-cols-4'>
-                <section className=''>
+            <div className='justify-between flex items-start  top-0 w-full'>
+                {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
+                <Sidemenu/>
+                <section className='mt-3 max-w-full md:max-w-[50%] bg-amber-400 rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
+                    <div className='flex items-start  sticky top-0'>
+                        <a href="" className='min-w-32   h-35 md:b snap-start   bg-amber-900'>ssafda</a>
+                        <div className='ml-3 snap-x flex w-full  bg-black overflow-x-scroll scrollbar-hide gap-3'>
 
-
-                    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex justify-end px-4 pt-4">
-                            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-                                <snap class="sr-only">Open dropdown</snap>
-                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                                </svg>
-                            </button>
-
-                            <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                                <ul class="py-2" aria-labelledby="dropdownButton">
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center pb-10">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
-                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
-                            <snap class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</snap>
-                            <div class="flex mt-4 md:mt-6">
-                                <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
-                                <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a>
-                            </div>
+                            <a href="" className='min-w-25 h-35  md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
+                            <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
                         </div>
                     </div>
+                    <div className=' md:flex '><h1 className='h-[1000px] '>posts</h1></div>
 
                 </section>
-                <section className='max-w-[65%] bg-amber-400  md:block overflow-hidden col-span-2'>
-                        <a href="" className='min-w-32 fixed h-35 md:block snap-start   bg-amber-900'>ssafda</a>
-                    <div className='ml-35 snap-x flex w-full bg-black overflow-scroll scrollbar-hide gap-3'>
-                        
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                        <a href="" className='min-w-25 h-35 md:block  snap-start  bg-amber-900'>ssafda</a>
-                    </div>
-                    <div className=' md:flex'><h1 className=''>posts</h1></div>
-                    
-                </section>
-                <section className=''>
+                <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/>
 
-
-                    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex justify-end px-4 pt-4">
-                            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-                                <snap class="sr-only">Open dropdown</snap>
-                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                                </svg>
-                            </button>
-
-                            <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                                <ul class="py-2" aria-labelledby="dropdownButton">
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center pb-10">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
-                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
-                            <snap class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</snap>
-                            <div class="flex mt-4 md:mt-6">
-                                <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
-                                <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
             </div>
         </>
     )
