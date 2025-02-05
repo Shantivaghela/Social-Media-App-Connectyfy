@@ -27,7 +27,7 @@ function Header() {
           <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="hover:text-[#2973b2] fa-solid fa-bell fa-xl  text-[#48a6a6] hover:scale-130 transition delay-120 duration-300 ease-in-out"></i></a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="hover:text-[#2973b2] fa-solid fa-envelope fa-xl text-[#48a6a6] hover:scale-130 transition delay-50 duration-300 ease-in-out"></i></a>
+          <a href="#" class="md:block hidden py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="hover:text-[#2973b2] fa-solid fa-envelope fa-xl text-[#48a6a6] hover:scale-130 transition delay-50 duration-300 ease-in-out"></i></a>
         </li>
         <li>
           <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl text-[#48a6a6] hover:scale-130 transition delay-120 duration-300 ease-in-out"></i></a>
