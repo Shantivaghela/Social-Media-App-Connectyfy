@@ -20,6 +20,9 @@ body{
   width:100%;
   background-color:#f2efe6;
 }
+.bodyDark{
+  background-color:#2a4f78;
+}
 .roboto-condensed{
   font-family: "Roboto Condensed", serif;
   font-optical-sizing: auto;
@@ -41,3 +44,5 @@ body{
   font-weight: <weight>;
   font-style: normal;
 }
+
+
