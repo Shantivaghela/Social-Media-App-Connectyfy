@@ -1,14 +1,16 @@
 import React,{useState} from 'react'
 import { Link,NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets';
+import Sidemenu from '../components/Sidemenu';
 
 
 function Profile(props) {
   const [isdrop, setdrop] = useState(false);
   return (
     <>
-      <section className='flex float-end mt-3 md:px-3 w-screen md:w-[71%] bg-amber-200 h-screen md:mr-4'>
-        <div className='sticky  top-19 md:ml-5 md:mr-2 block  md:mt-3 w-screen'>
+      <section className='flex float-end mt-3 md:px-3 w-screen md:w-screen py-3 bg-amber-200 h-screen md:mr-4'>
+    <Sidemenu/>
+        <div className='sticky  top-19 md:ml-5 md:mr-2 block  md:mt-3 w-[75%]'>
 
 
           <div className="md:min-w-full max-w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">

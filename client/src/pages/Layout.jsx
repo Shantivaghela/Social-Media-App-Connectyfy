@@ -9,7 +9,7 @@ function Layout() {
     <div>
       <Header/>
       <Outlet/>
-      <Sidemenu/>
+      
       <Bottommenu/>
     </div>
   )
