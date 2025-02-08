@@ -7,8 +7,9 @@ import Bottommenu from '../components/Bottommenu'
 function Layout() {
   return (
     <div>
-      
+      <Header/>
       <Outlet/>
+      <Sidemenu/>
       <Bottommenu/>
     </div>
   )

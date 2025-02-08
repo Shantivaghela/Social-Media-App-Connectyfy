@@ -25,38 +25,38 @@ function Sidemenu() {
                     <div className="md:block h-full bottom-0 md:top-0 px-3 py-4 overflow-y-auto  rounded-lg shadow-sm bg-gray-50 dark:bg-gray-800">
                         <ul className="space-y-2 flex md:block font-medium">
                             <li>
-                                <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className="fa-solid fa-images fa-lg  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"></i>
+                                <NavLink to="/" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                    <i className="fa-solid fa-images fa-lg   transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Feed</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className="fa-solid fa-square-plus fa-lg  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"></i>
+                                <NavLink to="/Profile" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                    <i className="fa-solid fa-square-plus fa-lg transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Post</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className="fa-solid fa-magnifying-glass fa-lg  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"></i>
+                                <NavLink to="/find" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                    <i className="fa-solid fa-magnifying-glass fa-lg transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Find</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className="fa-solid fa-video fa-lg  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"></i>
+                                <NavLink to="/videos" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                    <i className="fa-solid fa-video fa-lg transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Videos</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className="fa-solid fa-user-group fa-lg  text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"></i>
+                                <NavLink to="/friends" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                    <i className="fa-solid fa-user-group fa-lg  transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Friends</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="#" onClick={()=>setMode(!Mode,darkModeHandler())} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className={ `${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg' } text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white`}></i>
+                                <Link to="#" onClick={()=>setMode(!Mode,darkModeHandler())} className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
+                                    <i className={ `${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg' } text-gray-700 transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white`}></i>
                                     <span className="ms-3" >
                                         {
                                             Mode ? "Dark Mode" : "Light Mode"
@@ -67,7 +67,7 @@ function Sidemenu() {
 
 
                             <li>
-                                <Link href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <Link href="" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <svg className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                                     </svg>

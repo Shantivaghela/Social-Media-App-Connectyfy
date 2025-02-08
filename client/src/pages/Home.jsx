@@ -12,7 +12,7 @@ function Home() {
     // const [isdrop, setdrop] = useState(false);
     return (
         <>
-        <Header/>
+        
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
                 <Sidemenu/>
