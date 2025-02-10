@@ -21,10 +21,10 @@ function Header() {
   return (
 
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-10 ">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-10 ">
       <div className=" flex  items-center justify-between mx-auto px-5 py-4 ">
         <div>
-          <Link to="https://flowbite.com/" className="flex items-center space-x-2 rtl:space-x-reverse">
+          <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">
             <img src={assets.logo} className="h-9" alt="Flowbite Logo" />
             {/* <img src={assets.connectyfy} className="h-6 md:h-11 " alt="Flowbite Logo" /> */}
             <h1 className='roboto-condensed text-2xl dark:text-white'>Connectyfy</h1>

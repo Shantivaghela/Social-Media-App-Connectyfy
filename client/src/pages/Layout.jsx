@@ -8,6 +8,7 @@ function Layout() {
   return (
     <div>
       <Header/>
+      <Sidemenu/>
       <Outlet/>
       
       <Bottommenu/>

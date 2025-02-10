@@ -4,21 +4,43 @@ import SuggeCard from './SuggeCard'
 
 function Sidemenu() {
     const [Mode,setMode] = useState(false);
+    const [modeName,setModeName] = useState("");
     const bodyClass = document.getElementById("theme");
+    // const modeName = document.getElementById("Namemode")
+    
+    // console.log(bodyClass);
+    
+    
   
   const darkModeHandler = () => {
+    
+    
+   
+    
     if(!Mode){
-      bodyClass.className="dark bodyDark"
+       
+        
+        bodyClass.className="dark bodyDark"
+        
+        //   setMode(false)
+        
     }
     else{
-      bodyClass.className="light"
+        bodyClass.className="light"
+    
+        
+      
+    //   setMode(true)
+
     }
     
 
 }
+
     return (
         <>
-            <section className='sticky top-19 ml-5 mr-2 md:block mt-3 w-[25%] hidden'>
+        <div className='w-full'>
+            <div className='fixed top-19 ml-5 mr-2 md:block mt-3 md:w-[23%] hidden'>
 
 
                 <aside id="sidebar-multi-level-sidebar" className=" w-full   md:blcok md:h-50%" aria-label="Sidebar">
@@ -55,12 +77,15 @@ function Sidemenu() {
                                 </NavLink>
                             </li>
                             <li>
-                                <Link to="#" onClick={()=>setMode(!Mode,darkModeHandler())} className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
-                                    <i className={ `${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg' } text-gray-700 transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white`}></i>
-                                    <span className="ms-3" >
-                                        {
-                                            Mode ? "Dark Mode" : "Light Mode"
-                                        }
+                                <Link to="#" onClick={()=> (setMode(!Mode),darkModeHandler())}  className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
+                                    <i  className={ `${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg' } text-gray-700 transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white`}>
+
+                                    </i>
+                                    <span  className="ms-3 "  >
+                                    
+                                        {Mode ? "Dark Mode" : "Light Mode"}
+                                        
+                                      
                                     </span>
                                 </Link>
                             </li>
@@ -80,7 +105,8 @@ function Sidemenu() {
                     </div>
                 </aside>
                 <SuggeCard />
-            </section>
+            </div>
+            </div>
            
         </>
     )

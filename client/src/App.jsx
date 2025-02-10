@@ -11,6 +11,7 @@ import Profile from './pages/Profile'
 import Message from './pages/Message'
 import Find from './pages/Find'
 import Videos from './pages/Videos'
+import Postpage from './pages/Postpage'
 
 
 function App() {
@@ -23,7 +24,13 @@ function App() {
       children: [
         {
           path: 'profile',
-          element: <Profile />
+          element: <Profile />,
+          children: [
+            {
+              path: 'posts',
+              element:<Postpage/>
+            }
+          ]
         },
         {
           path:'/find',

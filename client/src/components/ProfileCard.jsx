@@ -8,7 +8,8 @@ function ProfileCard(props) {
     const [isdrop, setdrop] = useState(false);
     return (
         <>
-            <section className='sticky top-19 ml-5 mr-2 md:block hidden mt-3 w-[25%]'>
+        <div className='w-full'>
+            <section className='fixed  top-19 ml-4 mr-2 md:block md:w-[23%] hidden mt-3 '>
 
 
                 <div className="md:w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -65,6 +66,7 @@ function ProfileCard(props) {
                 <Request/>
 
             </section>
+            </div>
         </>
     )
 }
