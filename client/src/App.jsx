@@ -12,6 +12,9 @@ import Message from './pages/Message'
 import Find from './pages/Find'
 import Videos from './pages/Videos'
 import Postpage from './pages/Postpage'
+import Chatbox from './pages/Chatbox'
+import Notifications from './pages/Notifications'
+import Friends from './pages/Friends'
 
 
 function App() {
@@ -47,6 +50,18 @@ function App() {
         {
           path:'/message',
           element:<Message/>
+        },
+        {
+          path:'/chat',
+          element:<Chatbox/>
+        },
+        {
+          path:'/notification',
+          element:<Notifications/>
+        },
+        {
+          path:'/friends',
+          element:<Friends/>
         },
       ]
     }

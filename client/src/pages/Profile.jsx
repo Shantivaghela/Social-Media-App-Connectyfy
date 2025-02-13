@@ -18,12 +18,12 @@ function Profile(props) {
   }
   return (
     <>
-      <div className='flex mt-20  md:ml-[25%] dark:border-gray-700 border border-gray-200 rounded-xl shadow-sm'>
+      <div className='flex mt-22   mb-12 pb-2 bg-white md:ml-[25%] dark:border-gray-700 border overflow-hidden dark:bg-gray-800 border-gray-200 rounded-xl shadow-sm'>
 
-        <section className='float-end flex  flex-col md:ml- md:mr-2  md:mt-2 w-full  h-full '>
+        <section className='float-end flex  flex-col md:ml-  w-full  h-full '>
 
 
-          <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden   rounded-xl  dark:bg-gray-800 ">
+          <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden    dark:bg-gray-800 ">
             <img src={assets.demos} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />
             <div className="flex justify-end md:px-4 md:pt-4 z-8">
               <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className={`block z-11 rounded-lg text-gray-300 hover:text-black  hover:bg-gray-100 rounded-   xl focus:outline-none  text-sm p-1.5`} type="button">
@@ -31,7 +31,7 @@ function Profile(props) {
 
               </button>
 
-              <div id="dropdown" className={`${isdrop ? 'block' : 'hidden'}  absolute z-10 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700`}>
+              <div id="dropdown" className={`${isdrop ? 'block' : 'hidden'}  absolute z-10 text-base list-none bg-white divide-y divide-gray-100  w-44 dark:bg-gray-700`}>
                 {/* <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className="inline-block z-12 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none overflow-hidden focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                   <i className=''></i>
                 </button> */}
@@ -59,11 +59,11 @@ function Profile(props) {
                 </Link>
               </div>
               <div className="flex mt-4 md:mt-6  gap-15">
-                <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
+                <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
                   <span className='md:text-xl tex-lg'>20000</span>
                   <span className='text-[15px]'>followers</span>
                 </Link>
-                <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
+                <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
                   <span className='md:text-xl tex-lg'>3</span>
                   <span className='text-[15px]'>following</span>
                 </Link>
@@ -75,18 +75,18 @@ function Profile(props) {
           <div className=" w-full h-full rounded-xl pt-3 bg-white dark:bg-gray-800 ">
             <ul className='flex justify-evenly gap-10 items-center mb-3 md:mb-1'>
               <li>
-                <Link onClick={() => setPrfilepage(1)} className={`dark:text-white rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 1 ? "bg-[#48a6a6] dark:text-white text-black" : " "}`} >
+                <Link onClick={() => setPrfilepage(1)} className={`dark:text-white text-black rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 1 ? "bg-[#48a6a6] text-white" : " "}`} >
                   Posts
                 </Link>
 
               </li>
               <li>
-                <Link onClick={() => setPrfilepage(2)} className={`dark:text-white rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 2 ? "bg-[#48a6a6] dark:text-white text-black" : " "}`}>
+                <Link onClick={() => setPrfilepage(2)} className={`dark:text-white rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 2 ? "bg-[#48a6a6] text-white " : " "}`}>
                   Videos
                 </Link>
               </li>
               <li>
-                <Link onClick={() => setPrfilepage(3)} className={`dark:text-white rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 3 ? "bg-[#48a6a6] dark:text-white text-black" : " "} S`}>
+                <Link onClick={() => setPrfilepage(3)} className={`dark:text-white rounded-2xl md:px-4 px-2 md:py-1 ${profielpage === 3 ? "bg-[#48a6a6] text-white" : " "} S`}>
                   Tag
                 </Link>
               </li>

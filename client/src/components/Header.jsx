@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { assets } from '../assets/assets';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   const [Mode,setMode] = useState(false);
@@ -21,7 +21,7 @@ function Header() {
   return (
 
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-10 ">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-13 ">
       <div className=" flex  items-center justify-between mx-auto px-5 py-4 ">
         <div>
           <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -46,13 +46,13 @@ function Header() {
             </Link>
             </li>
             <li>
-              <Link to="#" className="block  px-2 py-1 md:py-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i className="hover:text-[#2973b2] fa-solid fa-bell fa-xl  text-[#48a6a6] hover:scale-130 transition delay-120 duration-300 ease-in-out"></i></Link>
+              <NavLink to="/notification" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block rounded-sm px-3 py-1 md:py-2 md:px-3   hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-bell fa-xl transition delay-120 duration-300 ease-in-out"></i></NavLink>
             </li>
             <li>
-              <Link to="#" className="md:block hidden px-2 py-1 md:py-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl text-[#48a6a6] hover:scale-130 transition delay-50 duration-300 ease-in-out"></i></Link>
+              <NavLink to="/message" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} md:block hidden px-2 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl   transition delay-50 duration-300 ease-in-out"></i></NavLink>
             </li>
             <li>
-              <Link to="/profile" className="block px-2 py-1 md:py-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl text-[#48a6a6] hover:scale-130 transition delay-120 duration-300 ease-in-out"></i></Link>
+              <NavLink to="/profile" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
             </li>
           </ul>
         </div>

@@ -7,9 +7,11 @@ import SuggeCard from '../components/SuggeCard';
 import Sidemenu from '../components/Sidemenu';
 import { assets } from '../assets/assets';
 import PostLayout from '../components/PostLayout';
+import { videoInfo ,story } from '../assets/videosInfo';
 
 function Home() {
     // const [isdrop, setdrop] = useState(false);
+    const [isOpen,setOpen] = useState(false);
     return (
         <>
         
@@ -26,40 +28,14 @@ function Home() {
                             </Link>
                         
                             
-                        <div className='md:ml-3 ml-2  flex w-full md:h-40 h-35 rounded-lg  overflow-x-scroll  scrollbar-hide gap-3 pl-3 md:pl-5'>
-
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                        <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg  overflow-x-scroll  scrollbar-hide gap-3 pl-3 md:pl-5'>
+                            {story.map((key) => (
+                            <Link to="" onClick={() => setOpen(true)} className={`${isOpen ? "  " : "" } overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900`}>
+                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>{key.Name}</span>
+                            <img src={key.img} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
                             </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            <Link to="" className='overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900'>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>Vaghela Shanti </span>
-                            <img src={assets.demos} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
+                            ))}
+                            
                             
 
                             
