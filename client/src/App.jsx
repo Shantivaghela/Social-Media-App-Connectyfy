@@ -15,6 +15,9 @@ import Postpage from './pages/Postpage'
 import Chatbox from './pages/Chatbox'
 import Notifications from './pages/Notifications'
 import Friends from './pages/Friends'
+import Login from './pages/authentications/Login'
+import Forgotpass from './pages/authentications/Forgotpass'
+import { ThemeProvider,DarkModeProvider } from './contextAPI'
 
 
 function App() {
@@ -64,12 +67,25 @@ function App() {
           element:<Friends/>
         },
       ]
-    }
+    },
+    {
+      path:'/login',
+      element:<Login/>
+    },
+    {
+      path:'/forgot',
+      element:<Forgotpass/>
+    },
+
   ])
 
   return (
     <>
+    
+    
       <RouterProvider router={router} />
+     
+    
     </>
   )
 }

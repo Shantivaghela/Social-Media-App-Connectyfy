@@ -3,11 +3,15 @@ import logo from './logo.png'
 import demoimg from './demoimg.png'
 import demos from './demos.jpg'
 import demovideo from './demovideo.mp4'
+import Loginimg from './Loginimg.mp4'
+import loginimage from './loginimage.jpg'
 
 export const assets = {
     connectyfy,
     logo,
     demoimg,
     demos,
-    demovideo
+    demovideo,
+    Loginimg,
+    loginimage
 }

@@ -1,37 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import SuggeCard from './SuggeCard'
+import  ThemeMode  from './ThemeMode'
+
 
 function Sidemenu() {
-    const [Mode,setMode] = useState(false);
-    const [modeName,setModeName] = useState("");
+   
+    const [Mode,setMode] = useState(false)
+
     const bodyClass = document.getElementById("theme");
-    // const modeName = document.getElementById("Namemode")
     
-    // console.log(bodyClass);
-    
-    
-  
+    console.log(Mode);
   const darkModeHandler = () => {
     
-    
-   
-    
-    if(!Mode){
-       
-        
+    console.log(Mode);
+
+    if(!Mode){ 
         bodyClass.className="dark bodyDark"
-        
-        //   setMode(false)
-        
     }
     else{
         bodyClass.className="light"
     
-        
-      
-    //   setMode(true)
-
     }
     
 
@@ -77,7 +66,7 @@ function Sidemenu() {
                                 </NavLink>
                             </li>
                             <li>
-                                <Link to="#" onClick={()=> (setMode(!Mode),darkModeHandler())}  className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
+                                <NavLink to="#" onClick={() =>{setMode(!Mode),darkModeHandler()}}  className="flex items-center p-2 text-gray-700 rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group">
                                     <i  className={ `${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg' } text-gray-700 transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white`}>
 
                                     </i>
@@ -87,7 +76,9 @@ function Sidemenu() {
                                         
                                       
                                     </span>
-                                </Link>
+                                </NavLink>
+                                
+                                
                             </li>
 
 

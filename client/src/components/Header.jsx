@@ -1,11 +1,16 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
+import { ThemeMode } from '../contextAPI';
 
 function Header() {
   const [Mode,setMode] = useState(false);
+  // const myMode = useContext(ThemeMode);
+  // const [theme,setThem] = useState(myMode)
 
-  const bodyClass = document.getElementById("theme");
+  const bodyClass = document.getElementById("theme"); 
+  
+ 
   
   const darkModeHandler = () => {
     if(!Mode){
@@ -40,7 +45,7 @@ function Header() {
         <div className=" w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium  flex flex-co float-right text-sm md:text-lg  md:p-0 border border-gray-100 rounded-lg  md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li className=''>
-            <Link to="#" onClick={() => setMode(!Mode,darkModeHandler())} className=" md:hidden  block  py-1 md:py-2 px-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            <Link to="#" onClick={() =>{setMode(!Mode),darkModeHandler()}} className=" md:hidden  block  py-1 md:py-2 px-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
               <i className={`${Mode ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg'} hover:text-[#2973b2] fa-solid fa-envelope fa-xl text-[#48a6a6] `}></i>
              
             </Link>
@@ -52,7 +57,7 @@ function Header() {
               <NavLink to="/message" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} md:block hidden px-2 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl   transition delay-50 duration-300 ease-in-out"></i></NavLink>
             </li>
             <li>
-              <NavLink to="/profile" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
+              <NavLink to="/login" className={({isActive}) =>`${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
             </li>
           </ul>
         </div>

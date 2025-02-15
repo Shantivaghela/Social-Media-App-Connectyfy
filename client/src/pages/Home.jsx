@@ -18,7 +18,7 @@ function Home() {
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
             
-                <section className='mb-5 mt-22 md:ml-96   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
+                <section className='mb-5 mt-22 md:ml-65 lg:ml-88   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
                     <div className='flex items-start  sticky top-0 p-3 '>
                         
                             
@@ -46,7 +46,7 @@ function Home() {
                     <PostLayout/>
 
                 </section>
-                <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/>
+                <ProfileCard name="Parth Nandha " desc="full stack dev" followers="34456354" following="7" posts="35345"/>
 
             </div>
         </>
