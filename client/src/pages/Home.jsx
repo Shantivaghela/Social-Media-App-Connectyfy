@@ -16,7 +16,11 @@ import "slick-carousel/slick/slick-theme.css";
 function Home() {
     // const [isdrop, setdrop] = useState(false);
     const [isOpen, setOpen] = useState(false);
+    const [key, setKey] = useState();
 
+    console.log(key);
+    
+    
     var settings = {
         dots: true,
         infinite: false,
@@ -27,12 +31,12 @@ function Home() {
 
     return (
         <>
-            {isOpen && <StoryModel open={setOpen} />}
 
+            {isOpen && <StoryModel open={setOpen} id={key} />}
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
 
-                <section className='mb-5 mt-22 md:ml-66 lg:ml-95   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
+                <section className='mb-5 mt-22 md:ml-[25%]   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
                     <div className='flex items-start  top-0 p-3 '>
 
 
@@ -42,14 +46,21 @@ function Home() {
                         </Link>
 
 
-                        <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg overflow-scroll scrollbar-hide   gap-3 pl-3 md:pl-5'>
+                        <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg overflow-scroll scrollbar-hide w-full   gap-3 pl-3 md:pl-5'>
                             {/* <Slider {...settings} className='w-full'> */}
-                                {story.map((key) => (
-                                    <Link to="" onClick={() => setOpen(true)} className={`flex overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block bg-amber-900`}>
-                                        <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-18 text-white max-w-15 md:max-w-22 '>{key.Name}</span>
-                                        <img src={key.img} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                                {story.map((items,index) => (
+                                    <Link to="" key={items.id} onClick={() => {setOpen(true),setKey(index)}} className={`flex overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block bg-amber-900`}>
+                                        <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-18 text-white max-w-15 md:max-w-22 '>{items.Name}</span>
+                                        <img src={items.url} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                                   <p></p>
                                     </Link>
                                 ))}
+                                <div className="flex flex-col justify-center items-center">
+                                 <p>
+                                    
+                                No more items
+                                    </p>   
+                                </div>
                             {/* </Slider> */}
                         </div>
                     </div>

@@ -15,7 +15,7 @@ function PostLayout() {
 
     return (
         <>
-            <section className='max-h-[50%] bg-white dark:bg-gray-800 mt-3 '>
+            <section className='max-h-[50%]  bg-white dark:bg-gray-800 mt-3 '>
 
                 <div className="flex items-center gap-4 pl-4  h-15 ">
                     <img className="w-10 h-10 rounded-full" src={assets.logo} alt="" />
@@ -24,7 +24,7 @@ function PostLayout() {
                         <div className="text-sm text-gray-500 dark:text-gray-400">August 2014</div>
                     </div>
                 </div>
-                <div className='max-h-[50%] object-contain '>
+                <div className='max-h-[50%] w-[100%] object-cover flex justify-center items-center'>
                     <img src={assets.demos} alt="" />
                 </div>
                 <div className=" w-full h-full bg-white dark:bg-gray-800  ">

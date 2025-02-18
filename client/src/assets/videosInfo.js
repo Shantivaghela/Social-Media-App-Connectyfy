@@ -21,33 +21,45 @@ export const videoInfo = [
 
 export const story = [
     {
+        id:1,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
     {
+        id:2,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
     {
+        id:3,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
     {
+        id:4,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
     {
+        id:5,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
     {
+        id:6,
         Name:"shanti Vaghlea",
-        img: assets.demos,
+        img:assets.logo,
+        url: assets.demos,
         time:"1 jan 2025"
     },
 ] 

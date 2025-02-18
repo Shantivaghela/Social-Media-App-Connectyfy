@@ -75,6 +75,7 @@ function App() {
       path:'/forgot',
       element:<Forgotpass/>
     },
+   
 
   ])
 
