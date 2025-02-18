@@ -17,7 +17,6 @@ import Notifications from './pages/Notifications'
 import Friends from './pages/Friends'
 import Login from './pages/authentications/Login'
 import Forgotpass from './pages/authentications/Forgotpass'
-import { ThemeProvider,DarkModeProvider } from './contextAPI'
 
 
 function App() {

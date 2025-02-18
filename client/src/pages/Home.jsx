@@ -7,46 +7,58 @@ import SuggeCard from '../components/SuggeCard';
 import Sidemenu from '../components/Sidemenu';
 import { assets } from '../assets/assets';
 import PostLayout from '../components/PostLayout';
-import { videoInfo ,story } from '../assets/videosInfo';
+import { videoInfo, story } from '../assets/videosInfo';
+import StoryModel from '../components/StoryModel';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Home() {
     // const [isdrop, setdrop] = useState(false);
-    const [isOpen,setOpen] = useState(false);
+    const [isOpen, setOpen] = useState(false);
+
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+    };
+
     return (
         <>
-        
+            {isOpen && <StoryModel open={setOpen} />}
+
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
-            
-                <section className='mb-5 mt-22 md:ml-65 lg:ml-88   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
-                    <div className='flex items-start  sticky top-0 p-3 '>
-                        
-                            
-                        <Link href="" className={`overflow-hidden md:max-w-25 md:min-w-25 min-w-20 max-w-20 shadow-lg text-2xl md:text-2xl shadow-gray-800  md:h-35 h-30 md:b snap-start rounded-lg    bg-[url(${assets.demoimg})]`} >
-                            <i className="fa-solid fa-circle-plus fa-2xl z-20 absolute md:ml-7 ml-4 mt-19 hover:text-[#48a6a6] hover:scale-110 transition delay-120 duration-300 ease-in-out  md:mt-22 items-center text-white"></i>
-                            <img src={assets.demoimg} alt="" className='h-full z-10 brightness-50 hover:contrast-50' />
-                            </Link>
-                        
-                            
-                        <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg  overflow-x-scroll  scrollbar-hide gap-3 pl-3 md:pl-5'>
-                            {story.map((key) => (
-                            <Link to="" onClick={() => setOpen(true)} className={`${isOpen ? "  " : "" } overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block snap-start  bg-amber-900`}>
-                            <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-20 text-white max-w-15 md:max-w-22 '>{key.Name}</span>
-                            <img src={key.img} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                            </Link>
-                            ))}
-                            
-                            
 
-                            
+                <section className='mb-5 mt-22 md:ml-66 lg:ml-95   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
+                    <div className='flex items-start  top-0 p-3 '>
+
+
+                        <Link href="" className={`overflow-hidden md:max-w-25 md:min-w-25 min-w-20 max-w-20 shadow-lg text-2xl md:text-2xl shadow-gray-800  md:h-35 h-30 md:b snap-start rounded-lg    bg-[url(${assets.demoimg})]`} >
+                            <i className="fa-solid fa-circle-plus fa-2xl z-9 absolute md:ml-7 ml-4 mt-19 hover:text-[#48a6a6] hover:scale-110 transition delay-120 duration-300 ease-in-out  md:mt-22 items-center text-white"></i>
+                            <img src={assets.demoimg} alt="" className='h-full z-10 brightness-50 hover:contrast-50' />
+                        </Link>
+
+
+                        <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg overflow-scroll scrollbar-hide   gap-3 pl-3 md:pl-5'>
+                            {/* <Slider {...settings} className='w-full'> */}
+                                {story.map((key) => (
+                                    <Link to="" onClick={() => setOpen(true)} className={`flex overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block bg-amber-900`}>
+                                        <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-18 text-white max-w-15 md:max-w-22 '>{key.Name}</span>
+                                        <img src={key.img} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                                    </Link>
+                                ))}
+                            {/* </Slider> */}
                         </div>
                     </div>
-                    <PostLayout/>
-                    <PostLayout/>
-                    <PostLayout/>
+                    <PostLayout />
+                    <PostLayout />
+                    <PostLayout />
 
                 </section>
-                <ProfileCard name="Parth Nandha " desc="full stack dev" followers="34456354" following="7" posts="35345"/>
+                <ProfileCard name="Parth Nandha " desc="full stack dev" followers="34456354" following="7" posts="35345" />
 
             </div>
         </>

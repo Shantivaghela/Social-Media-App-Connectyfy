@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 import SignUp from './SignUp';
 import Forgotpass from './Forgotpass';
@@ -13,11 +13,11 @@ function Login(props) {
     return (
         <>
             <section className={`w-screen min-h-screen  flex  justify-center items-center `} >
-                <div className="text-[#48a6a6] dark:text-black dark:bg-gray-400  absolute overflow-visible mb-180 md:mb-152 z-10 bg-white p-3 border-2 border-black rounded-full ">
-                    <Link to='/'>
+                <Link to='/' className="text-[#48a6a6] dark:text-black dark:bg-gray-400  absolute overflow-visible mb-180 md:mb-152 z-10 bg-white p-3 border-2 border-black rounded-full ">
+                    <NavLink to='/'>
                         <i className="fa-solid fa-house fa-xl "></i>
-                    </Link>
-                </div>
+                    </NavLink>
+                </Link>
                 <div className="relative shadow-[0px_19px_32px_3px_rgba(0,_0,_0,_0.1)]  md:h-[630px] md:w-[1100px] w-[380px] h-[700px] rounded-xl overflow-hidden border-3 border-gray-500 flex  md:flex-row flex-col justify-center items-center">
                     <div className="justify-center bg-white  h-[200px] md:h-screen flex flex-col items-center w-full   md:w-[50%] ">
                         <img src={assets.loginimage} className='h-full object-cover  w-[900px]' alt="" />
