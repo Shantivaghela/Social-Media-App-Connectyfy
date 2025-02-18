@@ -11,6 +11,13 @@ import Profile from './pages/Profile'
 import Message from './pages/Message'
 import Find from './pages/Find'
 import Videos from './pages/Videos'
+import Postpage from './pages/Postpage'
+import Chatbox from './pages/Chatbox'
+import Notifications from './pages/Notifications'
+import Friends from './pages/Friends'
+import Login from './pages/authentications/Login'
+import Forgotpass from './pages/authentications/Forgotpass'
+import { ThemeProvider,DarkModeProvider } from './contextAPI'
 
 
 function App() {
@@ -23,7 +30,13 @@ function App() {
       children: [
         {
           path: 'profile',
-          element: <Profile />
+          element: <Profile />,
+          children: [
+            {
+              path: 'posts',
+              element:<Postpage/>
+            }
+          ]
         },
         {
           path:'/find',
@@ -41,13 +54,38 @@ function App() {
           path:'/message',
           element:<Message/>
         },
+        {
+          path:'/chat',
+          element:<Chatbox/>
+        },
+        {
+          path:'/notification',
+          element:<Notifications/>
+        },
+        {
+          path:'/friends',
+          element:<Friends/>
+        },
       ]
-    }
+    },
+    {
+      path:'/login',
+      element:<Login/>
+    },
+    {
+      path:'/forgot',
+      element:<Forgotpass/>
+    },
+
   ])
 
   return (
     <>
+    
+    
       <RouterProvider router={router} />
+     
+    
     </>
   )
 }
