@@ -49,7 +49,7 @@ function Profile(props) {
               </div>
             </div>
             <div className="flex flex-col items-center mt-27  ">
-              <img className="w-24 h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.demoimg} alt="Bonnie image" />
+              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.demoimg} alt="Bonnie image" />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Parth Nandha</h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">web developers</span>
               <div className="flex mt-4 md:mt-6  gap-10 ">

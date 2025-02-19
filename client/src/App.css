@@ -46,5 +46,21 @@ body{
   font-weight: <weight>;
   font-style: normal;
 }
-
+.read-more-container {
+  display: flex;
+  min-height:10px;
+  flex-direction: column;
+  justify-content: flex-start; /* Keeps button below the text */
+  align-items: flex-start;
+  position:relative;
+}
+.read-more-button {
+  margin-top: 10px; /* Adds space to prevent shifting */
+  cursor: pointer;
+  font-size: 14px; /* Adjust size */
+  color: red;
+  text-decoration: underline;
+  position:absolute;
+  
+}
 

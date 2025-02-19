@@ -7,7 +7,7 @@ function Bottommenu() {
             <section>
 
 
-                <nav className="bg-white items-center  border-gray-200 dark:bg-gray-900 md:hidden block fixed bottom-0 w-[100%] justify-center">
+                <nav className="bg-white items-center  border-gray-200 dark:bg-gray-900 md:hidden block z-30 fixed bottom-0 w-[100%] justify-center">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
 
 

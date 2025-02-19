@@ -18,7 +18,7 @@ function Home() {
     const [isOpen, setOpen] = useState(false);
     const [key, setKey] = useState();
 
-    console.log(key);
+
     
     
     var settings = {
