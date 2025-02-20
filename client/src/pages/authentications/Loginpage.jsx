@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
+import { assets } from '../../assets/assets'
 
 function Loginpage(props) {
         const [show,setShow] = useState(false)
