@@ -66,20 +66,20 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button
-                      variant={isActive ? "gradient" : "text"}
-                      color={
-                        isActive
-                          ? sidenavColor
-                          : sidenavType === "dark"
-                          ? "white"
-                          : "blue-gray"
-                      }
-                      className="flex items-center gap-4 px-4 capitalize"
+                      // variant={isActive ? "bg-blue-700" : "text"}
+                      // color={
+                      //   isActive
+                      //     ? sidenavColor
+                      //     : sidenavType === "dark"
+                      //     ? "white"
+                      //     : "blue-gray"
+                      // }
+                        className={`${isActive ? "bg-[#48a6a6] " : "shadow-none text-black bg-white" } flex items-center gap-4 px-4 capitalize`}
                       fullWidth
                     >
                       {icon}
                       <Typography
-                        color="inherit"
+                        color="inheri"
                         className="font-medium capitalize"
                       >
                         {name}

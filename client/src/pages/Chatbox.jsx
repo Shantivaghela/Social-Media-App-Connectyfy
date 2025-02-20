@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { assets } from '../assets/assets';
 import { Link } from 'react-router-dom';
-import EmojiPicker from 'emoji-picker-react';
+
 
 function Chatbox() {
     const [isdrop, setdrop] = useState(false);
