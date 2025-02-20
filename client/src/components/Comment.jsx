@@ -31,7 +31,7 @@ function Comment(props) {
 
                             </div>
                             <div className="">
-                                <p className='text-lg my-2'> super</p>
+                                <p className='text-lg my-2'>{}</p>
                             </div>
                         </div>
 
