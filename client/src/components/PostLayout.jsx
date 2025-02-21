@@ -15,7 +15,7 @@ function PostLayout() {
 
     return (
         <>
-            <section className='max-h-[50%]  bg-white dark:bg-gray-800 mt-3 '>
+            <section className='max-h-[50%]  bg-white dark:bg-gray-800 mt-3 ' data-aos="slide-up">
 
                 <div className="flex items-center gap-4 pl-4  h-15 ">
                     <img className="w-10 h-10 rounded-full" src={assets.logo} alt="" />
@@ -42,8 +42,8 @@ function PostLayout() {
                             <p className='text-[10px] pt-1'>2334</p>
                         </Link>
                     </div>
-                    <div className={`${isOpen ? " block " : "hidden"} dark:bg-gray-600 dark:text-white bg-gray-100 rounded-xl border-0 broder-gray-120  mt-4 md:ml-1 md:pt-2 scrollbar-hide p-3 max-h-50 overflow-scroll snap-x`}>
-                        <div className="border-b-2 border-gray-200 dark:border-gray-700">
+                    <div className={`${isOpen ? " block " : "hidden"} dark:bg-gray-600 dark:text-white bg-gray-100 rounded-xl border-0 broder-gray-120  mt-4 md:ml-1 md:pt-2 scrollbar-hide p-3 max-h-50 overflow-scroll snap-x`} >
+                        <div className="border-b-2 border-gray-200 dark:border-gray-700" >
                             <div className="flex items-center">
                                 <div className="shrink-0">
                                     <img className="w-4 h-4 md:w-5 md:h-5 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" />

@@ -14,7 +14,7 @@ function Notifications() {
                                         </Link>
                                         <h1 className='text-2xl md:text-3xl '>Notifications</h1>
                         </div>
-                <div className="flow-root px-3  mt-3">
+                <div className="flow-root px-3  mt-3" data-aos="flip-down" >
                         <ul role="list" className="bg-white px-2 mb-2 rounded-lg dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800 w-[100%] divide-y divide-gray-200 dark:divide-gray-700 mr-3">
                             <li className="py-3 sm:py-4">
                                 <Link to="/chat" className="flex items-center">

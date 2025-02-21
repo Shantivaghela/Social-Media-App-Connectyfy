@@ -12,7 +12,7 @@ function Login(props) {
 
     return (
         <>
-            <section className={`w-screen min-h-screen  flex  justify-center items-center `} >
+            <section className={`w-screen min-h-screen  flex  justify-center items-center `} data-aos="flip-up" >
                 <Link to='/' className="text-[#48a6a6] dark:text-black dark:bg-gray-400  absolute overflow-visible mb-180 md:mb-152 z-10 bg-white p-3 border-2 border-black rounded-full ">
                     <NavLink to='/'>
                         <i className="fa-solid fa-house fa-xl "></i>

@@ -10,7 +10,7 @@ function SignUp(props) {
     return (
         <>
             {/* <div className={`${props.view == 2 ? "block" : "hidden"} rounded-xl md:rounded-none w-full md:w-[50%] justify-center md:h-full h-screen bg-white flex flex-col items-center dark:bg-gray-900 `}> */}
-                <div className={`${props.view == 2 ? "block" : "hidden"} w-full items-center flex flex-col`}>
+                <div className={`${props.view == 2 ? "block" : "hidden"} w-full items-center flex flex-col`} >
                     <div className={` mb-4`}>
                         <h1 className='dark:text-white border-b-3 border-[#48a6a6] text-3xl '>Sign Up</h1>
                     </div>

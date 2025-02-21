@@ -11,7 +11,7 @@ function Sidemenu() {
     return (
         <>
         <div className='w-full'>
-            <div className='fixed top-19 ml-5 mr-2 md:block mt-3 md:w-[23%] hidden'>
+            <div className='fixed top-19 ml-5 mr-2 md:block mt-3 md:w-[23%] hidden' data-aos="slide-right">
 
 
                 <aside id="sidebar-multi-level-sidebar" className=" w-full   md:blcok md:h-50%" aria-label="Sidebar">

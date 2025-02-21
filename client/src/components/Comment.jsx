@@ -3,7 +3,7 @@ import React from 'react'
 function Comment(props) {
     return (
         <>
-            <div className={`bg-white dark:bg-gray-800 h-[500px] w-[300px] absolute mt-6 rounded-xl hidden md:block`}>
+            <div className={`bg-white dark:bg-gray-800 h-[500px] w-[300px] absolute mt-6 rounded-xl hidden md:block` } data-aos="slide-left">
                 <div className="flex items-center justify-between dark:text-white px-3 pt-2">
                     <h1 className=''>
                         Comments

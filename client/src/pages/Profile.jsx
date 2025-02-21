@@ -91,7 +91,7 @@ function Profile(props) {
                 </Link>
               </li>
             </ul>
-            <Postpage view={profielpage}/>
+            <Postpage view={profielpage} />
             {/* <div className={`${profielpage === 2 ? "block" : "hidden"}`}>Videos</div> */}
             <Profilevideos view={profielpage}/>
             <Tags view={profielpage}/>
