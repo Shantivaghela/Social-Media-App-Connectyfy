@@ -35,19 +35,19 @@ export function Profile() {
       <div className="relative shadow-lg mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover	bg-center">
         <img src={assets.backimg} className="absolute inset-0 h-full w-full bg-[#48a6a6] object-cover" />
       </div>
-      <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
-        <CardBody className="p-4">
+      <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100 dark:bg-gray-900 overflow-hidden dark:border-gray-500">
+        <CardBody className="p-4 ">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
               <Avatar
-                src="/img/bruce-mars.jpeg"
+                src={assets.logo}
                 alt="bruce-mars"
                 size="xl"
                 variant="rounded"
                 className="rounded-full shadow-lg shadow-blue-gray-500/40"
               />
               <div>
-                <Typography variant="h5" color="blue-gray" className="mb-1 dark:text-green-500">
+                <Typography variant="h5" color="blue-gray" className="mb-1 dark:text-white">
                   Connectyfy Admin
                 </Typography>
                 <Typography
@@ -58,20 +58,20 @@ export function Profile() {
                 </Typography>
               </div>
             </div>
-            <div className="w-96">
-              <Tabs value="app">
-                <TabsHeader>
-                  <Tab value="app">
-                    <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    <button onClick={()=>setPage(1)}>Profile</button>
+            <div className="w-full ">
+              <Tabs value="app" >
+                <TabsHeader className="dark:bg-gray-500">
+                  <Tab value="app" className="" onClick={()=>setPage(1)} >
+                    <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5 " />
+                    <button  className="">Profile</button>
                   </Tab>
-                  <Tab value="message">
-                    <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
-                    <button onClick={()=>setPage(2)}>Message</button>
+                  <Tab value="message" className="" onClick={()=>setPage(2)}>
+                    <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5 " />
+                    <button >Message</button>
                   </Tab>
-                  <Tab value="settings">
+                  <Tab value="settings" className="" onClick={()=>setPage(3)}>
                     <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    <button onClick={()=>setPage(3)}>Settings</button>
+                    <button>Settings</button>
                   </Tab>
                 </TabsHeader>
               </Tabs>

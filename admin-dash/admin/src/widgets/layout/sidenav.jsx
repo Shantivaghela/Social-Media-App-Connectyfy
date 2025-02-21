@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
+import DarkMode from "@/components/DarkMode";
+import { assets } from "@/assets/assets";
 
 export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -22,17 +24,18 @@ export function Sidenav({ brandImg, brandName, routes }) {
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border dark:bg-gray-900 dark:border-gray-700 border-blue-gray-100`}
     >
       <div
         className={`relative`}
       >
-        <Link to="/" className="py-6 px-8 text-center">
+        <Link to="/" className="py-6 px-8 text-center dark:text-white">
           <Typography
             variant="h6"
             color={sidenavType === "dark" ? "white" : "blue-gray"}
+            className="dark:text-white"
           >
-        <Avatar src='../img/connectyfylogo.png' alt="logo" className="mr-3" />
+        <Avatar src={assets.logo} alt="logo" className="mr-3 " />
             {brandName}
           </Typography>
         </Link>
@@ -47,15 +50,15 @@ export function Sidenav({ brandImg, brandName, routes }) {
           <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-white" />
         </IconButton>
       </div>
-      <div className="m-4">
+      <div className="m-4 dark:bg-gray-900">
         {routes.map(({ layout, title, pages }, key) => (
-          <ul key={key} className="mb-4 flex flex-col gap-1">
+          <ul key={key} className="mb-4 flex flex-col gap-1 ">
             {title && (
               <li className="mx-3.5 mt-4 mb-2">
                 <Typography
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "blue-gray"}
-                  className="font-black uppercase opacity-75"
+                  className="font-black uppercase opacity-75 dark:text-white"
                 >
                   {title}
                 </Typography>
@@ -74,7 +77,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                       //     ? "white"
                       //     : "blue-gray"
                       // }
-                        className={`${isActive ? "bg-[#48a6a6] " : "shadow-none text-black bg-white" } flex items-center gap-4 px-4 capitalize`}
+                        className={`${isActive ? "bg-[#48a6a6] " : "shadow-none text-black bg-white dark:bg-gray-900 dark:text-white dark:hover:bg-gray-600" }  flex items-center gap-4 px-4 capitalize`}
                       fullWidth
                     >
                       {icon}
@@ -86,11 +89,15 @@ export function Sidenav({ brandImg, brandName, routes }) {
                       </Typography>
                     </Button>
                   )}
+
                 </NavLink>
               </li>
             ))}
+
+
           </ul>
         ))}
+    {/* <DarkMode/> */}
       </div>
     </aside>
   );

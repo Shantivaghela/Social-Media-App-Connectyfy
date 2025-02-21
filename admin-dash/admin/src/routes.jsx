@@ -6,8 +6,9 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
+import { Home, Profile, Users, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
+import DarkMode from "./components/DarkMode";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -30,10 +31,10 @@ export const routes = [
         element: <Profile />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
-        element: <Tables />,
+        icon: <i class="fa-solid fa-users fa-xl"></i>,
+        name: "users",
+        path: "/users",
+        element: <Users/>,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
@@ -59,6 +60,7 @@ export const routes = [
         path: "/sign-up",
         element: <SignUp />,
       },
+      // {<DarkMode/>}
     ],
   },
 ];

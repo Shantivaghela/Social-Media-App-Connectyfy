@@ -19,13 +19,13 @@ export const statisticsCardsData = [
     },
   },
   {
-    color: "gray",
+    color: "#48a6a6",
     icon: UserPlusIcon,
-    title: "New Clients",
+    title: "New Users",
     value: "3,462",
     footer: {
-      color: "text-red-500",
-      value: "-2%",
+      color: "text-green-500",
+      value: "+2%",
       label: "than yesterday",
     },
   },

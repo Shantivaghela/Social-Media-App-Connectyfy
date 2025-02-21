@@ -9,26 +9,26 @@ import PropTypes from "prop-types";
 
 export function StatisticsCard({ color, icon, title, value, footer }) {
   return (
-    <Card className="border border-blue-gray-100 shadow-sm">
+    <Card className="border dark:bg-gray-900 dark:border-gray-600 border-blue-gray-100 shadow-sm">
       <CardHeader
         variant="gradient"
-        color={color}
+          // color="#48a6a6"
         floated={false}
         shadow={false}
-        className="absolute grid h-12 w-12 place-items-center"
+        className="absolute bg-[#48a6a6] grid h-12 w-12 place-items-center dark:text-white"
       >
         {icon}
       </CardHeader>
       <CardBody className="p-4 text-right">
-        <Typography variant="small" className="font-normal text-blue-gray-600">
+        <Typography variant="small" className="font-normal text-blue-gray-600 dark:text-white">
           {title}
         </Typography>
-        <Typography variant="h4" color="blue-gray">
+        <Typography variant="h4" color="blue-gray" className="dark:text-white">
           {value}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-blue-gray-50 p-4">
+        <CardFooter className="border-t border-blue-gray-50 dark:border-gray-600 p-4">
           {footer}
         </CardFooter>
       )}
@@ -63,6 +63,7 @@ StatisticsCard.propTypes = {
     "purple",
     "pink",
     "red",
+    "#48a6a6"
   ]),
   icon: PropTypes.node.isRequired,
   title: PropTypes.node.isRequired,

@@ -29,18 +29,19 @@ import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 
 export function Home() {
   return (
-    <div className="mt-12">
-      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+    <div className="mt-12 ">
+      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4  ">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
             {...rest}
             title={title}
+            className="dark:bg-gray-900"
             icon={React.createElement(icon, {
-              className: "w-6 h-6 text-white",
+              className: "w-6 h-6 text-white ",
             })}
             footer={
-              <Typography className="font-normal text-blue-gray-600">
+              <Typography className="font-normal   text-blue-gray-600">
                 <strong className={footer.color}>{footer.value}</strong>
                 &nbsp;{footer.label}
               </Typography>
@@ -66,16 +67,16 @@ export function Home() {
         ))}
       </div> */}
       <div className="mb-4 grid grid-cols-1 gap-6  w-full">
-        <Card className="overflow-hidden  border border-blue-gray-100 shadow-sm">
+        <Card className="overflow-hidden  border border-blue-gray-100 shadow-sm dark:bg-gray-900">
           <CardHeader
             floated={false}
             shadow={false}
             color="transparent"
-            className="m-0 flex items-center justify-between p-6"
+            className="m-0 flex items-center justify-between p-6 dark:text-white"
           >
             <div>
-              <Typography variant="h6" color="blue-gray" className="mb-1">
-                Users
+              <Typography variant="h6" color="blue-gray" className="mb-1 dark:text-white">
+                Recent Users
               </Typography>
               <Typography
                 variant="small"

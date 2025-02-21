@@ -70,31 +70,31 @@ export function Navbar({ brandName, routes, action }) {
           )}
         </IconButton>
       </div>
-      <Collapse open={openNav}>
+      {/* <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
           {React.cloneElement(action, {
             className: "w-full block lg:hidden",
           })}
         </div>
-      </Collapse>
+      </Collapse> */}
     </MTNavbar>
   );
 }
 
-Navbar.defaultProps = {
-  brandName: "Material Tailwind React",
-  action: (
-    <a
-      href="https://www.creative-tim.com/product/material-tailwind-dashboard-react"
-      target="_blank"
-    >
-      <Button variant="gradient" size="sm" fullWidth>
-        free download
-      </Button>
-    </a>
-  ),
-};
+// Navbar.defaultProps = {
+//   brandName: "Material Tailwind React",
+//   action: (
+//     <a
+//       href="https://www.creative-tim.com/product/material-tailwind-dashboard-react"
+//       target="_blank"
+//     >
+//       <Button variant="gradient" size="sm" fullWidth>
+//         free download
+//       </Button>
+//     </a>
+//   ),
+// };
 
 Navbar.propTypes = {
   brandName: PropTypes.string,
