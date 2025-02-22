@@ -13,19 +13,19 @@ function Videos() {
   // const videos = videoInfo;
   const [show, setShow] = useState(true);
   const [commentshow, setCommentshow] = useState(false)
-  const [videoid,setVideoid] = useState();
+  const [videoid, setVideoid] = useState();
   console.log(videoid);
-const sender = () =>{
-  setCommentshow(true)
-  setVideoid()
-}
+  const sender = () => {
+    setCommentshow(true)
+    setVideoid()
+  }
 
 
   return (
     <>
 
       <section className='md:ml-96 md:mt-17  md:mb-0 mb-0 flex  '>
-        {commentshow && <Comment view={setCommentshow} vid={videoid}/> }
+        {commentshow && <Comment view={setCommentshow} vid={videoid} />}
         <div className="  w-full md:max-h-[590px] max-h-[900px] overflow-y-scroll snap-y snap-mandatory scroll-mt-50 ">
           <div className=' md:mt-15 flex flex-col justify-center items-center '>
 
@@ -33,22 +33,27 @@ const sender = () =>{
               <div className="md:snap-end  snap-start  snap-always relative ">
                 <div className="absolute  w-full mt-150 md:mt-80 z-12 ">
                   <div className="float-end flex flex-col gap-10 pr-3 text-white">
-                    <Link to="#" className='hover:text-red-600' >
+                    <Link to="#" className='hover:text-red-600 flex flex-col justify-center items-center gap-3' >
                       <i class="fa-solid fa-thumbs-up fa-xl "></i>
+                      <p className="text-[10px]">123</p>
 
                     </Link>
-                    <Link to="#" onClick={()=>{setCommentshow(!commentshow),setVideoid(key.id)}} className='hover:text-[#48a6a6]'>
+                    <Link to="#" onClick={() => { setCommentshow(!commentshow), setVideoid(key.id) }} className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
                       <i class="fa-solid fa-message fa-xl"></i>
+                      <p className="text-[10px]">123</p>
                     </Link>
 
-                    <Link to="#" className='hover:text-[#48a6a6]'>
+                    <Link to="#" className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
                       <i class="fa-solid fa-paper-plane fa-xl"></i>
+                      <p className="text-[10px]">123</p>
+
                     </Link>
-                    <Link to="#" className='hover:text-[#48a6a6]'>
+                    <Link to="#" className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
                       <i class="fa-solid fa-bookmark fa-xl"></i>
+                      {/* <p className="text-[10px]">123</p> */}
 
                     </Link>
 
