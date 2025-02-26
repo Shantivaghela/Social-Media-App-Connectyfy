@@ -17,6 +17,7 @@ import Notifications from './pages/Notifications'
 import Friends from './pages/Friends'
 import Login from './pages/authentications/Login'
 import Forgotpass from './pages/authentications/Forgotpass'
+import Editprofile from './pages/Editprofile'
 
 
 function App() {
@@ -64,6 +65,10 @@ function App() {
         {
           path:'/friends',
           element:<Friends/>
+        },
+        {
+          path:'/Editprofile',
+          element:<Editprofile/>
         },
       ]
     },

@@ -19,8 +19,8 @@ function Home() {
     const [key, setKey] = useState();
 
 
-    
-    
+
+
     var settings = {
         dots: true,
         infinite: false,
@@ -48,25 +48,36 @@ function Home() {
 
                         <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg overflow-scroll scrollbar-hide w-full   gap-3 pl-3 md:pl-5'>
                             {/* <Slider {...settings} className='w-full'> */}
-                                {story.map((items,index) => (
-                                    <Link to="" key={items.id} onClick={() => {setOpen(true),setKey(index)}} className={`flex overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block bg-amber-900`}>
-                                        <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-18 text-white max-w-15 md:max-w-22 '>{items.Name}</span>
-                                        <img src={items.url} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
-                                   <p></p>
-                                    </Link>
-                                ))}
-                                <div className="flex flex-col justify-center items-center">
-                                 <p>
-                                    
-                                No more items
-                                    </p>   
+                            {story.map((items, index) => (
+
+                                <Link to="" key={items.id} onClick={() => { setOpen(true), setKey(index) }} className={`flex overflow-hidden relative md:border-4 border-3 border-[#48a6a6] dark:border-gray-400 md:max-w-25 md:min-w-25 max-w-20 min-w-20 md:h-35 h-30 shadow-md rounded-lg shadow-gray-800 md:block bg-amber-900`}>
+                                    <span className='text-[10px] md:text-sm mt-1 ml-1 absolute z-18 text-white max-w-15 md:max-w-22 '>{items.Name}</span>
+                                    {items.url.map((media, i) => (
+                                        <div key={i}>
+
+                                            {media.type === "Image" ? (
+
+                                                <img src={media.src} alt="" className='brightness-50 h-[150px] z-10 object-cover rounded-lg' />
+                                            ):(
+                                                <video src={media.src} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                                            )}
+                                            </div>
+                                        ))}
+                                            <p></p>
+                                        </Link>
+                                    ))}
+                                    <div className="flex flex-col justify-center items-center">
+                                        <p>
+
+                                            No more items
+                                        </p>
+                                    </div>
+                                    {/* </Slider> */}
                                 </div>
-                            {/* </Slider> */}
-                        </div>
                     </div>
-                    <PostLayout />
-                    <PostLayout />
-                    <PostLayout />
+                        <PostLayout />
+                        <PostLayout />
+                        <PostLayout />
 
                 </section>
                 <ProfileCard name="Parth Nandha " desc="full stack dev" followers="34456354" following="7" posts="35345" />

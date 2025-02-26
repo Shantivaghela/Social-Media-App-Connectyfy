@@ -30,7 +30,7 @@ export const story = [
         id:1,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Image",src:assets.demos}],
         time:"1 jan 2025",
         
     },
@@ -38,7 +38,7 @@ export const story = [
         id:2,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Video",src:assets.demovideo}],
         time:"1 jan 2025",
         
     },
@@ -46,7 +46,7 @@ export const story = [
         id:3,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Image",src:assets.demos}],
         time:"1 jan 2025",
         comment:[{message:"welcome",
             id:6}]
@@ -55,7 +55,7 @@ export const story = [
         id:4,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Image",src:assets.demos}],
         time:"1 jan 2025",
         comment:[{message:"welcome",
             id:3}]
@@ -64,7 +64,7 @@ export const story = [
         id:5,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Image",src:assets.demos}],
         time:"1 jan 2025",
         comment:[{message:"welcome",
             id:4}]
@@ -73,7 +73,7 @@ export const story = [
         id:6,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: assets.demos,
+        url: [{type:"Image",src:assets.demos}],
         time:"1 jan 2025",
         comment:[{message:"welcome",
             id:3}]

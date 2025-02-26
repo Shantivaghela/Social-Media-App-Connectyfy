@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { assets } from '../assets/assets'
 import { videoInfo } from '../assets/videosInfo'
 import Sidemenu from '../components/Sidemenu'
 import Header from '../components/Header'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import "../App.css";
 import Comment from '../components/Comment'
@@ -13,46 +13,65 @@ function Videos() {
   // const videos = videoInfo;
   const [show, setShow] = useState(true);
   const [commentshow, setCommentshow] = useState(false)
-  const [videoid, setVideoid] = useState();
-  console.log(videoid);
-  const sender = () => {
-    setCommentshow(true)
-    setVideoid()
-  }
+  const videoRefs = useRef([]);
+  const [videolength, setVideolength] = useState({});
+  // const dura = document.querySelector(".dura")
+
+  // console.log(duratio.currentTime);
+  // const sender = () => {
+  //   setCommentshow(true)
+  //   setVideoid()
+  // }
+
+// console.log(videolength.url.rype);
+
+  const videodurationfun = (index) => {
+    const video = videoRefs.current[index]; // Get the correct video reference
+    if (video && video.duration) {
+      const bar = (video.currentTime / video.duration) * 100;
+      // console.log(bar);
+      
+      setVideolength((prev) => ({
+        ...prev,
+        [index]: bar + "%",
+      }));
+    }
+  };
+  // console.log(videodurationfun);
 
 
   return (
     <>
 
       <section className='md:ml-96 md:mt-17  md:mb-0 mb-0 flex  '>
-        {commentshow && <Comment view={setCommentshow} vid={videoid} />}
+        {commentshow && <Comment view={setCommentshow} />}
         <div className="  w-full md:max-h-[590px] max-h-[900px] overflow-y-scroll snap-y snap-mandatory scroll-mt-50 ">
           <div className=' md:mt-15 flex flex-col justify-center items-center '>
 
-            {videoInfo.map((key) => (
-              <div className="md:snap-end  snap-start  snap-always relative ">
+            {videoInfo.map((key, i) => (
+              <div className="md:snap-end  snap-start  snap-always relative " key={i}>
                 <div className="absolute  w-full mt-150 md:mt-80 z-12 ">
                   <div className="float-end flex flex-col gap-10 pr-3 text-white">
                     <Link to="#" className='hover:text-red-600 flex flex-col justify-center items-center gap-3' >
-                      <i class="fa-solid fa-thumbs-up fa-xl "></i>
+                      <i className="fa-solid fa-thumbs-up fa-xl "></i>
                       <p className="text-[10px]">123</p>
 
                     </Link>
-                    <Link to="#" onClick={() => { setCommentshow(!commentshow), setVideoid(key.id) }} className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
+                    <NavLink to="#" onClick={() => { setCommentshow(!commentshow) }} className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
-                      <i class="fa-solid fa-message fa-xl"></i>
+                      <i className="fa-solid fa-message fa-xl"></i>
                       <p className="text-[10px]">123</p>
-                    </Link>
+                    </NavLink>
 
                     <Link to="#" className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
-                      <i class="fa-solid fa-paper-plane fa-xl"></i>
+                      <i className="fa-solid fa-paper-plane fa-xl"></i>
                       <p className="text-[10px]">123</p>
 
                     </Link>
                     <Link to="#" className='hover:text-[#48a6a6] flex flex-col justify-center items-center gap-3'>
 
-                      <i class="fa-solid fa-bookmark fa-xl"></i>
+                      <i className="fa-solid fa-bookmark fa-xl"></i>
                       {/* <p className="text-[10px]">123</p> */}
 
                     </Link>
@@ -99,8 +118,16 @@ function Videos() {
                     </div>
                   </div>
                 </div>
-
-                <video src={key.video} className=' h-[900px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] ' loop autoplay="true"></video>
+                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: videolength[i] || "0%" }}></div>
+                </div>
+                <video
+                  src={key.video}
+                  ref={(el) => (videoRefs.current[i] = el)}
+                  onTimeUpdate={() => videodurationfun(i)}
+                  onLoadedMetadata={() => videodurationfun(i)}
+                  className='dura h-[900px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] '
+                  muted autoPlay={true}></video>
               </div>
 
             ))
