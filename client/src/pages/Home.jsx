@@ -57,9 +57,9 @@ function Home() {
 
                                             {media.type === "Image" ? (
 
-                                                <img src={media.src} alt="" className='brightness-50 h-[150px] z-10 object-cover rounded-lg' />
+                                                <img src={media.src} alt="" className='brightness-50 h-[150px] z-10 object-cover ' />
                                             ):(
-                                                <video src={media.src} alt="" className='brightness-50 h-full z-10 object-cover rounded-lg' />
+                                                <video src={media.src} alt="" className='brightness-50 h-full z-10 object-cover ' />
                                             )}
                                             </div>
                                         ))}

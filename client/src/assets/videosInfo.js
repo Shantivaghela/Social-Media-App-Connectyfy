@@ -30,7 +30,11 @@ export const story = [
         id:1,
         Name:"shanti Vaghlea",
         img:assets.logo,
-        url: [{type:"Image",src:assets.demos}],
+        url: [
+            {type:"Image",src:assets.demos},
+            
+            
+        ],
         time:"1 jan 2025",
         
     },

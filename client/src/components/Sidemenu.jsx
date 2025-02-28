@@ -24,7 +24,7 @@ function Sidemenu() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Profile" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
+                                <NavLink to="/Createpost" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>
                                     <i className="fa-solid fa-square-plus fa-lg transition duration-75  group-hover:text-white dark:group-hover:text-white"></i>
                                     <span className="ms-3">Post</span>
                                 </NavLink>

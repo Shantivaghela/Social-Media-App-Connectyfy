@@ -31,7 +31,7 @@ function Profile(props) {
 
               </button>
 
-              <div id="dropdown" className={`${isdrop ? 'block' : 'hidden'}  absolute z-10 text-base list-none bg-white divide-y divide-gray-100  w-44 dark:bg-gray-700`}>
+              <div id="dropdown" className={`${isdrop ? 'block' : 'hidden'} rounded-xl absolute  text-base list-none bg-white divide-y divide-gray-100  w-44 dark:bg-gray-700`}>
                 {/* <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className="inline-block z-12 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none overflow-hidden focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                   <i className=''></i>
                 </button> */}
@@ -39,11 +39,9 @@ function Profile(props) {
                   <li>
                     <Link to="/Editprofile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</Link>
                   </li>
+                  
                   <li>
-                    <Link to="#" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</Link>
-                  </li>
-                  <li>
-                    <Link to="#" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</Link>
+                    <Link to="#" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</Link>
                   </li>
                 </ul>
               </div>

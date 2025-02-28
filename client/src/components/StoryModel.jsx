@@ -7,75 +7,133 @@ import { story } from '../assets/videosInfo'
 import { assets } from '../assets/assets'
 
 function StoryModel(props) {
-  const [currentIndex, setCurrentIndex] = useState(props.id)
-  const videoRef = useRef();
-  
-  const imageRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(props.id);
+  const [videolength, setVideolength] = useState(0);
+    const videoRef = useRef();
+  const imageRef = useRef();
   let sliderRef = useRef(null);
   
-
-//  console.log(sliderRef.i);
- 
-  useEffect(() => {
-    if(props.id < story.length){
-      story.map((items)=>{
-        console.log("currentid", items.id);
-        
-        items.url.map((media)=>{
-          console.log(media.type);
-          if(media.type === "Image" && items.id === currentIndex){
-            
-            const count = setInterval(()=>{
-              
-               next();
-              },3000)
-            }
-            else if(media.type === "Video" && videoRef.current){
-              const video = videoRef.current;
-              const videodur = video.duration*1000;
-              console.log(video.duration);
-              video.currentTime = 0;
-              video.play();
-              if(video.duration < 30 ){
-                
-              
-               
-             
-                clearInterval()
-            }
-          }
-        })
-          setCurrentIndex(props.id+1)
-      });
-    }else{
-      clearInterval(count)
-      setCurrentIndex(0)
-    }
-
-},[currentIndex]); // Re-run when index changes
- 
-     const updateid = () =>{
-      setCurrentIndex(+1)
-     }  
-        
-      
-
+  // console.log(media);
   
 
+//  console.log(media.length);
+ 
+  useEffect(() => {
+
+    if (currentIndex < story.length - 1) {
+      const currentMedia = story[currentIndex];
+  const media = currentMedia.url;
+      const typeOfmedia = media.map((items) => {
+        return items.type
+      });
+
+      typeOfmedia.map((thatMedia) => {
+        let timer;
+        // let bartimer;
+        if (thatMedia === "Image") {
+          if(media.length === 1){
+
+            timer = setTimeout(() => {
+              next()
+            }, 5000)
+            return (() => clearTimeout(timer))
+          }else if(media.length > 1){
+            timer = setTimeout(() => {
+              next()
+            }, 50000)
+            return (() => clearTimeout(timer))
+          }
+        
+          
+          // bartimer = setInterval(()=>setVideolength(videolength++),5000)
+        } else if (thatMedia === "Video" && videoRef.current) {
+
+          const video = videoRef.current;
+          const videodur = video.duration * 1000
+          video.currentTime = 0;
+          video.play();
+          if(media.length === 1){
+
+            if (videodur < 30000) {
+
+              timer = setTimeout(() => {
+                next()
+               
+              }, videodur)
+              return (() => clearTimeout(timer))
+            } else if (videodur > 30000) {
+              
+              timer = setTimeout(() => {
+                next()
+                
+              }, 30000)
+              
+  
+              return (() => clearTimeout(timer))
+            }
+          }
+          
+          
+
+            
+           
+        }
+
+
+      })
+    }
+
+
+  }, [currentIndex])
+
   const next = () => {
-    sliderRef.slickNext();
-    // setCurrentIndex()
+  
+
+      sliderRef.slickNext();
+      setCurrentIndex(currentIndex + 1)
+   
+   
+    
+  
+    
   };
   const previous = () => {
     sliderRef.slickPrev();
+    setCurrentIndex(currentIndex - 1)
   };
+  const bars = (i) => {
+    
+    console.log(i);
+    
+    const bar = setInterval(()=>{
+      setVideolength(videolength+1)
+      // videolength++;
+      
+      
+      },10)
+    
+      if (videolength >= 100 ) {
+        clearInterval(bar)
+        setVideolength()
+      } 
+    
+    
+      
+  }
+
+
+console.log(currentIndex);
+
+
+
+
   var settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    
+
 
   };
 
@@ -87,8 +145,7 @@ function StoryModel(props) {
           <NavLink onClick={() => { props.open(false) }} className='text-white z-20 absolute md:text-2xl  hover:bg-gray-500 bg-gray-600 border-2 p-1 px-2  rounded-lg' >
             <i className="fa-solid fa-xmark "></i>
           </NavLink>
-          <div className="flex justify-center items-center  min-h-[100%] ">
-
+          <div className="flex justify-center items-center flex-col  min-h-[100%] relative">
 
             <Slider
               ref={slider => {
@@ -99,7 +156,7 @@ function StoryModel(props) {
               {story.map((items, index) => (
 
 
-                <div key={index}  className='sticky overflow-hidden w-full md:px-2 ' data-aos="zoom-in">
+                <div key={index} currindex={index} className='sticky overflow-hidden w-full md:px-2 ' data-aos="zoom-in">
                   <div className=" flex justify-center items-center relative">
 
                     <NavLink to="/" className="flex items-center space-x-2 rtl:space-x-reverse absolute z-18 mb-170 mr-49 mt-15 md:mt-0 md:mb-130 md:mr-30">
@@ -114,17 +171,22 @@ function StoryModel(props) {
 
                     </NavLink>
                     <div className='absolute flex  ml- h-[80%] z-33 w-full'>
-                      <button onClick={previous} className="w-[50%] h-full "></button>
-                      <button onClick={next} className="w-[50%] h-full "></button>
+                    <button onClick={previous} className="w-[50%] h-full cursor-pointer"></button>
+                     {index > currentIndex ? (""):<button onClick={next} className="w-[50%] h-full cursor-pointer"></button>}
 
                     </div>
                     {/* <span className=' md:mt-1 ml-1   text-white  '>{items.Name}</span> */}
                     {items.url.map((media, i) => (
                       <div key={i}>
 
+                        {/* <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 ">
+                          <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: videolength+"%" || "0%" }}></div>
+                        </div> */}
+                        
                         {media.type === "Image" ? (
-
+                        
                           < img src={media.src} ref={imageRef} alt="this is image" className='rounded-xl object-cover  h-[750px] w-full md:h-[600px] md:w-[300px] ' />
+                          // < img src={media.src} ref={imageRef} alt="this is image" className='rounded-xl object-cover  h-[750px] w-full md:h-[600px] md:w-[300px] ' />
                         ) : (
                           < video
                             src={media.src}
@@ -132,11 +194,15 @@ function StoryModel(props) {
                             alt="this is video"
                             className='rounded-xl object-cover  h-[750px] w-full md:h-[600px] md:w-[300px] '
                             autoPlay={true}
-                          // onEnded={nextMedia}
+                            // onTimeUpdate={videodurationfun()}
+                            // onEnded={nextMedia}
+                            loop
                           />
 
 
                         )}
+
+
                       </div>
                     ))}
                     <div className="absolute w-full z-17 flex justify-center mt-133 gap-1">

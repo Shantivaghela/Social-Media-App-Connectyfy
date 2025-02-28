@@ -18,6 +18,7 @@ import Friends from './pages/Friends'
 import Login from './pages/authentications/Login'
 import Forgotpass from './pages/authentications/Forgotpass'
 import Editprofile from './pages/Editprofile'
+import Createpost from './pages/Createpost'
 
 
 function App() {
@@ -69,6 +70,10 @@ function App() {
         {
           path:'/Editprofile',
           element:<Editprofile/>
+        },
+        {
+          path:'/Createpost',
+          element:<Createpost/>
         },
       ]
     },
