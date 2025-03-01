@@ -12,10 +12,13 @@ import StoryModel from '../components/StoryModel';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AddStory from '../components/AddStory';
 
 function Home() {
     // const [isdrop, setdrop] = useState(false);
     const [isOpen, setOpen] = useState(false);
+    const [addOpen, setAddOpen] = useState(false);
+    const [addStory, setAddStory] = useState(false);
     const [key, setKey] = useState();
 
 
@@ -33,6 +36,7 @@ function Home() {
         <>
 
             {isOpen && <StoryModel open={setOpen} id={key} />}
+            {addOpen && <AddStory open={setAddOpen}/>}
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
 
@@ -40,7 +44,7 @@ function Home() {
                     <div className='flex items-start  top-0 p-3 '>
 
 
-                        <Link href="" className={`overflow-hidden md:max-w-25 md:min-w-25 min-w-20 max-w-20 shadow-lg text-2xl md:text-2xl shadow-gray-800  md:h-35 h-30 md:b snap-start rounded-lg    bg-[url(${assets.demoimg})]`} >
+                        <Link href="" onClick={()=>setAddOpen(true)} className={`overflow-hidden md:max-w-25 md:min-w-25 min-w-20 max-w-20 shadow-lg text-2xl md:text-2xl shadow-gray-800  md:h-35 h-30 md:b snap-start rounded-lg    bg-[url(${assets.demoimg})]`} >
                             <i className="fa-solid fa-circle-plus fa-2xl z-9 absolute md:ml-7 ml-4 mt-19 hover:text-[#48a6a6] hover:scale-110 transition delay-120 duration-300 ease-in-out  md:mt-22 items-center text-white"></i>
                             <img src={assets.demoimg} alt="" className='h-full z-10 brightness-50 hover:contrast-50' />
                         </Link>

@@ -5,6 +5,8 @@ import demos from './demos.jpg'
 import demovideo from './demovideo.mp4'
 import Loginimg from './Loginimg.mp4'
 import loginimage from './loginimage.jpg'
+import AddBanner from './AddBanner.png'
+import profileIcon from './profileIcon.png'
 
 export const assets = {
     connectyfy,
@@ -13,5 +15,7 @@ export const assets = {
     demos,
     demovideo,
     Loginimg,
-    loginimage
+    loginimage,
+    AddBanner,
+    profileIcon
 }
