@@ -9,20 +9,20 @@ import { assets } from '../assets/assets'
 function StoryModel(props) {
   const [currentIndex, setCurrentIndex] = useState(props.id);
   const [videolength, setVideolength] = useState(0);
-    const videoRef = useRef();
+  const videoRef = useRef();
   const imageRef = useRef();
   let sliderRef = useRef(null);
-  
-  // console.log(media);
-  
 
-//  console.log(media.length);
- 
+  // console.log(media);
+
+
+  //  console.log(media.length);
+
   useEffect(() => {
 
     if (currentIndex < story.length - 1) {
       const currentMedia = story[currentIndex];
-  const media = currentMedia.url;
+      const media = currentMedia.url;
       const typeOfmedia = media.map((items) => {
         return items.type
       });
@@ -31,20 +31,20 @@ function StoryModel(props) {
         let timer;
         // let bartimer;
         if (thatMedia === "Image") {
-          if(media.length === 1){
+          if (media.length === 1) {
 
             timer = setTimeout(() => {
               next()
             }, 5000)
             return (() => clearTimeout(timer))
-          }else if(media.length > 1){
+          } else if (media.length > 1) {
             timer = setTimeout(() => {
               next()
             }, 50000)
             return (() => clearTimeout(timer))
           }
-        
-          
+
+
           // bartimer = setInterval(()=>setVideolength(videolength++),5000)
         } else if (thatMedia === "Video" && videoRef.current) {
 
@@ -52,31 +52,31 @@ function StoryModel(props) {
           const videodur = video.duration * 1000
           video.currentTime = 0;
           video.play();
-          if(media.length === 1){
+          if (media.length === 1) {
 
             if (videodur < 30000) {
 
               timer = setTimeout(() => {
                 next()
-               
+
               }, videodur)
               return (() => clearTimeout(timer))
             } else if (videodur > 30000) {
-              
+
               timer = setTimeout(() => {
                 next()
-                
+
               }, 30000)
-              
-  
+
+
               return (() => clearTimeout(timer))
             }
           }
-          
-          
 
-            
-           
+
+
+
+
         }
 
 
@@ -87,42 +87,42 @@ function StoryModel(props) {
   }, [currentIndex])
 
   const next = () => {
-  
 
-      sliderRef.slickNext();
-      setCurrentIndex(currentIndex + 1)
-   
-   
-    
-  
-    
+
+    sliderRef.slickNext();
+    setCurrentIndex(currentIndex + 1)
+
+
+
+
+
   };
   const previous = () => {
     sliderRef.slickPrev();
-    setCurrentIndex(currentIndex - 1)
+    // setCurrentIndex(currentIndex - 1)
   };
   const bars = (i) => {
-    
+
     console.log(i);
-    
-    const bar = setInterval(()=>{
-      setVideolength(videolength+1)
+
+    const bar = setInterval(() => {
+      setVideolength(videolength + 1)
       // videolength++;
-      
-      
-      },10)
-    
-      if (videolength >= 100 ) {
-        clearInterval(bar)
-        setVideolength()
-      } 
-    
-    
-      
+
+
+    }, 10)
+
+    if (videolength >= 100) {
+      clearInterval(bar)
+      setVideolength()
+    }
+
+
+
   }
 
 
-console.log(currentIndex);
+  console.log(currentIndex);
 
 
 
@@ -171,8 +171,8 @@ console.log(currentIndex);
 
                     </NavLink>
                     <div className='absolute flex  ml- h-[80%] z-33 w-full'>
-                    <button onClick={previous} className="w-[50%] h-full cursor-pointer"></button>
-                     {index > currentIndex ? (""):<button onClick={next} className="w-[50%] h-full cursor-pointer"></button>}
+                      <button onClick={previous} className="w-[50%] h-full cursor-pointer"></button>
+                      {index > currentIndex ? ("") : <button onClick={next} className="w-[50%] h-full cursor-pointer"></button>}
 
                     </div>
                     {/* <span className=' md:mt-1 ml-1   text-white  '>{items.Name}</span> */}
@@ -182,9 +182,9 @@ console.log(currentIndex);
                         {/* <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 ">
                           <div className={`bg-blue-600 h-2.5 rounded-full`} style={{ width: videolength+"%" || "0%" }}></div>
                         </div> */}
-                        
+
                         {media.type === "Image" ? (
-                        
+
                           < img src={media.src} ref={imageRef} alt="this is image" className='rounded-xl object-cover  h-[750px] w-full md:h-[600px] md:w-[300px] ' />
                           // < img src={media.src} ref={imageRef} alt="this is image" className='rounded-xl object-cover  h-[750px] w-full md:h-[600px] md:w-[300px] ' />
                         ) : (
