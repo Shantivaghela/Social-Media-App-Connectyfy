@@ -19,6 +19,8 @@ import Login from './pages/authentications/Login'
 import Forgotpass from './pages/authentications/Forgotpass'
 import Editprofile from './pages/Editprofile'
 import Createpost from './pages/Createpost'
+import SignUp from './pages/authentications/SignUp'
+import Logout from './pages/authentications/Logout'
 
 
 function App() {
@@ -82,8 +84,16 @@ function App() {
       element:<Login/>
     },
     {
+      path:'/signup',
+      element:<SignUp/>
+    },
+    {
       path:'/forgot',
       element:<Forgotpass/>
+    },
+    {
+      path:'/logout',
+      element:<Logout/>
     },
    
 

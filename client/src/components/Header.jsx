@@ -1,21 +1,23 @@
-import React, { useContext, useState,useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
-import { ThemeMode } from '../contextAPI';
+import { useAuth } from '../contextAPI/index.jsx';
 import DarkMode from './DarkMode';
 
 function Header() {
-   const theme = document.getElementById("theme").className
-      const [Mode, setMode] = useState(theme)
-  
-      const modeHandl = () => {
-  
-          setMode(Mode === "dark bodyDark" ? "light" : "dark bodyDark");
-  
-      }
-      useEffect(() => {
-          document.body.className = Mode;
-      }, [Mode])
+  const theme = document.getElementById("theme").className
+  const [Mode, setMode] = useState(theme)
+
+  const { isLoggedIn } = useAuth();
+
+  const modeHandl = () => {
+
+    setMode(Mode === "dark bodyDark" ? "light" : "dark bodyDark");
+
+  }
+  useEffect(() => {
+    document.body.className = Mode;
+  }, [Mode])
 
   return (
 
@@ -50,9 +52,21 @@ function Header() {
             <li>
               <NavLink to="/message" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} md:block hidden px-2 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl   transition delay-50 duration-300 ease-in-out"></i></NavLink>
             </li>
-            <li>
-              <NavLink to="/login" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
-            </li>
+
+            
+
+              {isLoggedIn ?
+                (
+                  <li>
+                  <NavLink to="/profile" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
+                  </li>
+                ) : (
+                  <li>
+                  <NavLink to="/login" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-1   rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><span className='border-2 border-[#48a6a6] rounded-sm hover:border-[#2973b2] px-2 py-1 transition delay-120 duration-300 ease-in-out'>Login</span></NavLink>
+                  </li>
+                )}
+            
+
           </ul>
         </div>
       </div>

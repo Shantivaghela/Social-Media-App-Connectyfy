@@ -13,6 +13,8 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AddStory from '../components/AddStory';
+import { useAuth } from '../contextAPI/index.jsx';
+
 
 function Home() {
     // const [isdrop, setdrop] = useState(false);
@@ -20,6 +22,8 @@ function Home() {
     const [addOpen, setAddOpen] = useState(false);
     const [addStory, setAddStory] = useState(false);
     const [key, setKey] = useState();
+      const { isLoggedIn } = useAuth();
+    
 
 
 
@@ -40,7 +44,7 @@ function Home() {
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
 
-                <section className='mb-5 mt-22 md:ml-[25%]   min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2'>
+                <section className={`md:ml-[25%] mb-5 mt-22    min-h-screen  md:max-w-[50%] min-w-full md:min-w-[50%]  rounded-lg shadow-sm  md:block overflow-hidden col-span-2`}>
                     <div className='flex items-start  top-0 p-3 '>
 
 

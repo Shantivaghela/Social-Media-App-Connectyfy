@@ -5,11 +5,14 @@ import Sidemenu from '../components/Sidemenu';
 import Postpage from './Postpage';
 import Profilevideos from './Profilevideos';
 import Tags from './Tags';
+import { useAuth } from '../contextAPI';
 
 
 function Profile(props) {
   const [isdrop, setdrop] = useState(false);
   const [profielpage, setPrfilepage] = useState(1);
+
+  const {user} = useAuth();
 
   const pagecontant = (id) => {
 
@@ -41,14 +44,14 @@ function Profile(props) {
                   </li>
                   
                   <li>
-                    <Link to="#" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</Link>
+                    <NavLink to="/logout" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</NavLink>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="flex flex-col items-center mt-27  ">
               <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.demoimg} alt="Bonnie image" />
-              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Parth Nandha</h5>
+              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">web developers</span>
               <div className="flex mt-4 md:mt-6  gap-10 ">
                 <Link to="" className='flex flex-col items-center justify-center dark:text-white'>

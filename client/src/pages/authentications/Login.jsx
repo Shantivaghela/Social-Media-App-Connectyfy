@@ -1,14 +1,63 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets'
-import SignUp from './SignUp';
-import Forgotpass from './Forgotpass';
-import Loginpage from './Loginpage';
+import { useAuth } from '../../contextAPI';
 
 function Login(props) {
     const [authpage, setAuthpage] = useState(1);
-    const [show,setShow] = useState(false)
-    
+    const [user, setUser] = useState({
+        email: "",
+        password: "",
+    });
+    const [show, setShow] = useState(false);
+    const { storeTokenInLS } = useAuth();
+
+    const handleInput = (e) => {
+
+        let name = e.target.name;
+        let value = e.target.value;
+
+        setUser({
+            ...user,
+            [name]: value,
+        })
+
+    }
+
+    const navigate = useNavigate();
+    const handlSubmit = async (e) => {
+        try {
+
+            e.preventDefault();
+            console.log(user);
+            const response = await fetch('http://localhost:8080/api/auth/login',
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify(user),
+
+                }
+            );
+            if (response.ok) {
+                const res_data = await response.json();
+
+                storeTokenInLS(res_data.token);
+
+                navigate("/");
+                // return <Navigate to="/"/>
+            }
+            console.log(response);
+
+        } catch (error) {
+            console.error(error);
+
+        }
+
+    }
+
 
     return (
         <>
@@ -26,24 +75,32 @@ function Login(props) {
                         </video> */}
                     </div>
                     <div className={` rounded-xl md:rounded-none w-full md:w-[50%] justify-center md:h-full h-screen bg-white flex flex-col items-center dark:bg-gray-900 `}>
-                    <SignUp view={authpage} />
-                    <Forgotpass view={authpage}/>
-                    <Loginpage view={authpage}/>
-                        {/* <div className="w-full items-center flex flex-col">
+                        <div className={` w-full items-center flex flex-col`} >
                             <div className={` mb-4`}>
                                 <h1 className='dark:text-white border-b-3 border-[#48a6a6] text-3xl '>Login</h1>
                             </div>
 
 
-                            <form className="w-[80%] h-[80%] mx-auto ">
+                            <form className="w-[80%] h-[80%] mx-auto " onSubmit={handlSubmit}>
                                 <div className="mb-5">
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                                    <label htmlFor="Lemail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                    <input type="Lemail"
+                                        id="email"
+                                        name='email'
+                                        value={user.email}
+                                        onChange={handleInput}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
                                 </div>
                                 <div className="mb-5">
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-                                    <div className="flex items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <input type={`${show ? 'text' : 'password'}`} id="password" className="outline-none w-full" required placeholder='password' />
+                                    <label htmlFor="Lpassword" className=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                                    <div className="flex items-center focus:outline-offset-2 focus:outline-2 focus:outline-black justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <input type={`${show ? 'text' : 'password'}`}
+                                            id="Lpassword"
+                                            name='password'
+                                            value={user.password}
+                                            onChange={handleInput}
+                                            className="focus:outline-none w-full"
+                                            required placeholder='password' />
                                         <Link onClick={() => { setShow(!show) }}>
                                             {!show && <i class="fa-solid fa-eye-slash"></i>}
                                             {show && <i class="fa-solid fa-eye"></i>}
@@ -51,24 +108,31 @@ function Login(props) {
                                     </div>                                </div>
                                 <div className="flex items-start mb-5">
                                     <div className="flex items-center h-5">
-                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                        <input id="Lremember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                                     </div>
-                                    <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+                                    <label htmlFor="Lremember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
-                                <button type="submit" className="text-white bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Submit</button>
+                                <button type="submit" className="text-white bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Login</button>
                             </form>
 
-                            </div> */}
-                            <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
-                                <Link to="#" onClick={() => { setAuthpage(3) }} className={`${authpage === 1 ? "block" : "hidden"} hover:text-[#48a6a6] dark:text-white`}>
-                                    Forgot Password ?
-                                </Link>
-                                <Link to="#" onClick={() => { setAuthpage(2) }} className={`${authpage === 1 ? "block" : "hidden"} hover:text-[#48a6a6] dark:text-white`}>
-                                    Sign Up
-                                </Link>
-                                <Link to="#" onClick={() => { setAuthpage(1) }} className={`${authpage === 2 || authpage === 3 ? "block" : "hidden"} hover:text-[#48a6a6] dark:text-white`}>
-                                    Login
-                                </Link>
+                            {/* <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
+                                                    <Link to="#" onClick={() => { setAuthpage(3) }} className='hover:text-[#48a6a6] dark:text-white'>
+                                                        Forgot Password ?
+                                                    </Link>
+                                                    <Link to="#" onClick={() => { setAuthpage(2) }} className='hover:text-[#48a6a6] dark:text-white'>
+                                                        Sign Up
+                                                    </Link>
+                                                </div> */}
+                        </div>
+
+                        <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
+                            <Link to="/forgot" className={` hover:text-[#48a6a6] dark:text-white`}>
+                                Forgot Password ?
+                            </Link>
+                            <Link to="/signup" className={` hover:text-[#48a6a6] dark:text-white`}>
+                                Sign Up
+                            </Link>
+
                         </div>
                     </div>
                 </div>
