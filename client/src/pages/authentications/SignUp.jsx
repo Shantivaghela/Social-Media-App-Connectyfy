@@ -14,7 +14,7 @@ function SignUp(props) {
 
     // console.log(user);s
 
-const {storeTokenInLS} = useAuth();
+    const { storeTokenInLS } = useAuth();
 
     const handleInput = (e) => {
         let name = e.target.name;
@@ -109,15 +109,16 @@ const {storeTokenInLS} = useAuth();
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="Spassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Set password</label>
-                                    <div className="flex items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <div className="flex items-center ">
                                         <input type={`${show ? 'text' : 'password'}`}
                                             id="Spassword"
                                             name='password'
                                             value={user.password}
                                             onChange={handleInput}
-                                            className="outline-none w-full" required
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required
                                             placeholder='password' />
-                                        <Link onClick={() => { setShow(!show) }}>
+                                        <Link onClick={() => { setShow(!show) }} className='ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
                                             {!show && <i class="fa-solid fa-eye-slash"></i>}
                                             {show && <i class="fa-solid fa-eye"></i>}
                                         </Link>
@@ -141,8 +142,8 @@ const {storeTokenInLS} = useAuth();
                         </div>
 
                         <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
-                            
-                            <Link to="/login"  className={` hover:text-[#48a6a6] dark:text-white`}>
+
+                            <Link to="/login" className={` hover:text-[#48a6a6] dark:text-white`}>
                                 Login
                             </Link>
 

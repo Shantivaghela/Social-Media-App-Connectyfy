@@ -9,7 +9,7 @@ try {
     console.log("database connected");
     
 } catch (error) {
-    console.error("connection failed");
+    console.error("connection failed",error);
     process.exit(0);
 }
 }
