@@ -21,6 +21,7 @@ import Editprofile from './pages/Editprofile'
 import Createpost from './pages/Createpost'
 import SignUp from './pages/authentications/SignUp'
 import Logout from './pages/authentications/Logout'
+import PasswordChange from './pages/PasswordChange'
 
 
 function App() {
@@ -76,6 +77,10 @@ function App() {
         {
           path:'/Createpost',
           element:<Createpost/>
+        },
+        {
+          path:'/PasswordChange',
+          element:<PasswordChange/>
         },
       ]
     },

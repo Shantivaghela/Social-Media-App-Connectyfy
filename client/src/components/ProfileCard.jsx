@@ -1,23 +1,29 @@
 import React, { useState } from 'react'
 import SuggeCard from './SuggeCard';
 import Request from './Request';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { useAuth } from '../contextAPI/index';
+import ShowpImage from './ShowpImage';
 
 
 function ProfileCard(props) {
     const [isdrop, setdrop] = useState(false);
     const { isLoggedIn } = useAuth();
+    const [showimage,setShowImage] = useState(false)
 
     const {user} = useAuth();
 
-    console.log(user);
+    // console.log(user);
+    // const showimage = () =>{
+    //     console.log("hii");
+        
+    // }
     
-
     return (
         <>
-            <div className={` w-full`}>
+            <div className={` w-full `}>
+            {/* <ShowpImage/> */}
                 <section className='fixed  top-19 ml-4 mr-2 md:block md:w-[23%] hidden mt-3 ' data-aos="slide-left">
 
 
@@ -34,7 +40,7 @@ function ProfileCard(props) {
                                         </button> */}
                                 <ul className="md:py-2" aria-labelledby="dropdownButton">
                                     <li>
-                                        <Link to="/Editprofile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</Link>
+                                        <Link to="/profile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your Profile</Link>
                                     </li>
 
                                     <li>
@@ -44,7 +50,7 @@ function ProfileCard(props) {
                             </div>
                         </div>
                         <div className="flex flex-col items-center pb-10">
-                            <img className="w-24 h-24 mb-3 rounded-full shadow-lg object-cover" src={assets.demoimg} alt="Bonnie image" />
+                            <NavLink onClick={()=>setShowImage(!showimage)}><img className={`${showimage ? "w-50 h-50 " : "w-24 h-24"} mb-3 rounded-full shadow-lg object-cover`} src={assets.demoimg} alt="Bonnie image "/></NavLink>
                             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5>
                             <span className="text-sm text-gray-500 dark:text-gray-400">{props.desc}</span>
                             <div className="flex mt-4 md:mt-6  gap-10">

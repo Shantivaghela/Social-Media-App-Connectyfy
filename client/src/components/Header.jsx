@@ -22,7 +22,7 @@ function Header() {
   return (
 
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-13 ">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-33 ">
       <div className=" flex  items-center justify-between mx-auto px-5 py-4 ">
         <div>
           <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">

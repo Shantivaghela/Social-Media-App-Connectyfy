@@ -6,13 +6,17 @@ import Postpage from './Postpage';
 import Profilevideos from './Profilevideos';
 import Tags from './Tags';
 import { useAuth } from '../contextAPI';
+// import { userdata } from '../../../server/controllers/userdata-controller';
 
 
 function Profile(props) {
   const [isdrop, setdrop] = useState(false);
   const [profielpage, setPrfilepage] = useState(1);
 
-  const {user} = useAuth();
+  const {user,userdata} = useAuth();
+  // console.log(userdata);
+  
+
 
   const pagecontant = (id) => {
 
@@ -27,7 +31,7 @@ function Profile(props) {
 
 
           <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden    dark:bg-gray-800 ">
-            <img src={assets.demos} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />
+            <img src={URL.createObjectURL(userdata.pimage)} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />
             <div className="flex justify-end md:px-4 md:pt-4 z-8">
               <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className={`block z-11 rounded-lg text-gray-300 hover:text-black  hover:bg-gray-100 rounded-   xl focus:outline-none  text-sm p-1.5`} type="button">
                 <i className={`${isdrop ? "fa-solid fa-xmark fa-xl" : " fa-solid fa-bars fa-xl"}`}></i>
@@ -42,6 +46,9 @@ function Profile(props) {
                   <li>
                     <Link to="/Editprofile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</Link>
                   </li>
+                  <li>
+                    <Link to="/PasswordChange" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Change Password</Link>
+                  </li>
                   
                   <li>
                     <NavLink to="/logout" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</NavLink>
@@ -50,9 +57,9 @@ function Profile(props) {
               </div>
             </div>
             <div className="flex flex-col items-center mt-27  ">
-              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.demoimg} alt="Bonnie image" />
+              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.connectyfy} alt="Bonnie image" />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5>
-              <span className="text-sm text-gray-500 dark:text-gray-400">web developers</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description}</span>
               <div className="flex mt-4 md:mt-6  gap-10 ">
                 <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
                   <span className='md:text-xl tex-lg'>213213</span>
