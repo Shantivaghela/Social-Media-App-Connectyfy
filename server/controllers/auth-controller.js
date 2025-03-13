@@ -1,5 +1,6 @@
 const User = require("../models/user-model")
 const bcrypt = require("bcryptjs")
+const UserData = require("../models/userdata-model");
 
 const home = async (req,res) => {
     try{
@@ -20,7 +21,7 @@ const register = async (req,res) => {
         const userExists = await User.findOne({email})
 
         if(userExists){
-            return res.status(400).json({msg:"email already exists"})
+            return res.status(400).json({message:"email already exists"})
         }
         const userDetail = await User.create({username,email,password});
 
@@ -45,7 +46,7 @@ const login = async (req,res) =>{
     const userExists = await User.findOne({email});
 
     if(!userExists){
-        return res.status(400).json({msg:"Invalid Details"});
+        return res.status(400).json({message:"Invalid Details"});
     }
 
     // const user = await bcrypt.compare(password,userExists.password);
@@ -58,7 +59,7 @@ const login = async (req,res) =>{
             token: await userExists.generateToken(),
             userId:userExists._id.toString()});
     }else{
-        res.status(401).json({msg:"email and password not matched"});
+        res.status(401).json({message:"email and password not matched"});
     }
 }catch(error){
     res.status(500).json({msg:"page not found"})
@@ -77,4 +78,55 @@ const user = async(req,res) =>{
     }
 }
 
-module.exports = {home,register,login,user};
+const allusers = async(req,res) =>{
+    try {
+        const allUsers = await User.find().select({password:0});
+        const userData = await UserData.find({}, "_id pimage");
+        // console.log(userData);
+        
+        const usersWithImages = allUsers.map((user) => {
+            const userProfile = userData.find((data) => data._id.toString() === user._id.toString());
+            return {
+              ...user.toObject(),
+              pimage: userProfile ? userProfile.pimage : null, // Add profile image if available
+            };
+          });
+        res.status(200).json({usersWithImages});
+        console.log(usersWithImages);
+        
+    } catch (error) {
+        console.log("users can not finds",error);
+        
+    }
+}
+
+const passupdate = async(req,res)=>{
+    try {
+        const {userId, oldPassword,newPassword} = req.body
+        // console.log(oldPassword);
+        if (!userId || !oldPassword || !newPassword) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+        const user = await User.findById(userId);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) return res.status(400).json({ message: "Incorrect old password" });
+
+
+        // const salt = await bcrypt.genSalt(10);
+        // user.password = await bcrypt.hash(newPassword, salt);
+        user.password = newPassword;
+
+        await user.save();
+        res.status(200).json({ message: "Password changed successfully" });
+        
+    } catch (error) {
+        res.status(500).json({ message: "Error changing password", error });
+
+        
+        
+    }
+}
+
+module.exports = {home,register,login,user,passupdate,allusers};

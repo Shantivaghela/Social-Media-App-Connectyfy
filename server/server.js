@@ -18,8 +18,8 @@ const corsOption = {
 app.use(cors(corsOption));
 
 app.use(express.json());
-app.use("/public/images", express.static("uploads"));
-app.use("/api/auth/",router)
+app.use(express.static("public"));
+app.use("/api/auth/",router);
 app.use("/api/user/",userDatarouter);
 
 

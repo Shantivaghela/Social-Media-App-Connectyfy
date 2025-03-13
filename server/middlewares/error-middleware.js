@@ -3,7 +3,9 @@ const errorMiddleware = (err,req,res,next) =>{
     const message = err.message || "Bakend error";
     const extraDetails = err.extraDetails || "Error from backend"
 
+    
     return res.status(status).json({message,extraDetails});
+    
 
 }
 

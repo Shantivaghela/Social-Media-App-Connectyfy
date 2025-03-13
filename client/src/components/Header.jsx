@@ -6,9 +6,11 @@ import DarkMode from './DarkMode';
 
 function Header() {
   const theme = document.getElementById("theme").className
-  const [Mode, setMode] = useState(theme)
+  const [Mode, setMode] = useState(theme);
+      const [isdrop, setdrop] = useState(false);
+  ;
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, userdata,haveUserData,user} = useAuth();
 
   const modeHandl = () => {
 
@@ -22,7 +24,7 @@ function Header() {
   return (
 
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-33 ">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-20 ">
       <div className=" flex  items-center justify-between mx-auto px-5 py-4 ">
         <div>
           <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -38,7 +40,7 @@ function Header() {
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
     </button> */}
-        <div className=" w-full md:block md:w-auto" id="navbar-default">
+        <div className=" w-full md:block md:w-auto relative" id="navbar-default">
           <ul className="font-medium  flex flex-co float-right text-sm md:text-lg  md:p-0 border border-gray-100 rounded-lg  md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li className=''>
               <Link to="#" onClick={modeHandl} className=" md:hidden  block  py-1 md:py-2 px-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
@@ -53,19 +55,37 @@ function Header() {
               <NavLink to="/message" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} md:block hidden px-2 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl   transition delay-50 duration-300 ease-in-out"></i></NavLink>
             </li>
 
-            
 
-              {isLoggedIn ?
-                (
-                  <li>
-                  <NavLink to="/profile" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i></NavLink>
-                  </li>
-                ) : (
-                  <li>
+
+            {isLoggedIn ?
+              (
+                <li>
+                  <NavLink onClick={()=>setdrop(!isdrop)} className={` text-[#48a6a6] block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} >
+                    {userdata && userdata.pimage ?
+                      <img src={`http://localhost:8080${userdata.pimage}`} alt="profile image" className='h-5 w-5 md:h-8 md:w-8 rounded-full object-cover' />
+
+                      : <i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i>}</NavLink>
+                </li>
+              ) : (
+                <li>
                   <NavLink to="/login" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block px-3 py-1 md:py-2 md:px-1   rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} ><span className='border-2 border-[#48a6a6] rounded-sm hover:border-[#2973b2] px-2 py-1 transition delay-120 duration-300 ease-in-out'>Login</span></NavLink>
-                  </li>
-                )}
-            
+                </li>
+              )}
+        <div id="dropdown"  className={`${isdrop ? 'block' : 'hidden'} flex  justify-center items-center border-2 border-gray-200  float-right rounded-lg mt-10   ml-10 md:mt-12 md:ml-23   absolute  text-base list-none bg-gray-100 divide-y divide-gray-100  w-26 md:w-42 dark:bg-gray-700`} >
+          {/* <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className="inline-block z-12 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none overflow-hidden focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                                  <i className=''></i>
+                                                </button> */}
+          <ul className="pl-2 md:pl-0  py-2  w-full" aria-labelledby="dropdownButton">
+            <li>
+              <Link onClick={()=>setdrop(false)} to="/profile" className="block md:px-4 mb-2 md:py-2 md:mb-0 text-sm text-gray-700 hover:bg-gray-200  dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your Profile</Link>
+            </li>
+
+            <li>
+              <Link onClick={()=>setdrop(false)} to="/logout"  className="block md:px-4 mb-2 md:mb-0 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</Link>
+            </li>
+          </ul>
+        </div>
+
 
           </ul>
         </div>

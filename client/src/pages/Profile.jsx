@@ -31,9 +31,10 @@ function Profile(props) {
 
 
           <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden    dark:bg-gray-800 ">
-            <img src={URL.createObjectURL(userdata.pimage)} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />
+            {userdata && userdata.bimage ? <img src={`http://localhost:8080${userdata.bimage}`} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" /> :
+            <img src={assets.AddBanner} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />}
             <div className="flex justify-end md:px-4 md:pt-4 z-8">
-              <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className={`block z-11 rounded-lg text-gray-300 hover:text-black  hover:bg-gray-100 rounded-   xl focus:outline-none  text-sm p-1.5`} type="button">
+              <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className={`block z-11 cursor-pointer rounded-lg text-gray-600 bg-gray-400/10 hover:text-black  hover:bg-gray-100 rounded-   xl focus:outline-none  text-sm p-1.5`} type="button">
                 <i className={`${isdrop ? "fa-solid fa-xmark fa-xl" : " fa-solid fa-bars fa-xl"}`}></i>
 
               </button>
@@ -44,7 +45,7 @@ function Profile(props) {
                 </button> */}
                 <ul className="md:py-2" aria-labelledby="dropdownButton">
                   <li>
-                    <Link to="/Editprofile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</Link>
+                    <Link to="/Editprofile" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit Profile</Link>
                   </li>
                   <li>
                     <Link to="/PasswordChange" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Change Password</Link>
@@ -57,9 +58,11 @@ function Profile(props) {
               </div>
             </div>
             <div className="flex flex-col items-center mt-27  ">
-              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.connectyfy} alt="Bonnie image" />
+              {userdata && userdata.pimage ? <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" /> :
+              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.profileIcon} alt="Bonnie image" />}
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description}</span>
+              {userdata && userdata.description ? <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description }</span>:
+                <span className="text-sm text-gray-500 dark:text-gray-400">Add your Description</span>}
               <div className="flex mt-4 md:mt-6  gap-10 ">
                 <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
                   <span className='md:text-xl tex-lg'>213213</span>
@@ -80,6 +83,7 @@ function Profile(props) {
               </div>
             </div>
           </div>
+              <span className=' h-0.5 my-3 bg-gray-600/30 mx-5'> </span>
           <div className=" w-full h-full rounded-xl pt-3 bg-white dark:bg-gray-800 ">
             <ul className='flex justify-evenly gap-10 items-center mb-3 md:mb-1'>
               <li>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets';
 import { useAuth } from '../../contextAPI';
+import { toast } from 'react-toastify';
 
 
 function SignUp(props) {
@@ -30,7 +31,7 @@ function SignUp(props) {
     const handlSubmit = async (e) => {
         try {
             e.preventDefault();
-            console.log(user);
+            // console.log(user);
             const response = await fetch('http://localhost:8080/api/auth/register', {
                 method: "POST",
                 headers: {
@@ -38,9 +39,12 @@ function SignUp(props) {
 
                 },
                 body: JSON.stringify(user),
-            })
+            });
+            const res_data = await response.json();
+            // console.log("Response by server",res_data.message);
+            
+
             if (response.ok) {
-                const res_data = await response.json();
 
                 storeTokenInLS(res_data.token);
                 setUser({
@@ -49,6 +53,9 @@ function SignUp(props) {
                     password: "",
                 });
                 navigate("/login");
+                toast.success("SignUp successfully");
+            }else{
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
             }
 
 

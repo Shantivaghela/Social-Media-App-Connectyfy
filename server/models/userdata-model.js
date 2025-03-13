@@ -12,11 +12,11 @@ const userdatSchema = new mongoose.Schema({
     },
     gender:{
         type:String,
-        required:true
+        // required:true
     },
     description:{
         type:String,
-        required:true
+        // required:true
     },
     pimage:{
         type:String,
@@ -26,7 +26,21 @@ const userdatSchema = new mongoose.Schema({
         type:String,
         // required:true
     },
-});
+    followers:[
+        {
+            userId: { type: String, required: true },
+            followedAt: { type: Date, default: Date.now }, // Stores follow time
+          }
+        ],
+    following:[
+        {
+            userId: { type: String, required: true },
+            followedAt: { type: Date, default: Date.now }, // Stores follow time
+          },
+    ],
+},
+{ timestamps: true }
+);
 
 const UserData = new mongoose.model("UserData",userdatSchema);
 

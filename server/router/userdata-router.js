@@ -7,7 +7,12 @@ const upload = require("../middlewares/filemulter-middleware")
 router.route("/userdata").post(upload.fields([
     { name: "pimage", maxCount: 1 }, 
     { name: "bimage", maxCount: 1 }
-]),userdatacontroller.userdata);
+]),userdatacontroller.userdata).get(userdatacontroller.getAllusers);
 router.route("/getuserdata/:userID").get(userdatacontroller.getuserdata);
+router.route("/profile-update/:userID").put(upload.fields([
+    { name: "pimage", maxCount: 1 }, 
+    { name: "bimage", maxCount: 1 }
+]),userdatacontroller.updateprofile);
+
 
 module.exports = router;

@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 import { useAuth } from '../../contextAPI';
+import { toast } from 'react-toastify';
 
 function Login(props) {
     const [authpage, setAuthpage] = useState(1);
@@ -41,13 +42,17 @@ function Login(props) {
 
                 }
             );
+            const res_data = await response.json();
             if (response.ok) {
-                const res_data = await response.json();
 
                 storeTokenInLS(res_data.token);
 
                 navigate("/");
+                toast.success("Login successfully");
                 // return <Navigate to="/"/>
+            }else{
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+
             }
             console.log(response);
 
