@@ -12,17 +12,21 @@ import { useAuth } from '../contextAPI';
 function Profile(props) {
   const [isdrop, setdrop] = useState(false);
   const [profielpage, setPrfilepage] = useState(1);
+  const [totalFollowers,setTotalFollowers] = useState(0);
+  const [totalFollowings,setTotalFollowings] = useState(0);
 
   const {user,userdata} = useAuth();
-  // console.log(userdata);
+  function formatFollowers(count) {
+    if (count >= 1000000000) {
+        return (count / 1000000000).toFixed(1) + "B"; // Billion
+    } else if (count >= 1000000) {
+        return (count / 1000000).toFixed(1) + "M"; // Million
+    } else if (count >= 1000) {
+        return (count / 1000).toFixed(1) + "K"; // Thousand
+    }
+    return count.toString(); // Less than 1K
+}
   
-
-
-  const pagecontant = (id) => {
-
-    setPrfilepage(id);
-
-  }
   return (
     <>
       <div className='flex mt-22   mb-12 pb-2 bg-white md:ml-[25%] dark:border-gray-700 border overflow-hidden dark:bg-gray-800 border-gray-200 rounded-xl shadow-sm'>
@@ -65,17 +69,17 @@ function Profile(props) {
                 <span className="text-sm text-gray-500 dark:text-gray-400">Add your Description</span>}
               <div className="flex mt-4 md:mt-6  gap-10 ">
                 <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
-                  <span className='md:text-xl tex-lg'>213213</span>
+                  <span className='md:text-xl tex-lg'>0</span>
                   <span className='text-[15px]'>Posts</span>
                 </Link>
               </div>
               <div className="flex mt-4 md:mt-6  gap-15">
                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
-                  <span className='md:text-xl tex-lg'>20000</span>
+                  <span className='md:text-xl tex-lg'>{userdata.followers ? formatFollowers(userdata.followers.length)  : 0}</span>
                   <span className='text-[15px]'>followers</span>
                 </Link>
                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
-                  <span className='md:text-xl tex-lg'>3</span>
+                  <span className='md:text-xl tex-lg'>{userdata.following ? formatFollowers(userdata.following.length) : 0}</span>
                   <span className='text-[15px]'>following</span>
                 </Link>
                 {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a> */}

@@ -13,6 +13,9 @@ router.route("/profile-update/:userID").put(upload.fields([
     { name: "pimage", maxCount: 1 }, 
     { name: "bimage", maxCount: 1 }
 ]),userdatacontroller.updateprofile);
+router.route("/follow/:userID").post(userdatacontroller.addfollow);
+router.route("/unfollow/:userID").put(userdatacontroller.unfollow);
+router.route("/conformreq/:userID").post(userdatacontroller.conformreq);
 
 
 module.exports = router;

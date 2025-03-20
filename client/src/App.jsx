@@ -5,7 +5,7 @@ import './App.css'
 import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
 import Header from './components/Header'
 
-import Home from './pages/home'
+import Home from './pages/Home'
 import Layout from './pages/Layout'
 import Profile from './pages/Profile'
 import Message from './pages/Message'
@@ -22,6 +22,7 @@ import Createpost from './pages/Createpost'
 import SignUp from './pages/authentications/SignUp'
 import Logout from './pages/authentications/Logout'
 import PasswordChange from './pages/PasswordChange'
+import UserProfile from './pages/UserProfile'
 
 
 function App() {
@@ -81,6 +82,10 @@ function App() {
         {
           path:'/PasswordChange',
           element:<PasswordChange/>
+        },
+        {
+          path:'/userprofile/:userId',
+          element:<UserProfile/>
         },
       ]
     },

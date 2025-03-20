@@ -28,13 +28,19 @@ const userdatSchema = new mongoose.Schema({
     },
     followers:[
         {
-            userId: { type: String, required: true },
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
             followedAt: { type: Date, default: Date.now }, // Stores follow time
           }
         ],
     following:[
         {
-            userId: { type: String, required: true },
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true  },
+            followedAt: { type: Date, default: Date.now }, // Stores follow time
+          },
+    ],
+    requests:[
+        {
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true  },
             followedAt: { type: Date, default: Date.now }, // Stores follow time
           },
     ],

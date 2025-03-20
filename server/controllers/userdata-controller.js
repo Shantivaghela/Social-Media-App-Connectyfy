@@ -16,7 +16,9 @@ const userdata = async (req, res) => {
             gender,
             description,
             pimage: req.files["pimage"] ? "/images/" + req.files["pimage"][0].filename : "",
-            bimage: req.files["bimage"] ? "/images/" + req.files["bimage"][0].filename : ""
+            bimage: req.files["bimage"] ? "/images/" + req.files["bimage"][0].filename : "",
+            followers: [],
+            following: [],
         });
         await profileDetails.save();
 
@@ -28,6 +30,133 @@ const userdata = async (req, res) => {
 
     }
 }
+
+const addfollow = async (req, res) => {
+    try {
+        const { userId, username, email, conformId } = req.body;
+        const { userID } = req.params;
+        console.log(req.body);
+
+        console.log(userID);
+
+
+
+
+
+        // if (!userId || !userID || conformId) {
+        //     return res.status(400).json({ message: "Invalid user ID" });
+        // }
+
+        const userdata = await User.findById(userId);
+        let currentUser = await UserData.findById(userID);
+        let followedUser = await UserData.findById(userId);
+
+
+
+        if (!currentUser) {
+            currentUser = new UserData({
+                _id: userID,
+                username: username,
+                email: email,
+                followers: [],
+                following: [],
+                requests: [],
+            });
+
+            await currentUser.save();
+        }
+        if (!followedUser) {
+            followedUser = new UserData({
+                _id: userId,
+                username: userdata.username,
+                email: userdata.email,
+                followers: [],
+                following: [],
+                requests: [],
+            });
+
+            await followedUser.save();
+        }
+        const alreadyFollowing = currentUser.following.some(f => f._id.toString() === userId);
+        if (alreadyFollowing) {
+            return res.status(400).json({ message: "Already following this user" });
+        }
+
+
+        currentUser.following.push({ _id: userId });
+        await currentUser.save();
+
+        followedUser.requests.push({ _id: userID });
+        await followedUser.save();
+
+
+
+        res.status(200).json({ message: "Your now following " });
+    } catch (error) {
+        res.status(500).json({ message: "Error following user", error });
+        console.log(error);
+
+    }
+}
+
+
+const conformreq = async (req, res) => {
+    try {
+        const { conformId } = req.body;
+        const { userID } = req.params;
+
+        const user = await UserData.findById(userID);
+
+        user.followers.push({ _id: conformId });
+        user.requests = user.requests.filter(f => f._id.toString() !== conformId);
+        await user.save();
+
+       
+        res.status(200).json({ message: "Your now following " });
+    } catch (error) {
+        res.status(500).json({ message: "Error following user", error });
+        console.log(error);
+    }
+}
+
+
+const unfollow = async (req, res) => {
+
+    try {
+        const { unfollowid, conformId } = req.body;
+        // console.log(req.body);
+
+        const { userID } = req.params;
+
+        if (userID === unfollowid) {
+            return res.status(400).json({ message: "You cannot unfollow yourself" });
+        }
+
+        const user = await UserData.findById(userID);
+        const unFuser = await UserData.findById(unfollowid);
+
+        if (!user || !unfollowid) {
+            return res.status(404).json({ message: "User data not found" });
+        }
+
+        user.following = user.following.filter(f => f._id.toString() !== unfollowid);
+        user.requests = user.requests.filter(f => f._id.toString() !== unfollowid);
+        await user.save();
+       
+
+        unFuser.followers = unFuser.followers.filter(f => f._id.toString() !== userID);
+        unFuser.following = unFuser.following.filter(f => f._id.toString() !== userID);
+        await unFuser.save();
+
+        res.status(200).json({ message: "Unfollowed successfully" });
+
+    } catch (error) {
+        res.status(500).json({ message: "Error unfollowing user", error });
+    }
+}
+
+
+
 
 const getuserdata = async (req, res) => {
     try {
@@ -43,12 +172,13 @@ const getuserdata = async (req, res) => {
             console.log("userdata not get");
 
         }
-        console.log(userdata);
-        
+
         res.status(200).json({ userdata })
+        // console.log(userdata);
+
     } catch (error) {
 
-        console.log("Not more data of user");
+        console.log("Not more data of user...");
 
 
     }
@@ -56,8 +186,8 @@ const getuserdata = async (req, res) => {
 
 const updateprofile = async (req, res) => {
     try {
-        const { username, email, gender, description } = req.body;
-        // console.log("files",req.files[0]);
+        const { username, email, gender, description, userId } = req.body;
+
 
         const { userID } = req.params;
         const updateData = await UserData.findById(userID);
@@ -71,10 +201,10 @@ const updateprofile = async (req, res) => {
         if (email !== updateData.email) updateData.email = email;
         if (gender !== updateData.gender) updateData.gender = gender;
         if (description !== updateData.description) updateData.description = description;
+        if (userId !== updateData.following.userId) updateData.following.userId = userId;
 
         if (username !== getUser.username) getUser.username = username;
         if (email !== getUser.email) getUser.email = email;
-
         if (req.files["bimage"]) {
             if (updateData.bimage) {
                 const oldPath = path.join(__dirname, "../public", updateData.bimage);
@@ -107,16 +237,18 @@ const updateprofile = async (req, res) => {
     }
 }
 
-const getAllusers = async(req,res) =>{
+const getAllusers = async (req, res) => {
     try {
         const getAlldata = await UserData.find();
-        res.status(200).json({getAlldata});
+        res.status(200).json({ getAlldata });
         // console.log(getAlldata);
-        
+
     } catch (error) {
-        console.log("user more data not found",error);
-        
+        console.log("user more data not found", error);
+
     }
 }
 
-module.exports = { userdata, getuserdata, updateprofile,getAllusers };
+
+
+module.exports = { userdata, getuserdata, updateprofile, getAllusers, addfollow, unfollow,conformreq};

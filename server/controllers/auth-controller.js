@@ -55,21 +55,21 @@ const login = async (req,res) =>{
 
     if(user){
         res.status(201).json({
-            msg:"login succesfully",
+            message:"login succesfully",
             token: await userExists.generateToken(),
             userId:userExists._id.toString()});
     }else{
         res.status(401).json({message:"email and password not matched"});
     }
 }catch(error){
-    res.status(500).json({msg:"page not found"})
+    res.status(500).json({message:"page not found"})
 }
 }
 
 const user = async(req,res) =>{
     try {
-        const userData= req.user;
-        // console.log(userData);
+        const userData = req.user;
+        // console.log("that is from backend",userData);
         res.status(200).json({userData});
         
     } catch (error) {
@@ -81,18 +81,18 @@ const user = async(req,res) =>{
 const allusers = async(req,res) =>{
     try {
         const allUsers = await User.find().select({password:0});
-        const userData = await UserData.find({}, "_id pimage");
+        const userData = await UserData.find();
         // console.log(userData);
         
         const usersWithImages = allUsers.map((user) => {
             const userProfile = userData.find((data) => data._id.toString() === user._id.toString());
             return {
               ...user.toObject(),
-              pimage: userProfile ? userProfile.pimage : null, // Add profile image if available
+              alldatas: userProfile || {} // Add profile image if available
             };
           });
         res.status(200).json({usersWithImages});
-        console.log(usersWithImages);
+        // console.log(usersWithImages);
         
     } catch (error) {
         console.log("users can not finds",error);

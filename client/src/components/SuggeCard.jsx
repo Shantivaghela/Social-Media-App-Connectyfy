@@ -1,11 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import Sidemenu from './Sidemenu'
-import { Link } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import { useAuth } from '../contextAPI'
 import { assets } from '../assets/assets';
 
 function SuggeCard() {
-    const { allusers } = useAuth();
+    const { allusers,user,userdata} = useAuth();
+    const [followingIds, setFollowingIds] = useState([]);
+    // console.log(allusers.userProfile.gender);
+    const { userId } = useParams();
+    
+    
+    useEffect(()=>{
+        
+            if (userdata && userdata.following) {
+                const ids = userdata.following.map((follow) => follow._id);
+
+                setFollowingIds(ids);
+              }
+       
+              if(userdata){
+                const followerIds = userdata.followers.map(follow => follow._id);
+                const folloingIds = userdata.following.map(follow => follow._id);
+                const getFlw = allusers.filter(user =>
+                followerIds.includes(user._id));
+               
+            //    console.log(folloingIds);
+               
+            //    setFollowers(getFlw);
+               setFollowingIds(folloingIds);
+               
+               
+            }
+          
+       
+    },[userId,userdata])
+    // console.log(followingIds);
+    
+
+    
+    
     
     return (
         <>
@@ -19,22 +53,26 @@ function SuggeCard() {
                 </div>
                 <div className='w-full h-0.5 bg-gray-200 '></div>
                 <div className="flow-root">
-                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {allusers.map((user) => (
-                            <li key={user._id} className="py-3 sm:py-4">
-                                <div className="flex items-center">
+                    <ul role="list" className={`   divide-y divide-gray-200 dark:divide-gray-700 `}>
+                        {allusers.filter(itmes => itmes._id !== user._id && !followingIds.includes(itmes._id))
+                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                         .slice(0, 10)
+                         .map((user) => (
+                            <li key={user._id} className="  rounded-lg  w-full">
+                                <div className="flex items-center  justify-between ">
                                         
                                             
-                                    <div  className="shrink-0">
+                                    
+                                    <NavLink  to={`/userprofile/${user._id}`} className={({isActive}) => ` ${isActive ? "bg-gray-400/50" : ""}  shrink-0 flex w-full px-2 mr-2 rounded-lg py-3 `}>
 
-
-                                            <img className="w-6 h-6 rounded-full" src={user.pimage ? `http://localhost:8080${user.pimage} `:assets.profileIcon}alt="Neil image" /> 
+                                        
+                                        
+                                            <img className="w-10 h-10 rounded-full" src={user.alldatas && user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage} `:assets.profileIcon}alt="Neil image" /> 
+                                        
 
                                             
                                     
-                                    </div>
-                                           
-                                    <div className="flex-1 min-w-0 ms-4">
+                                    <div className="flex-1 min-w-0 ms-4 w-full">
                                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
                                             {user.username}
                                         </p>
@@ -42,10 +80,13 @@ function SuggeCard() {
                                             {user.email}
                                         </p>
                                     </div>
-                                    <div className="inline-flex items-center text-sm font-semibold text-gray-900 dark:text-white">
-                                        {/* <a href="#" className="inline-flex items-center px-2 py-2 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">+</a> */}
-                                        <a href="#"><i className="fa-solid fa-user-plus  fa-lg hover:text-[#48a6a6] "></i></a>
-                                    </div>
+                                    </NavLink>
+                                           
+
+                                    
+                                    {/* <div className="inline-flex w-[20%]  items-center text-sm font-semibold text-gray-900 dark:text-white">
+                                        <Link to="#"><i className="fa-solid fa-user-plus  fa-lg hover:text-[#48a6a6] "></i></Link>
+                                    </div> */}
                                 </div>
                             </li>
                         ))}

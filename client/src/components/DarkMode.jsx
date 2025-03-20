@@ -3,12 +3,24 @@ import { Link } from 'react-router-dom';
 
 
 function DarkMode() {
-    const theme = document.getElementById("theme").className
-    const [Mode, setMode] = useState(theme)
+    // const theme = document.getElementById("theme").className
+    
+    const getInitialMode = () => {
+        const storedMode = localStorage.getItem("theme");
+        if (storedMode) return storedMode;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark bodyDark" : "light";
+    };
+    
+    const [Mode, setMode] = useState(getInitialMode);
+    
 
     const modeHandl = () => {
 
-        setMode(Mode === "dark bodyDark" ? "light" : "dark bodyDark");
+        const newMode = Mode === "dark bodyDark" ? "light" : "dark bodyDark";
+        setMode(newMode);
+        localStorage.setItem("theme", newMode);
+
+        // setMode(Mode === "dark bodyDark" ? "light" : "dark bodyDark");
 
     }
     useEffect(() => {

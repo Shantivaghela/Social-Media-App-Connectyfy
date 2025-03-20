@@ -12,9 +12,9 @@ const authMiddleware = async(req,res,next) =>{
 
     const jwtToken = token.replace("Bearer","").trim();
     try {
-        const isVerified = jwt.verify(jwtToken,process.env.JWT_KEY);
+        const isVerified =  jwt.verify(jwtToken,process.env.JWT_KEY);
 
-        const userData = await User.findOne({_id:isVerified.userId}).select({password:0});  
+        const userData = await User.findById(isVerified.userId).select({password:0});  
 
         req.user = userData;
         req.token = token;
@@ -22,7 +22,8 @@ const authMiddleware = async(req,res,next) =>{
 
         next();
     } catch (error) {
-        console.log("errror from token",error);
+        // console.log("errror from token",error);
+        return res.status(403).json({ message: "Invalid or expired token" });
         
     }
 

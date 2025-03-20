@@ -21,7 +21,6 @@ function Editprofile() {
   
   useEffect(()=>{
     if(user){
-      console.log(user.username);
       
       setAddadduserdata(
       (pre)=>({

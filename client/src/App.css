@@ -11,7 +11,9 @@
       /* Chrome, Safari and Opera */
   }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 *{
   box-sizing:border-box;
   
@@ -71,6 +73,11 @@ body{
 
 .scobar::-webkit-scrollbar{
   width:5px;
+  height:5px;
+
+}
+.scroller::-webkit-scrollbar{
+  height:5px;
 
 }
 .scobar::-webkit-scrollbar-track{

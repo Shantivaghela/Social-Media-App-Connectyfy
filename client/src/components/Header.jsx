@@ -10,7 +10,7 @@ function Header() {
       const [isdrop, setdrop] = useState(false);
   ;
 
-  const { isLoggedIn, userdata,haveUserData,user} = useAuth();
+  const { isLoggedIn, userdata,haveUserData,user,getAllUsers,setUserData} = useAuth();
 
   const modeHandl = () => {
 
@@ -20,6 +20,13 @@ function Header() {
   useEffect(() => {
     document.body.className = Mode;
   }, [Mode])
+  useEffect(() => {
+    
+      getAllUsers();
+
+   
+  }, [])
+  // console.log(userdata);
 
   return (
 
