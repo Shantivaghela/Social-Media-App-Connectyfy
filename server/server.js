@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const router = require('./router/auth-router');
 const userDatarouter = require('./router/userdata-router');
+const postDatarouter = require("./router/post-router");
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use("/api/auth/",router);
 app.use("/api/user/",userDatarouter);
+app.use("/api/post/",postDatarouter);
 
 
 app.use(errorMiddleware);

@@ -132,9 +132,9 @@ function Request() {
 
     return (
         <>
-            <div className="w-full h-50 overflow-y-scroll hidden md:block  scobar   max-w-md p-2 mt-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-full h-50 overflow-y-scroll hidden md:block trnasition-bg scobar   max-w-md p-2 mt-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex items-center justify-between pb-5">
-                    <h6 className="text-base font-bold leading-none text-gray-900 dark:text-white">Recent Request</h6>
+                    <h6 className="text-base font-bold leading-none  text-gray-900 dark:text-white">Recent Request</h6>
                     {/* <a href="#" className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                             View all
                         </a> */}

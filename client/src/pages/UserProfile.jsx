@@ -15,62 +15,64 @@ function UserProfile(props) {
     const [isdrop, setdrop] = useState(false);
     const [profielpage, setPrfilepage] = useState(1);
     const [userdetails, setUserDetails] = useState("")
-    const [isFollowed,setIsfollowed] = useState(false)
-    const [request,setRequest] = useState("");
-    const [follow,setFollow] = useState("");
+    const [isFollowed, setIsfollowed] = useState(false)
+    const [request, setRequest] = useState("");
+    const [follow, setFollow] = useState("");
+    const [viewpimage, setViewPimage] = useState(false);
+
 
     const { userId } = useParams();
 
     // console.log(userdata);
 
-    const { allusers, user, userdata,getAllUsers } = useAuth();
+    const { allusers, user, userdata, getAllUsers } = useAuth();
 
     //   console.log(user._id);
     // console.log(userdata.following);
-    
 
-    
+
+
     useEffect(() => {
         const getdata = () => {
             const users = allusers.find(alluser => alluser._id === userId);
             setUserDetails(users);
-            
+
             const getcurrentuser = allusers.find(a => a._id === user._id);
             // console.log(getcurrentuser);
-            
-            if(getcurrentuser){
+
+            if (getcurrentuser) {
 
                 const findReq = getcurrentuser.alldatas.requests.find((i) => i._id.toString() === userId);
                 const findFoll = getcurrentuser.alldatas.followers.find((i) => i._id.toString() === userId);
-    
-                if(findReq || findFoll){
+
+                if (findReq || findFoll) {
                     setRequest(findReq)
                     setFollow(findFoll)
-                }else{
+                } else {
                     setRequest("");
                     setFollow("");
                 }
             }
             // console.log(getcurrentuser);
-            if(getcurrentuser){
-            const findid = getcurrentuser.alldatas.following.some((i) => i._id.toString() === userId);
-            // const findFollw = getcurrentuser.alldatas.followers.find((i) => i._id.toString() === userId);
-            // console.log(findFollw);
-                
-    
-                if(findid ) {
-    
+            if (getcurrentuser) {
+                const findid = getcurrentuser.alldatas.following.some((i) => i._id.toString() === userId);
+                // const findFollw = getcurrentuser.alldatas.followers.find((i) => i._id.toString() === userId);
+                // console.log(findFollw);
+
+
+                if (findid) {
+
                     setIsfollowed(true);
-                }else{
+                } else {
                     setIsfollowed(false)
                 }
-            }   
-            
+            }
+
         }
         getdata();
-        
-    }, [userId, allusers,userdata,user]);
-    
+
+    }, [userId, allusers, userdata, user]);
+
 
 
     if (!userdetails || !userdetails.alldatas) {
@@ -103,13 +105,13 @@ function UserProfile(props) {
 
                 // console.log("upadted data is :",data.updateData);
                 // navigate("/profile");
-                toast.success(data.message+" "+userdetails.username);
+                toast.success(data.message + " " + userdetails.username);
                 // setIsfollowed(true);
                 getAllUsers();
 
 
-            }else{
-                toast.error(data.message+" "+userdetails.username);
+            } else {
+                toast.error(data.message + " " + userdetails.username);
             }
 
 
@@ -136,7 +138,7 @@ function UserProfile(props) {
                 },
                 body: JSON.stringify({
                     unfollowid: userId,
-                    
+
                 }),
 
             });
@@ -146,13 +148,13 @@ function UserProfile(props) {
 
                 // console.log("upadted data is :",data);
                 // navigate("/profile");
-                toast.success(data.message+" "+userdetails.username);
+                toast.success(data.message + " " + userdetails.username);
                 // setIsfollowed(true);
                 getAllUsers();
 
 
-            }else{
-                toast.error(data.message+" "+userdetails.username);
+            } else {
+                toast.error(data.message + " " + userdetails.username);
             }
 
 
@@ -187,49 +189,57 @@ function UserProfile(props) {
                         {userdetails.alldatas && userdetails.alldatas.bimage ? <img src={`http://localhost:8080${userdetails.alldatas.bimage}`} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" /> :
                             <img src={assets.AddBanner} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />}
 
-                        <div className="flex flex-col justify-center items-center mt-27  ">
-                            {userdetails.alldatas && userdetails.alldatas.pimage ? <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" /> :
-                                <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.profileIcon} alt="Bonnie image" />}
+                        <div className="flex flex-col justify-center items-center mt-27 relative     ">
+                            {userdetails.alldatas && userdetails.alldatas.pimage ? (
+                                <button onClick={() => setViewPimage(!viewpimage)}>
+
+                                    <img className="w-24 cursor-pointer md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" />
+                                </button>
+                            ) : (
+                                <button onClick={() => setViewPimage(!viewpimage)}>
+                                    <img className="w-24 cursor-pointer md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.profileIcon} alt="Bonnie image" />
+                                </button>
+                            )}
                             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userdetails.username}</h5>
                             {userdetails.alldatas && userdetails.alldatas.description ? <span className="text-sm text-gray-500 dark:text-gray-400">{userdetails.alldatas.description}</span> :
                                 <span className="text-sm text-gray-500 dark:text-gray-400">Add your Description</span>}
                             <div className="flex flex-col justify-between w-full items-center">
 
-                            <div className="flex w-full  mt-4 md:mt-6   justify-evenly md:justify-center ">
-                                <div className="w-[20%] flex justify-center items-center">
-                                    
-                                <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300  md:font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Message</button>
-                                </div>
-                                {isFollowed ? 
+                                <div className="flex w-full  mt-4 md:mt-6   justify-evenly md:justify-center ">
+                                    <div className="w-[20%] flex justify-center items-center">
 
-                                <div className="w-[20%] flex justify-center items-center">
-                                <button onClick={unfollow}  className="bg-transparent text-green-600 cursor-pointer hover:text-[#48a6a6] focus:ring-4 focus:outline-none border-2 border-[#48a6a6] focus:ring-blue-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:text-green-600 dark:hover:text-[#48a6a6] dark:focus:ring-green-800">Unfollow</button> 
-                                </div>:
-                                <div className="w-[20%] flex justify-center items-center">
-                                <button onClick={addfollow} className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">{request || follow ? "Follow Back" : "Follow"}</button>
-                                </div>
-                                 }
-                                <div className="w-[20%] flex justify-center items-center">
-
-                                <button className="text-white cursor-pointer  bg-gray-600 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-800">Block</button>
+                                        <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300  md:font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Message</button>
                                     </div>
-                            </div>
-                            <div className="flex w-full  mt-4 md:mt-6  justify-evenly md:justify-center">
-                                <Link to="" className='flex flex-col items-center justify-center w-[20%] text-center  dark:text-white'>
-                                    <span className='md:text-xl tex-lg '>213</span>
-                                    <span className='text-[15px]'>Posts</span>
-                                </Link>
-                                <Link to="/friends" className='flex flex-col items-center  w-[20%] justify-center dark:text-white'>
-                                    <span className='md:text-xl tex-lg'>{userdetails.alldatas.followers ? formatFollowers(userdetails.alldatas.followers.length)  : 0}</span>
-                                    <span className='text-[15px]'>followers</span>
-                                </Link>
-                                <Link to="/friends" className='flex flex-col items-center w-[20%] justify-center dark:text-white'>
-                                    <span className='md:text-xl tex-lg'>{userdetails.alldatas.following ? formatFollowers(userdetails.alldatas.following.length)  : 0}</span>
-                                    <span className='text-[15px]'>following</span>
-                                </Link>
-                                {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a> */}
-                                {/* <a href="#" className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a> */}
-                            </div>
+                                    {isFollowed ?
+
+                                        <div className="w-[20%] flex justify-center items-center">
+                                            <button onClick={unfollow} className="bg-transparent text-green-600 cursor-pointer hover:text-[#48a6a6] focus:ring-4 focus:outline-none border-2 border-[#48a6a6] focus:ring-blue-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:text-green-600 dark:hover:text-[#48a6a6] dark:focus:ring-green-800">Unfollow</button>
+                                        </div> :
+                                        <div className="w-[20%] flex justify-center items-center">
+                                            <button onClick={addfollow} className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">{request || follow ? "Follow Back" : "Follow"}</button>
+                                        </div>
+                                    }
+                                    <div className="w-[20%] flex justify-center items-center">
+
+                                        <button className="text-white cursor-pointer  bg-gray-600 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-[10px] w-full sm:w-auto px-3 py-2 md:px-5 md:py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-800">Block</button>
+                                    </div>
+                                </div>
+                                <div className="flex w-full  mt-4 md:mt-6  justify-evenly md:justify-center">
+                                    <Link to="" className='flex flex-col items-center justify-center w-[20%] text-center  dark:text-white'>
+                                        <span className='md:text-xl tex-lg '>213</span>
+                                        <span className='text-[15px]'>Posts</span>
+                                    </Link>
+                                    <Link to="/friends" className='flex flex-col items-center  w-[20%] justify-center dark:text-white'>
+                                        <span className='md:text-xl tex-lg'>{userdetails.alldatas.followers ? formatFollowers(userdetails.alldatas.followers.length) : 0}</span>
+                                        <span className='text-[15px]'>followers</span>
+                                    </Link>
+                                    <Link to="/friends" className='flex flex-col items-center w-[20%] justify-center dark:text-white'>
+                                        <span className='md:text-xl tex-lg'>{userdetails.alldatas.following ? formatFollowers(userdetails.alldatas.following.length) : 0}</span>
+                                        <span className='text-[15px]'>following</span>
+                                    </Link>
+                                    {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a> */}
+                                    {/* <a href="#" className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a> */}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -264,6 +274,16 @@ function UserProfile(props) {
 
                 </section>
             </div>
+            <button onClick={() => setViewPimage(!viewpimage)} className={`${viewpimage ? "scale-101 opacity-100" : "scale-0 opacity-0 rotate-90"} w-full h-full cursor-pointer transition-all delay-150 duration-300 ease-in-out bg-gray-950/70 fixed bottom-0 z-50 top-0`}>
+                <div className="w-full h-full flex justify-center items-center">
+                    {userdetails.alldatas && userdetails.alldatas.pimage ? (
+                        <img src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
+                    ) : (
+                        <img src={assets.profileIcon} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
+
+                    )}
+                </div>
+            </button>
         </>
     )
 }

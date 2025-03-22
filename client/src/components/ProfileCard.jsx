@@ -32,7 +32,7 @@ function ProfileCard(props) {
                 <section className='fixed  top-19 ml-4 mr-2 md:block md:w-[23%] hidden mt-3 ' data-aos="slide-left">
 
 
-                    <div className="md:w-full md:pt-15 relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                    <div className="md:w-full md:pt-15 relative max-w-sm trnasition-bg bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         
                         <div className="flex flex-col items-center pb-10">
                             {isLoggedIn && userdata && userdata.pimage ? <NavLink onClick={()=>setShowImage(!showimage)}><img className={`${showimage ? "w-50 h-50 " : "w-24 h-24"} mb-3 rounded-full shadow-lg object-cover`} src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image "/></NavLink> :

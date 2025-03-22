@@ -44,9 +44,9 @@ function SuggeCard() {
     return (
         <>
 
-            <div className="w-full hidden md:block h-65 overflow-y-scroll scobar    max-w-md p-2 mt-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-full hidden md:block h-65 overflow-y-scroll scobar trnasition-bg   max-w-md p-2 mt-3 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex items-center justify-between mb-4">
-                    <h6 className="text-base font-bold leading-none text-gray-900 dark:text-white">Suggestions</h6>
+                    <h6 className="text-base font-bold leading-none  text-gray-900 dark:text-white">Suggestions</h6>
                     {/* <Link to="#" className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                             View all
                         </Link> */}

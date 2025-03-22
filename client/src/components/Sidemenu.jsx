@@ -15,7 +15,7 @@ function Sidemenu() {
 
 
                 <aside id="sidebar-multi-level-sidebar" className=" w-full   md:blcok md:h-50%" aria-label="Sidebar">
-                    <div className="md:block h-full bottom-0 md:top-0 px-3 py-4 overflow-y-auto  rounded-lg shadow-sm bg-white dark:bg-gray-800">
+                    <div className="md:block trnasition-bg h-full bottom-0 md:top-0 px-3 py-4 overflow-y-auto  rounded-lg shadow-sm bg-white dark:bg-gray-800">
                         <ul className="space-y-2 flex md:block font-medium">
                             <li>
                                 <NavLink to="/" className={({isActive}) => `flex items-center p-2 ${isActive ? "bg-[#48a6a6] text-white" : "text-gray-700"}  rounded-lg dark:text-white hover:bg-[#48a6a6] hover:text-white dark:hover:bg-gray-700 group`}>

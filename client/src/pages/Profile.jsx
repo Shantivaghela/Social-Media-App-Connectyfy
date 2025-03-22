@@ -12,21 +12,24 @@ import { useAuth } from '../contextAPI';
 function Profile(props) {
   const [isdrop, setdrop] = useState(false);
   const [profielpage, setPrfilepage] = useState(1);
-  const [totalFollowers,setTotalFollowers] = useState(0);
-  const [totalFollowings,setTotalFollowings] = useState(0);
+  const [viewpimage, setViewPimage] = useState(false);
 
-  const {user,userdata} = useAuth();
+  const { user, userdata } = useAuth();
   function formatFollowers(count) {
     if (count >= 1000000000) {
-        return (count / 1000000000).toFixed(1) + "B"; // Billion
+      return (count / 1000000000).toFixed(1) + "B"; // Billion
     } else if (count >= 1000000) {
-        return (count / 1000000).toFixed(1) + "M"; // Million
+      return (count / 1000000).toFixed(1) + "M"; // Million
     } else if (count >= 1000) {
-        return (count / 1000).toFixed(1) + "K"; // Thousand
+      return (count / 1000).toFixed(1) + "K"; // Thousand
     }
     return count.toString(); // Less than 1K
-}
-  
+  }
+
+  // const view = () =>{
+  //   setViewPimage()
+  // }
+
   return (
     <>
       <div className='flex mt-22   mb-12 pb-2 bg-white md:ml-[25%] dark:border-gray-700 border overflow-hidden dark:bg-gray-800 border-gray-200 rounded-xl shadow-sm'>
@@ -34,9 +37,18 @@ function Profile(props) {
         <section className='float-end flex  flex-col md:ml-  w-full  h-full '>
 
 
-          <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden    dark:bg-gray-800 ">
-            {userdata && userdata.bimage ? <img src={`http://localhost:8080${userdata.bimage}`} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" /> :
-            <img src={assets.AddBanner} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />}
+          <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden z-10   dark:bg-gray-800 ">
+            {userdata && userdata.bimage ? (
+
+
+              <img src={`http://localhost:8080${userdata.bimage}`} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
+
+            ) :
+              (
+
+                <img src={assets.AddBanner} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
+
+              )}
             <div className="flex justify-end md:px-4 md:pt-4 z-8">
               <button id="dropdownButton" data-dropdown-toggle="dropdown" onClick={() => setdrop(!isdrop)} className={`block z-11 cursor-pointer rounded-lg text-gray-600 bg-gray-400/10 hover:text-black  hover:bg-gray-100 rounded-   xl focus:outline-none  text-sm p-1.5`} type="button">
                 <i className={`${isdrop ? "fa-solid fa-xmark fa-xl" : " fa-solid fa-bars fa-xl"}`}></i>
@@ -54,18 +66,29 @@ function Profile(props) {
                   <li>
                     <Link to="/PasswordChange" className="block px-4 md:py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Change Password</Link>
                   </li>
-                  
+
                   <li>
                     <NavLink to="/logout" className="block px-4 md:py-2 text-sm text-red-600 hover:bg-red-100  dark:text-red-600 ">Logout</NavLink>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col items-center mt-27  ">
-              {userdata && userdata.pimage ? <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" /> :
-              <img className="w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.profileIcon} alt="Bonnie image" />}
+
+            <div className="flex flex-col  items-center mt-27 z-33  relative">
+              {userdata && userdata.pimage ? (
+                <button onClick={() => setViewPimage(!viewpimage)}>
+
+                  <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-33`} src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" />
+                </button>
+              ) :
+                (
+                  <button onClick={() => setViewPimage(!viewpimage)}>
+
+                    <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11`} src={assets.profileIcon} alt="Bonnie image" />
+                  </button>
+                )}
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5>
-              {userdata && userdata.description ? <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description }</span>:
+              {userdata && userdata.description ? <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description}</span> :
                 <span className="text-sm text-gray-500 dark:text-gray-400">Add your Description</span>}
               <div className="flex mt-4 md:mt-6  gap-10 ">
                 <Link to="" className='flex flex-col items-center justify-center dark:text-white'>
@@ -75,7 +98,7 @@ function Profile(props) {
               </div>
               <div className="flex mt-4 md:mt-6  gap-15">
                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
-                  <span className='md:text-xl tex-lg'>{userdata.followers ? formatFollowers(userdata.followers.length)  : 0}</span>
+                  <span className='md:text-xl tex-lg'>{userdata.followers ? formatFollowers(userdata.followers.length) : 0}</span>
                   <span className='text-[15px]'>followers</span>
                 </Link>
                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
@@ -87,7 +110,7 @@ function Profile(props) {
               </div>
             </div>
           </div>
-              <span className=' h-0.5 my-3 bg-gray-600/30 mx-5'> </span>
+          <span className=' h-0.5 my-3 bg-gray-600/30 mx-5'> </span>
           <div className=" w-full h-full rounded-xl pt-3 bg-white dark:bg-gray-800 ">
             <ul className='flex justify-evenly gap-10 items-center mb-3 md:mb-1'>
               <li>
@@ -109,15 +132,25 @@ function Profile(props) {
             </ul>
             <Postpage view={profielpage} />
             {/* <div className={`${profielpage === 2 ? "block" : "hidden"}`}>Videos</div> */}
-            <Profilevideos view={profielpage}/>
-            <Tags view={profielpage}/>
-            
+            <Profilevideos view={profielpage} />
+            <Tags view={profielpage} />
+
           </div>
 
 
 
         </section>
       </div>
+      <button onClick={()=>setViewPimage(!viewpimage)} className={`${viewpimage ? "scale-101 opacity-100" : "scale-0 opacity-0 rotate-90"} w-full cursor-pointer transition-all delay-150 duration-300 ease-in-out  bg-gray-950/70 fixed bottom-0 z-50 top-0`}>
+        <div className="w-full flex justify-center items-center">
+        {userdata && userdata.pimage ? (
+          <img src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover'/>
+        ):(
+          <img src={assets.profileIcon} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover'/>
+
+        )}
+        </div>
+      </button>
     </>
   )
 }

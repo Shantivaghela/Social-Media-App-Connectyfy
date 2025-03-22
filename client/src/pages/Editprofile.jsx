@@ -126,7 +126,7 @@ function Editprofile() {
           <button onClick={() => navigate(-1)} className='dark:text-white cursor-pointer w-full px-3'><i className="fa-solid fa-arrow-left fa-xl float-left"></i></button>
           <span className='text-3xl border-b-2 border-[#48a6a6] dark:text-white'>Edit Profile</span>
         </div>
-        <form className="relative h-full mt-5" onSubmit={handlSubmit} encType="multipart/form-data">
+        <form className="relative h-full mt-5"  encType="multipart/form-data">
           <label htmlFor='dropzone-benner' className='h-[80px] w-[80px] bg-gray-500/50 z-2 absolute p-2 flex rounded-xl justify-center items-center hover:bg-gray-400/50 text-white hover:text-[#48a6a6]'><i className="fa-solid fa-pen fa-flip-horizontal fa-lg"></i></label>
           <input id="dropzone-benner" type="file"
             className="hidden"

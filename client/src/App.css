@@ -16,17 +16,23 @@ html {
 }
 *{
   box-sizing:border-box;
-  
 }
 body::-webkit-scrollbar{
   display:none;
 }
+.trnasition-bg{
+
+  /* transition:background 1s,text 1s; */
+  /* transition:color 1s; */
+}
 body{
+  /* transition:background 1s; */
   font-family:"Rubik", serif;
   padding:0;
   margin:0;
   height:100%;
   width:100%;
+  
   background-color: #f2efe6;
 }
 .bodyDark{
