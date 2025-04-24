@@ -3,10 +3,12 @@ import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../contextAPI/index.jsx';
 import DarkMode from './DarkMode';
+import { useSocketContext } from '../contextAPI/socketContext.jsx';
 
 function Header() {
   const theme = document.getElementById("theme").className
   const [Mode, setMode] = useState(theme);
+  const [notificationsget,setNotifiacationget] = useState([]);
       const [isdrop, setdrop] = useState(false);
   ;
 
@@ -27,12 +29,24 @@ function Header() {
    
   }, [])
   // console.log(userdata);
+  const { socket, onlineusers,notifications } = useSocketContext();
+  useEffect(()=>{
+    const getnoti = () =>{
+
+      if(notifications){
+        setNotifiacationget(notifications);
+      }
+    }
+    getnoti();
+  },[socket,notifications])
+  console.log(notificationsget);
+  
 
   return (
 
 
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-screen top-0 z-20 ">
-      <div className=" flex  items-center justify-between mx-auto pl-1 md:px-5 py-4 ">
+    <nav className="bg-white border-gray-200 dark:bg-gray-800 fixed w-screen top-0 z-20 ">
+      <div className=" flex  items-center justify-between mx-auto pl-1 md:px-5 md:py-2 py-4 ">
         <div>
           <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">
             <img src={assets.logo} className="md:h-9 h-5" alt="Flowbite Logo" />
@@ -48,15 +62,20 @@ function Header() {
         </svg>
     </button> */}
         <div className=" w-full md:block md:w-auto relative" id="navbar-default">
-          <ul className="font-medium  flex flex-co float-right text-sm md:text-lg  md:p-0 border border-gray-100 rounded-lg  md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium  flex flex-co float-right text-sm md:text-lg  md:p-0 border border-gray-100 rounded-lg  md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700">
             <li className=''>
               <Link to="#" onClick={modeHandl} className=" md:hidden  block  py-1 md:py-2 px-2 md:px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                 <i className={`${Mode === "light" ? 'fa-solid fa-moon fa-lg' : 'fa-solid fa-sun fa-lg'} hover:text-[#2973b2] fa-solid fa-envelope fa-xl text-[#48a6a6] `}></i>
 
               </Link>
             </li>
-            <li>
-              <NavLink to="/notification" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block rounded-sm px-3 py-1 md:py-2 md:px-3   hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-bell fa-xl transition delay-120 duration-300 ease-in-out"></i></NavLink>
+            <li className='relative'>
+            <span className={` ${notificationsget.length > 0 ? "block" :"hidden"} h-3 w-3 md:w-4 md:mt-1.5 md:h-4 border-2 border-transparent bg-red-500 absolute ml-6 rounded-full flex justify-center items-center`}>
+              <p className='text-sm text-white'>
+                {/* {notificationsget.length < 9 ? (notificationsget.length) : "9+"} */}
+              </p>
+            </span>
+              <NavLink to="/notification" onClick={()=>setNotifiacationget([])}  className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} block rounded-sm px-3 py-1 md:py-2 md:px-3   hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-bell fa-xl transition delay-120 duration-300 ease-in-out"></i></NavLink>
             </li>
             <li>
               <NavLink to="/message" className={({ isActive }) => `${isActive ? "text-black dark:text-white border-b-3 border-[#48a6a6]" : "dark:text-[#48a6a6] text-[#48a6a6]"} md:block hidden px-2 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}><i className="hover:text-[#2973b2] fa-solid fa-envelope fa-xl   transition delay-50 duration-300 ease-in-out"></i></NavLink>
@@ -67,11 +86,11 @@ function Header() {
             {isLoggedIn ?
               (
                 <li>
-                  <NavLink onClick={()=>setdrop(!isdrop)} className={` text-[#48a6a6] block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} >
+                  <Link to="#" onClick={()=>setdrop(!isdrop)} className={` text-[#48a6a6] block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} >
                     {userdata && userdata.pimage ?
                       <img src={`http://localhost:8080${userdata.pimage}`} alt="profile image" className='h-5 w-5 md:h-8 md:w-8 rounded-full object-cover' />
 
-                      : <i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i>}</NavLink>
+                      : <i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i>}</Link>
                 </li>
               ) : (
                 <li>

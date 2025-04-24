@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function Editprofile() {
   const [show, setShow] = useState(false)
-  const { user,userdata} = useAuth();
+  const { user,userdata,getuserdata,userAuthentication} = useAuth();
   const [adduserdata, setAddadduserdata] = useState({
     _id:"",
     username:"",
@@ -89,7 +89,9 @@ function Editprofile() {
       // alert("Profile submitted successfully!");
       if(response.data){
         navigate("/profile");
-        toast.success("Your Data has been saved")
+        toast.success("Your Data has been saved");
+        getuserdata();
+        userAuthentication();
       }
     }else{
       const response = await fetch(`http://localhost:8080/api/user/profile-update/${user._id}`,{
@@ -103,6 +105,8 @@ function Editprofile() {
         // console.log("upadted data is :",data.updateData);
         navigate("/profile");
         toast.success("Your Data has been saved")
+        getuserdata();
+        userAuthentication();
       }
 
     }
@@ -126,7 +130,7 @@ function Editprofile() {
           <button onClick={() => navigate(-1)} className='dark:text-white cursor-pointer w-full px-3'><i className="fa-solid fa-arrow-left fa-xl float-left"></i></button>
           <span className='text-3xl border-b-2 border-[#48a6a6] dark:text-white'>Edit Profile</span>
         </div>
-        <form className="relative h-full mt-5"  encType="multipart/form-data">
+        <form className="relative h-full mt-5" onSubmit={handlSubmit} encType="multipart/form-data">
           <label htmlFor='dropzone-benner' className='h-[80px] w-[80px] bg-gray-500/50 z-2 absolute p-2 flex rounded-xl justify-center items-center hover:bg-gray-400/50 text-white hover:text-[#48a6a6]'><i className="fa-solid fa-pen fa-flip-horizontal fa-lg"></i></label>
           <input id="dropzone-benner" type="file"
             className="hidden"

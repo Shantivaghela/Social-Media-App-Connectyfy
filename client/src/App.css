@@ -97,4 +97,38 @@ body{
   /* opactity:50; */
 
 }
+/* From Uiverse.io by kerolos23 */ 
+.loadingtext p {
+ 
+  position: relative;
+}
 
+.loadingtext p::after {
+  position: absolute;
+  animation: b 1s infinite linear;
+  
+  content: "";
+  left: %;
+}
+
+@keyframes b {
+  0% {
+    content: "";
+  }
+
+  10% {
+    content: ".";
+  }
+
+  40% {
+    content: "..";
+  }
+
+  70% {
+    content: "...";
+  }
+
+  100% {
+    content: "";
+  }
+}

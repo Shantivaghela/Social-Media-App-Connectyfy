@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/Admincontext";
 import {
   BanknotesIcon,
   UserPlusIcon,
@@ -5,13 +6,18 @@ import {
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
+// console.log("hii");
+
+
+// const {allusers,user} = useAuth();
 export const statisticsCardsData = [
+
   
   {
     color: "gray",
     icon:  UsersIcon,
     title: "Users",
-    value: "2",
+    value: "user.username",
     footer: {
       color: "text-green-500",
       value: "+3%",

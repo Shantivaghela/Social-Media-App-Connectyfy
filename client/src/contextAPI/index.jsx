@@ -8,6 +8,9 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState("");
     const [userdata, setUserData] = useState("");
     const [allusers, setAllUsers] = useState([]);
+    const [posts,setPosts] = useState([]);
+    const [allposts,setAllPosts] = useState([]);
+    const [stories,setStories] = useState([]);
     // const [isLoggedIn,setIsloggedIn] = useState(token)
     // console.log(user._id);
     // if(user.username !== userdata.username){
@@ -60,6 +63,7 @@ export const AuthProvider = ({ children }) => {
 
 
         const userID = await user._id;
+       console.log(userID);
        
         try {
             const response = await fetch(`http://localhost:8080/api/user/getuserdata/${userID}`, {
@@ -84,7 +88,10 @@ export const AuthProvider = ({ children }) => {
     const getAllUsers = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/auth/allusers', {
-                method: "GET"
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
             });
             if (response.ok) {
                 const data = await response.json();
@@ -95,7 +102,7 @@ export const AuthProvider = ({ children }) => {
 
 
             } else {
-                console.log("more data not fonund");
+                console.log("more data not fonund",response);
 
             }
         } catch (error) {
@@ -103,23 +110,93 @@ export const AuthProvider = ({ children }) => {
 
         }
     }
-    // console.log(allusers/);
+    // console.log(allusers);
 
 
+    const getposts = async()=>{
+        try {
+            const response = await fetch('http://localhost:8080/api/post/upload-post', {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setPosts(data.posts);
+                // console.log(data.posts);
+                                
+
+
+            } else{
+                console.log(response);
+                
+            }
+        } catch (error) {
+            
+            
+        }
+    }
+
+const getAllposts = async() =>{
+    const userID = await user._id
+    console.log(user._id);
     
+    try {
+        const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            method: "GET"
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setAllPosts(data);
+            console.log(data);
+
+                            
+
+
+        } 
+    } catch (error) {
+        console.log("index",error);
+    }
+}
+
+const storyget = async() =>{
+    try {
+        const response = await fetch('http://localhost:8080/api/story/story-upload',{
+            method:"GET"
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setStories(data.stories);
+            console.log(data.stories);
+
+                            
+
+
+        } 
+    } catch (error) {
+        
+    }
+}
 
     useEffect(() => {
         userAuthentication();
     }, [token]);
     useEffect(() => {
         if (user) {
-
+            
             getuserdata();
+            storyget();
+            getAllposts();
         }
-
-    }, [user, allusers])
+        
+    }, [user, allusers]);
+    
     useEffect(() => {
         getAllUsers();
+        getposts();
 
     }, [])
 
@@ -133,7 +210,15 @@ export const AuthProvider = ({ children }) => {
         allusers,
         getAllUsers,
         getuserdata,
-        setUserData
+        setUserData,
+        posts,
+        allposts,
+        getposts,
+        getAllposts,
+        userAuthentication,
+        stories,
+        storyget
+        
     }}>{children}</AuthContext.Provider>
 }
 
@@ -144,3 +229,5 @@ export const useAuth = () => {
     }
     return authContextValue;
 }
+
+// export { AuthContext };

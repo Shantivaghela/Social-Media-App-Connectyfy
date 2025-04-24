@@ -60,7 +60,7 @@ function App() {
           element:<Message/>
         },
         {
-          path:'/chat',
+          path:'/chat/:userId',
           element:<Chatbox/>
         },
         {

@@ -24,6 +24,7 @@ const register = async (req,res) => {
             return res.status(400).json({message:"email already exists"})
         }
         const userDetail = await User.create({username,email,password});
+        // const userDetaildata = await UserData.create({username,email});
 
         res.status(201).json({
             msg:"regisrtion succesfully",

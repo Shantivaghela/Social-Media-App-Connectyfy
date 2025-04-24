@@ -36,13 +36,13 @@ function Friends() {
         <div className="w-full pt-5 dark:text-white">
             <div className="flex justify-around items-center ">
                 <NavLink to="" onClick={() => {pagecontant(1)}} className={`${follopage === 1 ? " border-b-3 border-[#48a6a6]" : "" } text-xl `}>
-                    Followers{` (${userdata.followers ? formatFollowers(userdata.followers.length)  : 0})`}
+                    Followers{` (${userdata && userdata.followers ? formatFollowers(userdata.followers.length)  : 0})`}
                 </NavLink>
                 <NavLink to="" onClick={() => {pagecontant(2)}} className={`${follopage === 2 ? " border-b-3 border-[#48a6a6]" : "" } text-xl `}>
-                    Followings{` (${userdata.following ? formatFollowers(userdata.following.length) : 0})`}
+                    Followings{` (${userdata && userdata.following ? formatFollowers(userdata.following.length) : 0})`}
                 </NavLink>
                 <NavLink to="" onClick={() => {pagecontant(3)}} className={`${follopage === 3 ? " border-b-3 border-[#48a6a6]" : "" } text-xl `}>
-                    Request{` (${userdata.requests ? formatFollowers(userdata.requests.length) : 0})`}
+                    Request{` (${userdata && userdata.requests ? formatFollowers(userdata.requests.length) : 0})`}
                 </NavLink>
             </div>
             <div className="w-full h-full mt-5 ">

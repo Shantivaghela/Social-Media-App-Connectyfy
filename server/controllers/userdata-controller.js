@@ -6,9 +6,12 @@ const path = require("path");
 
 const userdata = async (req, res) => {
     try {
-        // const data = req.body;
         const { _id, username, email, gender, description } = req.body;
-        // console.log(req.files);
+        const userExists = await UserData.findOne({ email })
+
+        if (userExists) {
+            return res.status(400).json({ message: "email already exists" });
+        }
         const profileDetails = new UserData({
             _id,
             username,
@@ -111,7 +114,7 @@ const conformreq = async (req, res) => {
         user.requests = user.requests.filter(f => f._id.toString() !== conformId);
         await user.save();
 
-       
+
         res.status(200).json({ message: "Your now following " });
     } catch (error) {
         res.status(500).json({ message: "Error following user", error });
@@ -142,7 +145,7 @@ const unfollow = async (req, res) => {
         user.following = user.following.filter(f => f._id.toString() !== unfollowid);
         user.requests = user.requests.filter(f => f._id.toString() !== unfollowid);
         await user.save();
-       
+
 
         unFuser.followers = unFuser.followers.filter(f => f._id.toString() !== userID);
         unFuser.following = unFuser.following.filter(f => f._id.toString() !== userID);
@@ -179,6 +182,8 @@ const getuserdata = async (req, res) => {
     } catch (error) {
 
         console.log("Not more data of user...");
+        console.log(error);
+        
 
 
     }
@@ -241,7 +246,7 @@ const getAllusers = async (req, res) => {
     try {
         const getAlldata = await UserData.find();
         res.status(200).json({ getAlldata });
-        // console.log(getAlldata);
+        console.log(getAlldata);
 
     } catch (error) {
         console.log("user more data not found", error);
@@ -251,4 +256,4 @@ const getAllusers = async (req, res) => {
 
 
 
-module.exports = { userdata, getuserdata, updateprofile, getAllusers, addfollow, unfollow,conformreq};
+module.exports = { userdata, getuserdata, updateprofile, getAllusers, addfollow, unfollow, conformreq };

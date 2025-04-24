@@ -26,12 +26,14 @@ import {
   setOpenSidenav,
 } from "@/context";
 import DarkMode from "@/components/DarkMode";
+import { useAuth } from "@/context/Admincontext";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
+  const {isLoggedIn,LogoutUser} = useAuth();
 
   return (
     <Navbar
@@ -85,23 +87,38 @@ export function DashboardNavbar() {
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500 dark:text-white" />
           </IconButton>
           <DarkMode/>
-          <Link to="/auth/sign-in">
+           {isLoggedIn ? (
+             <Link
+             to="/logout"
+             variant="text"
+             color="blue-gray"
+             
+             className="hidden items-center gap-1 px-4 xl:flex normal-case text-blue-gray-500 hover:bg-gray-300 rounded-xl  dark:text-white"
+           >
+            <i class="fa-solid fa-right-from-bracket dark:text-white text-blue-gray-500"></i>
+             {/* <UserCircleIcon className="h-5 w-5  " /> */}
+             Logout
+           </Link>
+           ):(
+            <Link to="/auth/sign-in">
             <Button
-              variant="text"
-              color="blue-gray"
-              className="hidden items-center gap-1 px-4 xl:flex normal-case dark:text-white"
-            >
-              <UserCircleIcon className="h-5 w-5 text-blue-gray-500 dark:text-white" />
-              Sign In
-            </Button>
-            <IconButton
-              variant="text"
-              color="blue-gray"
-              className="grid xl:hidden"
-            >
-              <UserCircleIcon className="h-5 w-5 text-blue-gray-500 dark:text-white" />
-            </IconButton>
-          </Link>
+               variant="text"
+               color="blue-gray"
+               className="hidden items-center gap-1 px-4 xl:flex normal-case dark:text-white"
+             >
+               <UserCircleIcon className="h-5 w-5 text-blue-gray-500 dark:text-white" />
+               Sign In
+             </Button>
+             <IconButton
+               variant="text"
+               color="blue-gray"
+               className="grid xl:hidden"
+             >
+               <UserCircleIcon className="h-5 w-5 text-blue-gray-500 dark:text-white" />
+             </IconButton>
+           </Link>
+           )} 
+          
           <Menu>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">

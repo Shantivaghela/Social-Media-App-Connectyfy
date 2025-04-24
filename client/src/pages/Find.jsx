@@ -41,7 +41,7 @@ function Find() {
               {searchTerm && filteredUsers.length > 0 ? (
                 filteredUsers.map(user => (
 
-                  <li key={user._id} className="py-3 sm:py-4 bg-white px-2 flex justify-between  mb-2 rounded-lg dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800  w-[99%] divide-y divide-gray-200 dark:divide-gray-700 mr-5s">
+                  <li key={user._id} className="py-3 sm:py-4 bg-white px-2 flex justify-between  mb-2 rounded-lg dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800  w-[99%] divide-y divide-gray-200 dark:divide-gray-700 mr-5s" data-aos="flip-down">
                     <Link to={`/userprofile/${user._id}`} className="flex items-center">
                       <div className="shrink-0">
                         <img className="w-9 h-9 rounded-full" src={user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage}` : (assets.profileIcon)} alt="Neil image" />

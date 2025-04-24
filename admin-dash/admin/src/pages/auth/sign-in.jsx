@@ -5,11 +5,70 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "@/assets/assets";
+import { useState } from "react";
+import { useAuth } from "@/context/Admincontext";
+import { toast } from "react-toastify";
 
 
 export function SignIn() {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const { storeTokenInLS ,isLoggedIn} = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleInput = (e) => {
+
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setUser({
+      ...user,
+      [name]: value,
+    })
+
+  }
+  const handlSubmit = async (e) => {
+    try {
+
+        e.preventDefault();
+        console.log(user);
+        const response = await fetch('http://localhost:8080/api/admin/admin-auth',
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+
+                },
+                body: JSON.stringify(user),
+
+            }
+        );
+        const res_data = await response.json();
+        if (response.ok) {
+
+            storeTokenInLS(res_data.token);
+            console.log(res_data);
+            
+            navigate("/dashboard/home");
+            toast.success(res_data.message);
+            // return <Navigate to="/"/>
+        }else{
+            toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+          console.log(response);
+          
+        }
+
+    } catch (error) {
+        console.error(error);
+
+    }
+
+}
   return (
     <section className="m-8 flex gap-4 h-[50%]">
       <div className="text-white">
@@ -22,7 +81,7 @@ export function SignIn() {
           <Typography variant="h2" className="font-bold mb-4 dark:text-white">Sign In</Typography>
           <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal dark:text-white">Enter your email and password to Sign In.</Typography>
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
+        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2" onSubmit={handlSubmit}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium dark:text-white">
               Your email
@@ -30,6 +89,9 @@ export function SignIn() {
             <Input
               size="lg"
               placeholder="name@mail.com"
+              name='email'
+              value={user.email}
+              onChange={handleInput}
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900 dark:focus:!border-gray-200 dark:text-white"
               labelProps={{
                 className: "before:content-none after:content-none",
@@ -42,6 +104,9 @@ export function SignIn() {
               type="password"
               size="lg"
               placeholder="********"
+              name='password'
+              value={user.password}
+              onChange={handleInput}
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900 dark:focus:!border-gray-200 dark:text-white"
               labelProps={{
                 className: "before:content-none after:content-none",
@@ -66,11 +131,11 @@ export function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6 dark:text-white   bg-[#48a6a6]" fullWidth>
+          <Button type="submit" className="mt-6 dark:text-white   bg-[#48a6a6]" fullWidth>
             Sign In
           </Button>
 
-          <div className="flex items-center justify-between gap-2 mt-6">
+          {/* <div className="flex items-center justify-between gap-2 mt-6">
 
             <Typography variant="small" className="font-medium text-gray-900 dark:text-white">
               <a href="#">
@@ -82,7 +147,7 @@ export function SignIn() {
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4 dark:text-white">
             Not registered?
             <Link to="/auth/sign-up" className="text-gray-900 ml-1 dark:text-white">Create account</Link>
-          </Typography>
+          </Typography> */}
         </form>
 
       </div>

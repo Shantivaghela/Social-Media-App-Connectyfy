@@ -77,12 +77,12 @@ function Login(props) {
     return (
         <>
             <section className={`w-screen min-h-screen  flex  justify-center items-center `} data-aos="flip-up" >
-                <img src={assets.logo} height={20} width={20} className=" h-15 w-15 object-cover  absolute overflow-visible mb-180 md:mb-152 z-10 border-2 border-black rounded-full "/>
+                <img src={assets.logo}   className=" h-15 w-15 object-cover  absolute overflow-visible mb-180 md:mb-152 z-10 border-2 border-white rounded-full "/>
                    
                 
                 <div className="relative shadow-[0px_19px_32px_3px_rgba(0,_0,_0,_0.1)]  md:h-[630px] md:w-[1100px] w-[380px] h-[700px] rounded-xl overflow-hidden border-3 border-gray-500 flex  md:flex-row flex-col justify-center items-center">
                     <div className="justify-center bg-white  h-[200px] md:h-screen flex flex-col items-center w-full   md:w-[50%] ">
-                        <img src={assets.loginimage} className='h-full object-cover  w-[900px]' alt="" />
+                        <img src={assets.loginimage} className='h-full object-cover  w-[900px]' alt="app logo" />
                         {/* <video  autoPlay={true} loop muted playsInline preload='auto' className='h-full object-cover  w-[900px]'>
                             <source  src={assets.Loginimg}   type='video/mp4' />
                         </video> */}
@@ -125,7 +125,7 @@ function Login(props) {
                                     </div>
                                     <label htmlFor="Lremember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                                 </div>
-                                <button type="submit" className="text-white bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Login</button>
+                                <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Login</button>
                             </form>
 
                             {/* <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
@@ -139,10 +139,10 @@ function Login(props) {
                         </div>
 
                         <div className="w-full flex justify-start items-center gap-7 ml-20 md:ml-27 mt-4">
-                            <Link to="/forgot" className={` hover:text-[#48a6a6] dark:text-white`}>
+                            <Link to="/forgot" className={` hover:text-[#48a6a6] dark:text-white cursor-pointer`}>
                                 Forgot Password ?
                             </Link>
-                            <Link to="/signup" className={` hover:text-[#48a6a6] dark:text-white`}>
+                            <Link to="/signup" className={` hover:text-[#48a6a6] dark:text-white cursor-pointer`}>
                                 Sign Up
                             </Link>
 
