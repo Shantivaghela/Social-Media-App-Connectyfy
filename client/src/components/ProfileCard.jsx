@@ -43,11 +43,11 @@ function ProfileCard(props) {
                                 
                             <div className="flex mt-4 md:mt-6  gap-10">
                                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
-                                    <span className='text-lg'>{userdata.followers ? formatFollowers(userdata.followers.length)  : 0}</span>
+                                    <span className='text-lg'>{ userdata && userdata.followers ? formatFollowers(userdata.followers.length)  : 0}</span>
                                     <span className='text-[10px]'>followers</span>
                                 </Link>
                                 <Link to="/friends" className='flex flex-col items-center justify-center dark:text-white'>
-                                    <span className='text-lg'>{userdata.following ? formatFollowers(userdata.following.length) : 0}</span>
+                                    <span className='text-lg'>{ userdata && userdata.following ? formatFollowers(userdata.following.length) : 0}</span>
                                     <span className='text-[10px]'>following</span>
                                 </Link>
                                 {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a> */}

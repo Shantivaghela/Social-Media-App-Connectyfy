@@ -12,7 +12,6 @@ function Createpost() {
   const [filename, setFilename] = useState("");
   const [content,setContent] = useState("")
   console.log(content);
-
   const {user} = useAuth();
 
   console.log(filepath);
