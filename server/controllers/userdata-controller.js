@@ -38,18 +38,7 @@ const addfollow = async (req, res) => {
     try {
         const { userId, username, email, conformId } = req.body;
         const { userID } = req.params;
-        console.log(req.body);
-
-        console.log(userID);
-
-
-
-
-
-        // if (!userId || !userID || conformId) {
-        //     return res.status(400).json({ message: "Invalid user ID" });
-        // }
-
+       
         const userdata = await User.findById(userId);
         let currentUser = await UserData.findById(userID);
         let followedUser = await UserData.findById(userId);

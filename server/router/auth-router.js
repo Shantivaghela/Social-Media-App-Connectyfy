@@ -11,5 +11,8 @@ router.route("/register").post(validate(signupSchema), authcontrollers.register)
 router.route("/login").post(validate(loginSchema),authcontrollers.login).put(authcontrollers.passupdate);
 router.route("/user").get(authMiddleware,authcontrollers.user);
 router.route("/allusers").get(authMiddleware,authcontrollers.allusers);
+router.route("/forgot-password").post(authcontrollers.handleForgotPassword);
+router.route("/user-verify").post(authcontrollers.handleVerfyOtp);
+router.route("/reset-password").post(authcontrollers.handleResetPassword);
 
 module.exports = router;
