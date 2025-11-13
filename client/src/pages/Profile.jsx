@@ -133,7 +133,7 @@ const [showlikes,setShowLikes] = useState(false)
       if (response.ok) {
 
         const data = await response.json()
-        console.log(data);
+        
         toast.success(data.message);
         getAllposts();
 

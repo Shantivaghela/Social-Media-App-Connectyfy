@@ -229,15 +229,15 @@ function PostLayout() {
 
         }
     }
-    const handleNotification = (receiverId,type) => {
-        socket.emit("sendNotification",{
-            senderName:user.username,
+    const handleNotification = (receiverId, type) => {
+        socket.emit("sendNotification", {
+            senderName: user.username,
             receiverId,
             type,
         })
     }
     console.log(allusers);
-    
+
     return (
         <>
             {allposts ? (
@@ -248,7 +248,7 @@ function PostLayout() {
                             <Link to={`/userprofile/${post.userId?._id}`} className='flex gap-3'>
                                 <img className="w-10 h-10 rounded-full object-cover" src={post.userId?.pimage ? `http://localhost:8080${post.userId.pimage}` : (assets.profileIcon)} alt="" />
                                 <div className="md:font-medium text-sm dark:text-white">
-                                    <div>{post.userId?.username}</div>
+                                    <p className=''>{post.userId?.username}</p>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</div>
                                 </div>
                             </Link>
@@ -325,13 +325,13 @@ function PostLayout() {
                             })}
                         </div>
 
-                        <div className=" w-full h-full bg-white dark:bg-gray-800 mt-5 ">
+                        <div className=" w-full h-full bg-white dark:bg-gray-800 mt-5 z-2">
                             <div className='flex h-10 md:h-full mt-2 md:mt-1  md:w-[25%] items-center justify-between w-full md:float-end      px-3'>
-                                <button onClick={() => {addLike(post._id),handleNotification(post.userId._id,1)}} className='flex cursor-pointer flex-col gap-4 justify-center items-center float-end  dark:text-white'>
+                                <button onClick={() => { addLike(post._id), handleNotification(post.userId._id, 1) }} className='flex cursor-pointer flex-col gap-4 justify-center items-center float-end  dark:text-white'>
                                     <i className={`${post.likes.some(f => f._id === user._id) ? "fa-solid fa-thumbs-up fa-2xl text-red-600 " : "fa-regular fa-thumbs-up fa-2xl "} hover:text-blue-700`}></i>
                                     <p className='text-[10px] mt-1'>{post.likes.length}</p>
                                 </button>
-                                <button onClick={() => {showComment(index)}} className='flex cursor-pointer flex-col gap-4 justify-center items-center float-end hover:text-blue-700 dark:text-white'>
+                                <button onClick={() => { showComment(index) }} className='flex cursor-pointer flex-col gap-4 justify-center items-center float-end hover:text-blue-700 dark:text-white'>
                                     <i className={`${isOpen === index ? "fa-solid fa-message fa-xl text-green-600" : "fa-regular fa-message fa-xl text-black dark:text-white"}  hover:text-blue-700`} ></i>
                                     <p className='text-[10px] mt-1'>{post.comments.length}</p>
                                 </button>
@@ -340,7 +340,7 @@ function PostLayout() {
                                     <p className='text-[10px] pt-1'>0</p>
                                 </button>
                             </div>
-                            <div className={`${isOpen === index ? " block " : "hidden"} inset-shadow-sm inset-shadow-gray-800/50 dark:bg-gray-600 dark:text-white bg-gray-100 rounded-xl border-0 broder-gray-120  mt-4 md:ml-1 md:pt-2  p-3 max-h-50 overflow-y-scroll scobar`} >
+                            <div className={`${isOpen === index ? " max-h-50 md:pt-2 p-3  " : "max-h-0 p-0"} inset-shadow-sm overflow-y-auto inset-shadow-gray-800/50 overflow-hidden dark:bg-gray-600 dark:text-white bg-gray-100 rounded-xl border-0 broder-gray-120   md:ml-1   scobar  transition-all  ease-in-out delay-150 duration-300`} >
                                 {post.comments.length > 0 ? (
                                     post.comments.sort((a, b) => new Date(b.commentAt) - new Date(a.commentAt)).map((c, i) => (
                                         <Link to={c._id._id === user._id ? '/profile' : `/userprofile/${c._id._id}`} key={i} className="border-b-2 border-gray-200 dark:border-gray-700" >
@@ -370,7 +370,10 @@ function PostLayout() {
                                     </div>
                                 )
                                 }
-
+                                <div className={`${post.comments.length > 0 ? "block" : "hidden"} w-full flex items-center flex-col`}>
+                                    <span className='w-full h-0.5 bg-gray-300 mt-10'></span>
+                                    <h1>No more Comments</h1>
+                                </div>
                             </div>
 
 
@@ -395,7 +398,7 @@ function PostLayout() {
                                 <div className="flex md:w-[50%] w-full border border-gray-300 dark:border-gray-800 rounded-lg p-1 gap-1">
 
                                     <input type="search" name="comment" value={comment} onChange={e => setComment(e.target.value)} id="search" className="block rounded-lg w-full p-2 ps-1 text-[10px] md:text-sm text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Send comment..." required />
-                                    <button onClick={() => {addData(post._id),handleNotification(post.userId._id,2)}} className="text-white cursor-pointer  end-2 bottom-2 bg-[#48a6a6] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
+                                    <button onClick={() => { addData(post._id), handleNotification(post.userId._id, 2) }} className="text-white cursor-pointer  end-2 bottom-2 bg-[#48a6a6] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
                                 </div>
                             </div>
 

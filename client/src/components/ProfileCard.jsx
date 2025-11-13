@@ -4,7 +4,7 @@ import Request from './Request';
 import { Link, NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { useAuth } from '../contextAPI/index';
-import ShowpImage from './ShowpImage';
+// import ShowpImage from './ShowpImage';
 
 
 function ProfileCard(props) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import { useAuth } from '../../contextAPI';
@@ -6,15 +6,81 @@ import { useAuth } from '../../contextAPI';
 function Forgotpass(props) {
   // const [authpage, setAuthpage] = useState("login");
   const [show, setShow] = useState(false)
-  const { storeTokenInLS,isLoggedIn } = useAuth ();
+  const { storeTokenInLS, isLoggedIn } = useAuth();
+  const [otp, setOtp] = useState(Array(6).fill("")); // Array with 6 empty strings
+  const inputRefs = useRef([]); // Array of refs for each input field
+  console.log(otp);
   
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     if (isLoggedIn) {
-        navigate("/"); // Redirect to home if logged in
-        toast.error("You can not visit this page")
+      navigate("/"); // Redirect to home if logged in
+      toast.error("You can not visit this page")
     }
-}, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate]);
+
+  const handleKeyDown = (e) => {
+    if (
+      !/^[0-9]{1}$/.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Delete" &&
+      e.key !== "Tab" &&
+      !e.metaKey
+    ) {
+      e.preventDefault();
+    }
+
+    if (e.key === "Delete" || e.key === "Backspace") {
+      const index = inputRefs.current.indexOf(e.target);
+      console.log(index);
+
+      if (index > 0 ) {
+        setOtp((prevOtp) => [
+          ...prevOtp.slice(0, index - 1),
+          "",
+          ...prevOtp.slice(index),
+        ]);
+        
+
+          inputRefs.current[index-1].focus();  
+        
+      }
+      if(index == 5 ){
+        setOtp((prevOtp) =>[
+          ...prevOtp.slice(0,index),""
+        ]);
+      }
+      
+    }
+  }
+  const handleInput = (e) => {
+    const { target } = e;
+    const index = inputRefs.current.indexOf(target);
+    if (target.value) {
+      setOtp((prevOtp) => [
+        ...prevOtp.slice(0, index),
+        target.value,
+        ...prevOtp.slice(index + 1),
+      ]);
+      if (index < otp.length - 1) {
+        inputRefs.current[index + 1].focus();
+      }
+    }
+  };
+
+  const handleFocus = (e) => {
+    e.target.select();
+  };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text");
+    if (!new RegExp(`^[0-9]{${otp.length}}$`).test(text)) {
+      return;
+    }
+    const digits = text.split("");
+    setOtp(digits);
+  };
 
   return (
     <>
@@ -37,13 +103,35 @@ function Forgotpass(props) {
 
               <form className="w-[80%] h-[80%] mx-auto ">
 
-                <div className="mb-5">
+                <div className="mb-5 hidden">
                   <label htmlFor="Femail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                  <input type="email" id="Femail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                  <input type="email" id="Femail" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required />
+                </div>
+                <div className="mb-5">
+                  <label htmlFor="Femail" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Code</label>
+                  <div className='flex gap-2'>
+
+                  {otp.map((digit, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      maxLength={1}
+                      id="Femail"
+                      value={digit}
+                      onChange={handleInput}
+                      onKeyDown={handleKeyDown}
+                      onFocus={handleFocus}
+                      onPaste={handlePaste}
+                      ref={(el) => (inputRefs.current[index] = el)}
+                      className="bg-gray-50 border  border-gray-300 text-gray-900 text-md text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-10 md:w-15 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      required />
+                  ))}
+                  </div>
                 </div>
 
 
-                <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Forgot Password</button>
+                <button type="submit" className="text-white cursor-pointer bg-blue-700 hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800">Send Code</button>
               </form>
 
 

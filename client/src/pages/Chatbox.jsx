@@ -28,7 +28,7 @@ function Chatbox() {
         const getdata = () => {
             const users = allusers.find(alluser => alluser._id === userId);
             setUserDetails(users);
-            console.log(users);
+            // console.log(users);
 
         }
         // getAllUsers();
@@ -41,30 +41,29 @@ function Chatbox() {
         setPrfilepage(id);
 
     }
-    useEffect(() => {
-        const getMessages = async () => {
+    const getMessages = async () => {
 
 
-            try {
-                const response = await fetch(`http://localhost:8080/api/message/messages/${user._id}/${userId}`, {
-                    method: "GET"
-                })
+        try {
+            const response = await fetch(`http://localhost:8080/api/message/messages/${user._id}/${userId}`, {
+                method: "GET"
+            })
 
-                if (response.ok) {
-                    const data = await response.json();
-                    // setMessages(data);
-                    setMessages(data)
-
+            if (response.ok) {
+                const data = await response.json();
+                setMessages(data)
 
 
-                }
-
-
-            } catch (error) {
-                console.log(error);
 
             }
+
+
+        } catch (error) {
+            console.log(error);
+
         }
+    }
+    useEffect(() => {
         getMessages();
     }, [userId, allusers, user]);
     const sendMessage = async (e) => {
@@ -84,10 +83,8 @@ function Chatbox() {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                setMessages([...message, data])
-
+                setMessages([...message, data]);
                 setSend("");
-                // getMessages();
             }
             console.log(response);
 
@@ -96,6 +93,7 @@ function Chatbox() {
 
         }
     }
+
     useEffect(() => {
         if (socket) {
 
@@ -138,7 +136,7 @@ function Chatbox() {
         }, 2000);
     };
 
-    console.log(typing);
+    // console.log(typing);
 
     return (
         <>
@@ -147,8 +145,8 @@ function Chatbox() {
                 <div className='float-en flex  h-[80vh] md:[70%] rounded-xl  w-full  flex-col justify-center md:ml-  overflow-hidden      ' >
 
 
-                    <div className="w-ful pb-2 fixed md:w-[75%] md:ml-0 w-full  bg-white justify-between md:top-22 top-17 flex overflow-hidden  rounded-xl  dark:bg-gray-800 ">
-                        <div className="flex gap-3 justify-start items-center  top0- ">
+                    <div className="w-ful z-33 pb-2 fixed md:w-[75%] md:ml-0 w-full  bg-white justify-between md:top-22 top-17 flex overflow-hidden  rounded-xl  dark:bg-gray-800 ">
+                        <div className=" flex gap-3 justify-start items-center  top0- ">
                             <button onClick={() => navigate(-1)} className='cursor-pointer  m-3 dark:text-white'>
                                 <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
                             </button>
@@ -190,7 +188,7 @@ function Chatbox() {
                         {message.length > 0 ?
                             message.map((message) => (
                                 <>
-                                    <Message typing={typing} key={message._id} message={message} userdetails={userdetails} />
+                                    <Message typing={typing} key={message._id} message={message} userdetails={userdetails} clickfun={getMessages}/>
                                     
                                 </>
                             ))
@@ -202,7 +200,7 @@ function Chatbox() {
                             {/* <div className={`${message.includes(f=>f.senderId === userId) ? "hidden" : "block" } loader`}>
                                 <div></div>
                                 <div></div>
-                                <div></div>
+                                <div></div>}
                                 <div></div>
                             </div>
                         <div className={`${message.includes(f=>f.senderId === user._id) ? "hidden" : "block" } loader`}>
