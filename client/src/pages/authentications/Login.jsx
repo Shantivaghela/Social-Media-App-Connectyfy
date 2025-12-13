@@ -40,7 +40,6 @@ function Login(props) {
         try {
 
             e.preventDefault();
-            console.log(user);
             const response = await fetch('http://localhost:8080/api/auth/login',
                 {
                     method: "POST",
@@ -56,7 +55,7 @@ function Login(props) {
             if (response.ok) {
 
                 storeTokenInLS(res_data.token);
-                console.log(res_data);
+                // console.log(res_data);
                 
                 navigate("/");
                 toast.success(res_data.message);

@@ -66,7 +66,7 @@ function Comment(props) {
                         Comments
                     </h1>
                     <button onClick={() => props.view(false)} className='border-2 cursor-pointer rounded-full border-white hover:text-white hover:bg-[#48a6a6]' >
-                        <i class="fa-solid fa-xmark   m-1 rounded-full ]"></i>
+                        <i class="fa-solid fa-xmark   m-1 rounded-full "></i>
 
                     </button>
                 </div>

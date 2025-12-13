@@ -18,9 +18,8 @@ function Postpage(props) {
                             .flatMap(post => post.media) // Flatten media array
                             .filter(media => media.type === "image") // Filter only videos
                             .map((media, i) => (<div key={i} className='justify-center md:h-90 h-40   flex w-full' data-aos="flip-down">
-                                <img className="h-auto w-full object-fill rounded-lg" src={media.url} alt="" />
+                                <img className="h-auto w-full  rounded-lg" src={media.url} alt="" />
                             </div>
-
 
                             ))}
                     </div>

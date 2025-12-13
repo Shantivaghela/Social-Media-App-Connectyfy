@@ -256,7 +256,7 @@ const [showlikes,setShowLikes] = useState(false)
 
 
                           <button onClick={() => setMediaId(post._id)} key={i} className='justify-center md:h-90 h-40 rounded-lg hover:shadow-2xl overflow-hidden cursor-pointer  flex w-full' data-aos="flip-down">
-                            <img className="h-auto w-full object-fill rounded-lg hover:scale-105 transition-all delay-150 ease-in-out hover:opacity-90  " src={media.url} alt="" />
+                            <img className="h-auto w-full object-cover rounded-lg hover:scale-105 transition-all delay-150 ease-in-out hover:opacity-90  " src={media.url} alt="" />
                           </button>
                         )))
                         :
@@ -386,7 +386,7 @@ const [showlikes,setShowLikes] = useState(false)
                     media.type === "image" ?
                       (
 
-                        <img className="max-h-[100%] w-full object-fill rounded-lg" src={media.url} alt="post" />
+                        <img className="max-h-[100%] w-full object-cover rounded-lg" src={media.url} alt="post" />
                       )
                       :
                       (

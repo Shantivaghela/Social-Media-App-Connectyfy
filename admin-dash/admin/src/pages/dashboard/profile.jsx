@@ -26,10 +26,12 @@ import { useState } from "react";
 import Adminprofile from "./Adminprofile";
 import Message from "./message";
 import Settings from "./settings";
+import { useAuth } from "@/context/Admincontext";
 
 
 export function Profile() {
   const [page,setPage] = useState(1)
+  const {user} = useAuth();
   return (
     <>
       <div className="relative shadow-lg mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url('/img/background-image.png')] bg-cover	bg-center">
@@ -48,7 +50,7 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1 dark:text-white">
-                  Connectyfy Admin
+                  {user.username}
                 </Typography>
                 <Typography
                   variant="small"

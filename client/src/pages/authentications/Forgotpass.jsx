@@ -40,12 +40,9 @@ function Forgotpass(props) {
           "",
           ...prevOtp.slice(index),
         ]);
-        
-
-          inputRefs.current[index-1].focus();  
-        
+          inputRefs.current[index-1].focus();   
       }
-      if(index == 5 ){
+      if(index == 5){
         setOtp((prevOtp) =>[
           ...prevOtp.slice(0,index),""
         ]);
