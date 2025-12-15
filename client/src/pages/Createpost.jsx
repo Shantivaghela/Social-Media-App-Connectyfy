@@ -92,7 +92,6 @@ function Createpost() {
 
       // const res_data = await response.json();
       if (response.data) {
-        console.log(response);
         setImages([]);
         setVideo(null);
         setContent("")
@@ -106,7 +105,6 @@ function Createpost() {
         toast.success("Post is Uploaded")
 
       } else {
-        console.log(response);
         toast.error("Some thing wrong please try again")
 
       }

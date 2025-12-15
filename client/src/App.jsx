@@ -23,10 +23,14 @@ import SignUp from './pages/authentications/SignUp'
 import Logout from './pages/authentications/Logout'
 import PasswordChange from './pages/PasswordChange'
 import UserProfile from './pages/UserProfile'
+import MainLoader from './components/MainLoader'
+import { useAuth } from './contextAPI'
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const { isLoggedIn, allposts } = useAuth();
+
 
   const router = createBrowserRouter([
     {
@@ -39,83 +43,83 @@ function App() {
           children: [
             {
               path: 'posts',
-              element:<Postpage/>
+              element: <Postpage />
             }
           ]
         },
         {
-          path:'/find',
-          element:<Find/>
+          path: '/find',
+          element: <Find />
         },
         {
-          path:'',
-          element:<Home/>
+          path: '',
+          element: allposts ? <Home /> : <MainLoader />
         },
         {
-          path:'/videos',
-          element:<Videos/>
+          path: '/videos',
+          element: <Videos />
         },
         {
-          path:'/message',
-          element:<Message/>
+          path: '/message',
+          element: <Message />
         },
         {
-          path:'/chat/:userId',
-          element:<Chatbox/>
+          path: '/chat/:userId',
+          element: <Chatbox />
         },
         {
-          path:'/notification',
-          element:<Notifications/>
+          path: '/notification',
+          element: <Notifications />
         },
         {
-          path:'/friends',
-          element:<Friends/>
+          path: '/friends',
+          element: <Friends />
         },
         {
-          path:'/Editprofile',
-          element:<Editprofile/>
+          path: '/Editprofile',
+          element: <Editprofile />
         },
         {
-          path:'/Createpost',
-          element:<Createpost/>
+          path: '/Createpost',
+          element: <Createpost />
         },
         {
-          path:'/PasswordChange',
-          element:<PasswordChange/>
+          path: '/PasswordChange',
+          element: <PasswordChange />
         },
         {
-          path:'/userprofile/:userId',
-          element:<UserProfile/>
+          path: '/userprofile/:userId',
+          element: <UserProfile />
         },
       ]
     },
     {
-      path:'/login',
-      element:<Login/>
+      path: '/login',
+      element: <Login />
     },
     {
-      path:'/signup',
-      element:<SignUp/>
+      path: '/signup',
+      element: <SignUp />
     },
     {
-      path:'/forgot',
-      element:<Forgotpass/>
+      path: '/forgot',
+      element: <Forgotpass />
     },
     {
-      path:'/logout',
-      element:<Logout/>
+      path: '/logout',
+      element: <Logout />
     },
-   
+
 
   ])
 
   return (
     <>
-    
-    
+
+
       <RouterProvider router={router} />
-     
-    
+
+
     </>
   )
 }

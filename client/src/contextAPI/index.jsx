@@ -63,7 +63,6 @@ export const AuthProvider = ({ children }) => {
 
 
         const userID = await user._id;
-       console.log(userID);
        
         try {
             const response = await fetch(`http://localhost:8080/api/user/getuserdata/${userID}`, {
@@ -133,6 +132,7 @@ export const AuthProvider = ({ children }) => {
                 
             }
         } catch (error) {
+            console.log(error);
             
             
         }
@@ -140,7 +140,6 @@ export const AuthProvider = ({ children }) => {
 
 const getAllposts = async() =>{
     const userID = await user._id
-    console.log(user._id);
     
     try {
         const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
@@ -150,7 +149,6 @@ const getAllposts = async() =>{
         if (response.ok) {
             const data = await response.json();
             setAllPosts(data);
-            console.log(data);
 
                             
 
@@ -170,7 +168,6 @@ const storyget = async() =>{
         if (response.ok) {
             const data = await response.json();
             setStories(data.stories);
-            console.log(data.stories);
 
                             
 
@@ -182,7 +179,8 @@ const storyget = async() =>{
 }
 
     useEffect(() => {
-        userAuthentication();
+
+            userAuthentication();
     }, [token]);
     useEffect(() => {
         if (user) {
@@ -195,8 +193,11 @@ const storyget = async() =>{
     }, [user, allusers]);
     
     useEffect(() => {
+         if(user){
         getAllUsers();
-        getposts();
+
+            getposts();
+        }
 
     }, [])
 

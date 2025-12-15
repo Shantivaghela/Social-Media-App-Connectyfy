@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AddStory from '../components/AddStory';
 import { useAuth } from '../contextAPI/index.jsx';
+import MainLoader from '../components/MainLoader.jsx';
 
 
 function Home() {
@@ -24,7 +25,7 @@ function Home() {
     const [addOpen, setAddOpen] = useState(false);
     const [addStory, setAddStory] = useState(false);
     const [key, setKey] = useState();
-    const { isLoggedIn, user, userdata, posts,stories} = useAuth();
+    const { isLoggedIn, user, userdata, posts,stories, allposts} = useAuth();
     const [count, setCount] = useState(0);
 
 
@@ -46,9 +47,10 @@ function Home() {
 
     return (
         <>
-
+            
             {isOpen && <StoryModel open={setOpen} id={key} />}
             {addOpen && <AddStory open={setAddOpen} />}
+            
             <div className='justify-between flex items-start  top-0 w-full mb-7'>
                 {/* <ProfileCard name="Vaghela Shanti" desc="full stack dev" followers="34456354" following="7" posts="35345"/> */}
 
@@ -63,7 +65,7 @@ function Home() {
 
                         <div className="">
                             {/* <button onClick={() => preButton(post.userId)} disabled={count === 0} className={`${count === 0 ? "opacity-50" : ""}  z-10 -[90%] absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                <i class="fa-solid fa-arrow-left m-2"></i>
+                                <i className="fa-solid fa-arrow-left m-2"></i>
                             </button> */}
                             <div className='md:ml-3 ml-2  flex md:h-40 h-35 rounded-lg overflow-scroll scrollbar-hide w-full   gap-3 pl-3 md:pl-5'>
                                 {/* <Slider {...settings} className='w-full'> */}
@@ -97,12 +99,12 @@ function Home() {
 
                             </div>
                             {/* <button onClick={() => nextButton(post.userId)} disabled={count === post.media.length - 1} className={`${count === post.media.length - 1 ? "opacity-50" : ""}  ml-[94%]  z-14 absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                <i class="fa-solid fa-arrow-right m-2"></i>
+                                <i className="fa-solid fa-arrow-right m-2"></i>
                             </button> */}
                         </div>
                     </div>
-                    <PostLayout />
-
+                   {userdata ?  <PostLayout /> : ''}
+                                
 
                 </section>
                 <ProfileCard name="Parth Nandha " desc="full stack dev" followers="34456354" following="7" posts="35345" />

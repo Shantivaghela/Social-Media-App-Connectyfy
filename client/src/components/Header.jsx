@@ -39,7 +39,6 @@ function Header() {
     }
     getnoti();
   },[socket,notifications])
-  console.log(notificationsget);
   
 
   return (
@@ -49,7 +48,7 @@ function Header() {
       <div className=" flex  items-center justify-between mx-auto pl-1 md:px-5 md:py-2 py-4 ">
         <div>
           <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse">
-            <img src={assets.logo} className="md:h-9 h-5" alt="Flowbite Logo" />
+            <img src={assets.logo1} className="md:h-9 h-5" alt="Flowbite Logo" />
             {/* <img src={assets.connectyfy} className="h-6 md:h-11 " alt="Flowbite Logo" /> */}
             <h1 className='roboto-condensed md:text-2xl dark:text-white'>Connectyfy</h1>
 

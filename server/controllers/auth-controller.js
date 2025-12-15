@@ -136,6 +136,7 @@ const passupdate = async (req, res) => {
 
 const handleForgotPassword = async (req, res) => {
     const { email } = req.body;
+   
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -152,8 +153,8 @@ const handleForgotPassword = async (req, res) => {
         });
         res.status(200).json({ message: "otp sent to your email" });
         await newOtp.save();
-        const message = `Your verification code for password is ${otp}`;
-        await sendMailer(email, "User reset password from connectyfy", message);
+        const message = `${otp}`;
+        await sendMailer(email, "Verification password from connectyfy", message);
 
     } catch (error) {
         res.status(500).json({ message: "Internal sever error", error });
@@ -162,6 +163,8 @@ const handleForgotPassword = async (req, res) => {
 
 const handleVerfyOtp = async (req, res) => {
     const { email, otp } = req.body;
+    
+    
     try {
         const otpRecord = await Otp.findOne({ email, otp });
         if (!otpRecord || Date.now() > otpRecord.createdAt.getTime() + 60 * 60 * 1000) {

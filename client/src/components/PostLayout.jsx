@@ -26,7 +26,7 @@ function PostLayout() {
     const { socket, onlineusers } = useSocketContext();
 
 
-    console.log(allposts);
+    // console.log(allposts);
     const showComment = (index) => {
         if (isOpen === index) {
             setOpen()
@@ -193,7 +193,6 @@ function PostLayout() {
             if (response.ok) {
 
                 const data = await response.json()
-                console.log(data);
                 toast.success("Comment Sended");
                 setComment("")
                 getAllposts();
@@ -218,7 +217,6 @@ function PostLayout() {
             if (response.ok) {
 
                 const data = await response.json()
-                console.log(data);
                 toast.success(data.message);
                 setComment("")
                 getAllposts();
@@ -236,11 +234,10 @@ function PostLayout() {
             type,
         })
     }
-    console.log(allusers);
 
     return (
         <>
-            {allposts ? (
+            {allposts  ? (
                 allposts.filter(itmes => itmes.userId?._id !== user?._id).map((post, index) => (
                     <section key={index} className='max-h-[50%]  bg-white dark:bg-gray-800 mt-3 ' data-aos="slide-up">
 
@@ -270,7 +267,7 @@ function PostLayout() {
                             >
 
                                 {/* <button onClick={() => preButton(post.userId)} className={`${post.media.length > 1 ? "block" : "hidden"}  mr-[90%] absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                    <i class="fa-solid fa-arrow-left m-2"></i>
+                                    <i className="fa-solid fa-arrow-left m-2"></i>
                                 </button> */}
                                 {post.media.map((items, i) => (
                                     (items.type === "image" ?
@@ -287,7 +284,7 @@ function PostLayout() {
 
                                 ))}
                                 {/* <button onClick={() => nextButton(post.userId)} className={`${post.media.length > 1 ? "block" : "hidden"}  ml-[90%]  absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                    <i class="fa-solid fa-arrow-right m-2"></i>
+                                    <i className="fa-solid fa-arrow-right m-2"></i>
                                 </button> */}
                             </div>
                             )}
@@ -295,7 +292,7 @@ function PostLayout() {
                             (<div className='h-[50%] w-full object-cover flex justify-center  relative items-center scobar scroller overflow-hidden  transition ease-out duration-400           '
                             >
                                 <button onClick={() => preButton(post.userId)} disabled={count === 0} className={`${count === 0 ? "opacity-50" : ""} z-10 mr-[90%] absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                    <i class="fa-solid fa-arrow-left m-2"></i>
+                                    <i className="fa-solid fa-arrow-left m-2"></i>
                                 </button>
                                 <div className='h-full w-full object-cover flex  relative items-center scobar scroller   transition ease-out duration-400'
                                     style={{
@@ -314,7 +311,7 @@ function PostLayout() {
                                     ))}
                                 </div>
                                 <button onClick={() => nextButton(post.userId)} disabled={count === post.media.length - 1} className={`${count === post.media.length - 1 ? "opacity-50" : ""}  ml-[90%]  absolute  cursor-pointer rounded-full bg-gray-800/50 text-sm items-center text-white`}>
-                                    <i class="fa-solid fa-arrow-right m-2"></i>
+                                    <i className="fa-solid fa-arrow-right m-2"></i>
                                 </button>
 
                             </div>
