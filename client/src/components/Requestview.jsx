@@ -4,6 +4,7 @@ import { assets } from '../assets/assets'
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
 // import { unfollow } from '../../../server/controllers/userdata-controller';
+const API = import.meta.env.VITE_API_URL;
 
 
 function Requestview(props) {
@@ -41,7 +42,7 @@ function Requestview(props) {
                 console.log(currentUserid);
     
     
-                const response = await fetch(`http://localhost:8080/api/user/conformreq/${currentUserid}`, {
+                const response = await fetch(`${API}/api/user/conformreq/${currentUserid}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -89,7 +90,7 @@ function Requestview(props) {
                                 // console.log(currentUserid);
                                 
                     
-                                const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+                                const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
                                     method: "PUT",
                                     headers: {
                                         "Content-Type": "application/json",

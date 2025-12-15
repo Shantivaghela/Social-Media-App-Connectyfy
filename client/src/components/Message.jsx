@@ -3,6 +3,7 @@ import { useAuth } from '../contextAPI'
 import { assets } from '../assets/assets';
 import { use } from 'react';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Message(props) {
     const [isOpen, setIsopen] = useState(false);
@@ -27,7 +28,7 @@ function Message(props) {
 
     const deleteMessage = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/message/messages/delete/${props.message._id}`, {
+            const response = await fetch(`${API}/api/message/messages/delete/${props.message._id}`, {
                 method: "DELETE",
 
             })

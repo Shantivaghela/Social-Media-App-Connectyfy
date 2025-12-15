@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import { useAuth } from '../../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Forgotpass(props) {
   // const [authpage, setAuthpage] = useState("login");
@@ -90,7 +91,7 @@ function Forgotpass(props) {
 
     try {
       e.preventDefault();
-      const response = await fetch('http://localhost:8080/api/auth/forgot-password',
+      const response = await fetch(`${API}/api/auth/forgot-password`,
         {
           method: "POST",
           headers: {
@@ -124,7 +125,7 @@ function Forgotpass(props) {
 
     try {
       e.preventDefault();
-      const response = await fetch('http://localhost:8080/api/auth/user-verify',
+      const response = await fetch(`${API}/api/auth/user-verify`,
         {
           method: "POST",
           headers: {
@@ -160,7 +161,7 @@ function Forgotpass(props) {
     const otpValue = otp.join("");
     try {
       e.preventDefault();
-       const response = await fetch('http://localhost:8080/api/auth/reset-password',
+       const response = await fetch(`${API}/api/auth/reset-password`,
         {
           method: "POST",
           headers: {

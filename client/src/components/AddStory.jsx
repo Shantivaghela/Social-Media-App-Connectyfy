@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { useAuth } from '../contextAPI';
 import Loder from './Loder';
+const API = import.meta.env.VITE_API_URL;
 
 function AddStory(props) {
     const [filepath, setFilepath] = useState();
@@ -53,7 +54,7 @@ function AddStory(props) {
 
         });
         try {
-            const response = await axios.post("http://localhost:8080/api/story/story-upload", data, {
+            const response = await axios.post(`${API}/api/story/story-upload`, data, {
                 headers: { "Content-Type": "multipart/form-data" },
 
             });

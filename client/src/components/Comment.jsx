@@ -3,6 +3,7 @@ import { useAuth } from '../contextAPI';
 import { assets } from '../assets/assets';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+const API = import.meta.env.VITE_API_URL;
 
 function Comment(props) {
     const { allposts, user, posts, getposts, getAllposts } = useAuth();
@@ -23,7 +24,7 @@ function Comment(props) {
     };
     const addData = async (userID) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

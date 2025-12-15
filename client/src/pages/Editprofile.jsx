@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contextAPI'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Editprofile() {
   const [show, setShow] = useState(false)
@@ -81,7 +82,7 @@ function Editprofile() {
 
     try {
       if(!userdata){
-      const response = await axios.post("http://localhost:8080/api/user/userdata", data, {
+      const response = await axios.post(`${API}/api/user/userdata`, data, {
         headers: { "Content-Type": "multipart/form-data" },
         // body:user._i
       });
@@ -94,7 +95,7 @@ function Editprofile() {
         userAuthentication();
       }
     }else{
-      const response = await fetch(`http://localhost:8080/api/user/profile-update/${user._id}`,{
+      const response = await fetch(`${API}/api/user/profile-update/${user._id}`,{
         method:"PUT",
         body:data
       });

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Followers(props) {
 
@@ -41,7 +42,7 @@ const addfollow = async (userId) => {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/follow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/follow/${currentUserid}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -90,7 +91,7 @@ const addfollow = async (userId) => {
                         // console.log(currentUserid);
                         
             
-                        const response = await fetch(`http://localhost:8080/api/user/unfollow/${userId}`, {
+                        const response = await fetch(`${API}/api/user/unfollow/${userId}`, {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",

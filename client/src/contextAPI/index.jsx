@@ -1,4 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
+const API = import.meta.env.VITE_API_URL;
+console.log(API);
+
 
 export const AuthContext = createContext();
 
@@ -38,7 +41,7 @@ export const AuthProvider = ({ children }) => {
         try {
 
 
-            const response = await fetch("http://localhost:8080/api/auth/user", {
+            const response = await fetch(`${API}/api/auth/user`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -65,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         const userID = await user._id;
        
         try {
-            const response = await fetch(`http://localhost:8080/api/user/getuserdata/${userID}`, {
+            const response = await fetch(`${API}/api/user/getuserdata/${userID}`, {
                 method: "GET"
             });
             // const data = await response.json();
@@ -86,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
     const getAllUsers = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/auth/allusers', {
+            const response = await fetch(`${API}/api/auth/allusers`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -114,7 +117,7 @@ export const AuthProvider = ({ children }) => {
 
     const getposts = async()=>{
         try {
-            const response = await fetch('http://localhost:8080/api/post/upload-post', {
+            const response = await fetch(`${API}/api/post/upload-post`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -142,7 +145,7 @@ const getAllposts = async() =>{
     const userID = await user._id
     
     try {
-        const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+        const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
             method: "GET"
         });
 
@@ -161,7 +164,7 @@ const getAllposts = async() =>{
 
 const storyget = async() =>{
     try {
-        const response = await fetch('http://localhost:8080/api/story/story-upload',{
+        const response = await fetch(`${API}/api/story/story-upload`,{
             method:"GET"
         });
 

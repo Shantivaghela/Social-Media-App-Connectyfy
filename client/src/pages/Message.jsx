@@ -3,6 +3,7 @@ import { assets } from '../assets/assets'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../contextAPI';
 import { useSocketContext } from '../contextAPI/socketContext';
+const API = import.meta.env.VITE_API_URL;
 
 function Message() {
     const { allusers, user, userdata } = useAuth();
@@ -49,7 +50,7 @@ function Message() {
        
         const allMessages = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/message/messages/getAll", {
+                const response = await fetch(`${API}/api/message/messages/getAll`, {
                     method: "GET"
                 });
                 if (response.ok) {

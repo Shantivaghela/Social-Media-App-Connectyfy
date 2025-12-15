@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Followings(props) {
     const [following,setFollowing] = useState([]);
@@ -43,7 +44,7 @@ function Followings(props) {
                     // console.log(currentUserid);
                     
         
-                    const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+                    const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",

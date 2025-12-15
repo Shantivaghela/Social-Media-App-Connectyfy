@@ -25,6 +25,7 @@ import PasswordChange from './pages/PasswordChange'
 import UserProfile from './pages/UserProfile'
 import MainLoader from './components/MainLoader'
 import { useAuth } from './contextAPI'
+const API = import.meta.env.VITE_API_URL;
 
 
 function App() {

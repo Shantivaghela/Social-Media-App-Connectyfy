@@ -3,6 +3,7 @@ import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 import { useAuth } from '../../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Login(props) {
     const [authpage, setAuthpage] = useState(1);
@@ -40,7 +41,7 @@ function Login(props) {
         try {
 
             e.preventDefault();
-            const response = await fetch('http://localhost:8080/api/auth/login',
+            const response = await fetch(`${API}/api/auth/login`,
                 {
                     method: "POST",
                     headers: {

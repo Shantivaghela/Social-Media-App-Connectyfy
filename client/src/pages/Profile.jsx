@@ -7,6 +7,7 @@ import Profilevideos from './Profilevideos';
 import Tags from './Tags';
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 // import { userdata } from '../../../server/controllers/userdata-controller';
 
 
@@ -71,7 +72,7 @@ const [showlikes,setShowLikes] = useState(false)
   }, [user, allposts]);
   const addData = async (userID) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+      const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +101,7 @@ const [showlikes,setShowLikes] = useState(false)
   const deletepost = async (postId) => {
     try {
 
-      const response = await fetch(`http://localhost:8080/api/post/delete-posts/${postId}`, {
+      const response = await fetch(`${API}/api/post/delete-posts/${postId}`, {
         method: "DELETE",
 
       })
@@ -121,7 +122,7 @@ const [showlikes,setShowLikes] = useState(false)
   }
   const addLike = async (userID) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+      const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +156,7 @@ const [showlikes,setShowLikes] = useState(false)
             {userdata && userdata.bimage ? (
 
 
-              <img src={`http://localhost:8080${userdata.bimage}`} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
+              <img src={`${API}${userdata.bimage}`} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
 
             ) :
               (
@@ -194,7 +195,7 @@ const [showlikes,setShowLikes] = useState(false)
               {userdata && userdata.pimage ? (
                 <button onClick={() => setViewPimage(!viewpimage)}>
 
-                  <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-33`} src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" />
+                  <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-33`} src={`${API}${userdata.pimage}`} alt="Bonnie image" />
                 </button>
               ) :
                 (
@@ -426,7 +427,7 @@ const [showlikes,setShowLikes] = useState(false)
                           <div className="border-b-2 border-gray-200 dark:border-gray-700 ">
                             <div className="flex items-center">
                               <div className="shrink-0">
-                                <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `http://localhost:8080${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
+                                <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `${API}${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
                               </div>
                               <div className="flex-1 min-w-0 ms-4">
                                 <p className="text-[7px] md:text-[10px] font-medium text-gray-900 truncate dark:text-white">
@@ -465,7 +466,7 @@ const [showlikes,setShowLikes] = useState(false)
       <button onClick={() => setViewPimage(!viewpimage)} className={`${viewpimage ? "scale-101 opacity-100" : "scale-0 opacity-0"} w-full cursor-pointer transition-all delay-150 duration-300 ease-in-out  bg-gray-950/70 fixed bottom-0 z-50 top-0`}>
         <div className="w-full flex justify-center items-center">
           {userdata && userdata.pimage ? (
-            <img src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
+            <img src={`${API}${userdata.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
           ) : (
             <img src={assets.profileIcon} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
 

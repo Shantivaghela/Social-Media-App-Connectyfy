@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Message from '../components/Message';
 import { useAuth } from '../contextAPI';
 import { useSocketContext } from '../contextAPI/socketContext';
+const API = import.meta.env.VITE_API_URL;
 
 
 function Chatbox() {
@@ -69,7 +70,7 @@ function Chatbox() {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8080/api/message//send-message/${userId}`, {
+            const response = await fetch(`${API}/api/message//send-message/${userId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

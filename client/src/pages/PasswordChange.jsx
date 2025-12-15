@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function PasswordChange() {
     const [oldshow, setOldShow] = useState(false);
@@ -16,7 +17,7 @@ function PasswordChange() {
     const handleChangePassword = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:8080/api/auth/login", {
+        const response = await fetch(`${API}/api/auth/login`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

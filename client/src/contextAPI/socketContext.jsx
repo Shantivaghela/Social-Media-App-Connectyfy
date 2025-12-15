@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useAuth } from ".";
+const API = import.meta.env.VITE_API_URL;
 
 export const SocketContext = createContext();
 export const useSocketContext = () => {
@@ -16,7 +17,7 @@ export const SocketProvider = ({ children }) => {
         if (user) {
 
 
-            const socket = io("http://localhost:8080", {
+            const socket = io(`${API}`, {
                 query: {
                     userId: user._id
                 },

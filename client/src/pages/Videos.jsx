@@ -10,6 +10,7 @@ import Comment from '../components/Comment'
 import { useAuth } from '../contextAPI'
 import { toast } from 'react-toastify'
 import { useSocketContext } from '../contextAPI/socketContext'
+const API = import.meta.env.VITE_API_URL;
 
 
 function Videos() {
@@ -64,7 +65,7 @@ function Videos() {
       // console.log(currentUserid);
 
 
-      const response = await fetch(`http://localhost:8080/api/user/follow/${currentUserid}`, {
+      const response = await fetch(`${API}/api/user/follow/${currentUserid}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +110,7 @@ function Videos() {
       // console.log(currentUserid);
 
 
-      const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+      const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +148,7 @@ function Videos() {
 
   const addLike = async (userID) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+      const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -186,7 +187,7 @@ function Videos() {
 
   const addData = async (userID) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+      const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -325,7 +326,7 @@ function Videos() {
                                   <div className="border-b-2 border-gray-200 dark:border-gray-700 ">
                                     <div className="flex items-center">
                                       <div className="shrink-0">
-                                        <img className="w-6 h-6 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `http://localhost:8080${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
+                                        <img className="w-6 h-6 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `${API}${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
                                       </div>
                                       <div className="flex-1 min-w-0 ms-4">
                                         <p className="text-md md:text-[10px] font-medium text-gray-900 truncate dark:text-white">

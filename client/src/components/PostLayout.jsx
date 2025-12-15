@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contextAPI';
 import { toast } from 'react-toastify';
 import { useSocketContext } from '../contextAPI/socketContext';
+const API = import.meta.env.VITE_API_URL;
 
 
 // import './App.css'
@@ -94,7 +95,7 @@ function PostLayout() {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/follow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/follow/${currentUserid}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -139,7 +140,7 @@ function PostLayout() {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -180,7 +181,7 @@ function PostLayout() {
 
     const addData = async (userID) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -205,7 +206,7 @@ function PostLayout() {
     }
     const addLike = async (userID) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -243,7 +244,7 @@ function PostLayout() {
 
                         <div className="flex items-center gap-4 pl-4  h-15 ">
                             <Link to={`/userprofile/${post.userId?._id}`} className='flex gap-3'>
-                                <img className="w-10 h-10 rounded-full object-cover" src={post.userId?.pimage ? `http://localhost:8080${post.userId.pimage}` : (assets.profileIcon)} alt="" />
+                                <img className="w-10 h-10 rounded-full object-cover" src={post.userId?.pimage ? `${API}${post.userId.pimage}` : (assets.profileIcon)} alt="" />
                                 <div className="md:font-medium text-sm dark:text-white">
                                     <p className=''>{post.userId?.username}</p>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</div>
@@ -343,7 +344,7 @@ function PostLayout() {
                                         <Link to={c._id._id === user._id ? '/profile' : `/userprofile/${c._id._id}`} key={i} className="border-b-2 border-gray-200 dark:border-gray-700" >
                                             <div className="flex items-center">
                                                 <div className="shrink-0">
-                                                    <img className="w-4 h-4 md:w-8 md:h-8 object-cover rounded-full" src={c._id.pimage ? `http://localhost:8080${c._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
+                                                    <img className="w-4 h-4 md:w-8 md:h-8 object-cover rounded-full" src={c._id.pimage ? `${API}${c._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
                                                 </div>
                                                 <div className="flex-1 min-w-0 ms-4">
                                                     <p className="text-[7px] md:text-[10px] font-medium text-gray-900 truncate dark:text-white">

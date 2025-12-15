@@ -8,6 +8,7 @@ import Tags from './Tags';
 import { useAuth } from '../contextAPI';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 // import { userdata } from '../../../server/controllers/userdata-controller';
 
 
@@ -94,7 +95,7 @@ function UserProfile(props) {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/follow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/follow/${currentUserid}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -139,7 +140,7 @@ function UserProfile(props) {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -225,7 +226,7 @@ function UserProfile(props) {
     };
     const addData = async (userID) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -254,7 +255,7 @@ function UserProfile(props) {
     }
     const addLike = async (userID) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/post/get-posts/${userID}`, {
+            const response = await fetch(`${API}/api/post/get-posts/${userID}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -284,14 +285,14 @@ function UserProfile(props) {
 
 
                     <div className="md:min-w-full pb-2 relative max-w-full bg-white  overflow-hidden    dark:bg-gray-800 ">
-                        {userdetails.alldatas && userdetails.alldatas.bimage ? <img src={`http://localhost:8080${userdetails.alldatas.bimage}`} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" /> :
+                        {userdetails.alldatas && userdetails.alldatas.bimage ? <img src={`${API}${userdetails.alldatas.bimage}`} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" /> :
                             <img src={assets.AddBanner} className="w-full object-cover   h-[43%] md:h-[45%] absolute z-0" />}
 
                         <div className="flex flex-col justify-center items-center mt-27 relative     ">
                             {userdetails.alldatas && userdetails.alldatas.pimage ? (
                                 <button onClick={() => setViewPimage(!viewpimage)}>
 
-                                    <img className="w-24 cursor-pointer md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" />
+                                    <img className="w-24 cursor-pointer md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`${API}${userdetails.alldatas.pimage}`} alt="Bonnie image" />
                                 </button>
                             ) : (
                                 <button onClick={() => setViewPimage(!viewpimage)}>
@@ -538,7 +539,7 @@ function UserProfile(props) {
                                                     <div className="border-b-2 border-gray-200 dark:border-gray-700 ">
                                                         <div className="flex items-center">
                                                             <div className="shrink-0">
-                                                                <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `http://localhost:8080${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
+                                                                <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `${API}${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
                                                             </div>
                                                             <div className="flex-1 min-w-0 ms-4">
                                                                 <p className="text-[7px] md:text-[10px] font-medium text-gray-900 truncate dark:text-white">
@@ -577,7 +578,7 @@ function UserProfile(props) {
             <button onClick={() => setViewPimage(!viewpimage)} className={`${viewpimage ? "scale-101 opacity-100" : "scale-0 opacity-0 "} w-full h-full cursor-pointer transition-all delay-150 duration-300 ease-in-out bg-gray-950/70 fixed bottom-0 z-50 top-0`}>
                 <div className="w-full h-full flex justify-center items-center">
                     {userdetails.alldatas && userdetails.alldatas.pimage ? (
-                        <img src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
+                        <img src={`${API}${userdetails.alldatas.pimage}`} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
                     ) : (
                         <img src={assets.profileIcon} alt="Bonnie image" className='md:h-[600px] md:w-[600px] h-[350px] w-[350px] rounded-full object-cover' />
 

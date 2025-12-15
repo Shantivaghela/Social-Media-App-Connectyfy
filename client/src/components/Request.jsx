@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useAuth } from '../contextAPI';
 import { assets } from '../assets/assets';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
 
 function Request() {
     const { allusers, user, userdata, getuserdata,getAllUsers} = useAuth();
@@ -44,7 +45,7 @@ function Request() {
             console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/conformreq/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/conformreq/${currentUserid}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -92,7 +93,7 @@ function Request() {
             // console.log(currentUserid);
 
 
-            const response = await fetch(`http://localhost:8080/api/user/unfollow/${currentUserid}`, {
+            const response = await fetch(`${API}/api/user/unfollow/${currentUserid}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

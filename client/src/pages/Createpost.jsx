@@ -5,6 +5,7 @@ import { useAuth } from '../contextAPI';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loder from '../components/Loder';
+const API = import.meta.env.VITE_API_URL;
 
 function Createpost() {
   let navigate = useNavigate();
@@ -17,7 +18,6 @@ function Createpost() {
   const [images, setImages] = useState([])
   const [video, setVideo] = useState(null)
   const [isLodding,setIsLodding] = useState(false);
-  console.log(content);
 
   const { user, userdata, allposts, getposts, getAllposts } = useAuth();
 
@@ -84,7 +84,7 @@ function Createpost() {
     setIsLodding(true)
     try {
       
-      const response = await axios.post("http://localhost:8080/api/post/upload-post", data,{
+      const response = await axios.post(`${API}/api/post/upload-post`, data,{
         // method:"POST",
         headers: { "Content-Type": "multipart/form-data" },
         // body:data
