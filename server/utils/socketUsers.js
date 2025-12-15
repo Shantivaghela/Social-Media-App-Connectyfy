@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors:{
-    origin:["http://localhost:5173","http://localhost:5174"],
+    origin:["http://localhost:5173","http://localhost:5174","https://connectyfyweb.vercel.app/"],
     method:["GET,POST,PUT,DELETE,PATCH,HEAD"],
     // Credentials:true
     }
@@ -18,11 +18,10 @@ const getReceiverSocketID = (receiverId) => {
 const users = {}; // Store online users
 
 io.on("connection", (socket) => {
-  console.log("A user connected:", socket.id);
   const userId = socket.handshake.query.userId;
   if(userId){
     users[userId]=socket.id;
-    console.log("users",users); 
+   
     
   }
 socket.on("sendNotification",({senderName,receiverId,type})=>{
@@ -49,7 +48,7 @@ socket.on("stopTyping", ({ senderId, receiverId }) => {
 
  io.emit("getOnlineUsers",Object.keys(users))
   socket.on("disconnect", () => {
-    console.log("A user disconnected:", socket.id);
+   
     delete users[userId];
     io.emit("getOnlineUsers",Object.keys(users))
 
