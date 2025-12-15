@@ -19,7 +19,7 @@ const adminrouter = require('./router/admin-router')
 const allowedOrigins = [
   'http://localhost:5173',        
   'http://localhost:8080',       
-  'https://connectyfyweb.vercel.app/',     
+  'https://connectyfyweb.vercel.app',     
   'https://your-admin.vercel.app' 
 ];
 app.use(cors({
