@@ -16,12 +16,7 @@ const adminrouter = require('./router/admin-router')
 // app.use(express.json({ limit: "1000mb" }));
 // app.use(express.urlencoded({ limit: "1000mb", extended: true }));
 
-const allowedOrigins = [
-  'http://localhost:5173',        
-  'http://localhost:8080',       
-  'https://connectyfyweb.vercel.app',     
-  'https://your-admin.vercel.app' 
-];
+
 app.use(cors({
  origin: [
     'http://localhost:5173',           // local dev
@@ -29,7 +24,7 @@ app.use(cors({
   ],
   credentials: true  
 }));
-
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.static("public"));
@@ -42,7 +37,7 @@ app.use("/api/admin/",adminrouter);
 
 
 app.use(errorMiddleware);
-
+module.exports = app;
 const PORT = process.env.PORT || 8080;
 
 connectDB().then(()=>{
