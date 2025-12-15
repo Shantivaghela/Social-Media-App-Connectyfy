@@ -10,7 +10,7 @@ const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const storyrouter = require('./router/story-router');
 const messagerouter = require('./router/message-router');
-// const {server,app} = require('./utils/socketUsers')
+const {server,app} = require('./utils/socketUsers')
 const adminrouter = require('./router/admin-router')
 
 // app.use(express.json({ limit: "1000mb" }));
@@ -37,7 +37,7 @@ app.use("/api/admin/",adminrouter);
 
 
 app.use(errorMiddleware);
-module.exports = app;
+// module.exports = app;
 const PORT = process.env.PORT || 8080;
 
 connectDB().then(()=>{
