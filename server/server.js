@@ -34,9 +34,7 @@ app.use("/api/post/",postDatarouter);
 app.use("/api/story/",storyrouter);
 app.use("/api/message/",messagerouter);
 app.use("/api/admin/",adminrouter);
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Backend working! 🚀' });
-});
+
 
 app.use(errorMiddleware);
 module.exports = app;
