@@ -63,7 +63,7 @@ function Chatbox() {
             }
 
         } catch (error) {
-            console.log(error);
+            console.log("error from get",error);
 
         }
     }
@@ -96,7 +96,7 @@ function Chatbox() {
             console.log(response);
 
         } catch (error) {
-            console.log(error);
+            console.log("error form post",error);
 
         }
     }
