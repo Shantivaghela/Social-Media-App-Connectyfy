@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
         if (user) {
 
 
-            const socket = io(`${API}`, {
+            const socket = io(API, {
                 withCredentials: true,
                 query: {
                     userId: user._id
