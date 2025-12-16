@@ -80,7 +80,7 @@ function Message() {
     return (
         <>
             <section className="md:ml-96 h-full mt-22 relative flex justify-center flex-col overflow-y-scroll scobar">
-                <div className="flex   w-full p-4 rounded-xl items-center dark:bg-gray-800 bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
+                <div className="flex   w-[80%] mb-5 p-4 rounded-xl items-center dark:bg-gray-800 bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
                     <button onClick={() => navigate(-1)} className='cursor-pointer '>
                         <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
                     </button>
