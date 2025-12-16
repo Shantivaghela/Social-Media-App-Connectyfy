@@ -4,6 +4,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../contextAPI/index.jsx';
 import DarkMode from './DarkMode';
 import { useSocketContext } from '../contextAPI/socketContext.jsx';
+const API = import.meta.env.VITE_API_URL;
+
 
 function Header() {
   const theme = document.getElementById("theme").className
@@ -87,7 +89,7 @@ function Header() {
                 <li>
                   <Link to="#" onClick={()=>setdrop(!isdrop)} className={` text-[#48a6a6] block px-3 py-1 md:py-2 md:px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent  md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`} >
                     {userdata && userdata.pimage ?
-                      <img src={`http://localhost:8080${userdata.pimage}`} alt="profile image" className='h-5 w-5 md:h-8 md:w-8 rounded-full object-cover' />
+                      <img src={`${API}${userdata.pimage}`} alt="profile image" className='h-5 w-5 md:h-8 md:w-8 rounded-full object-cover' />
 
                       : <i className="hover:text-[#2973b2] fa-solid fa-circle-user fa-xl   transition delay-120 duration-300 ease-in-out"></i>}</Link>
                 </li>

@@ -156,7 +156,7 @@ function Chatbox() {
                                 <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
                             </button>
 
-                            {userdetails && userdetails.alldatas.pimage ? <img className="w-10 h-10  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`http://localhost:8080${userdetails.alldatas.pimage}`} alt="Bonnie image" />
+                            {userdetails && userdetails.alldatas.pimage ? <img className="w-10 h-10  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={`${API}${userdetails.alldatas.pimage}`} alt="Bonnie image" />
                                 : <img className="w-10 h-10  rounded-full border-2 border-white  shadow-lg object-cover z-11" src={assets.profileIcon} alt="Bonnie image" />}
                             <div>
 

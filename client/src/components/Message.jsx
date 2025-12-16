@@ -57,7 +57,7 @@ function Message(props) {
 
                 <div className={`${props.message.senderId === user._id ? "hidden" : "block"} float-start flex  w-full `}>
 
-                    <img src={props.userdetails && props.userdetails.alldatas.pimage ? `http://localhost:8080${props.userdetails.alldatas.pimage}` : (assets.profileIcon)} alt="Jese image" className="w-8 h-8 rounded-full object-cover mr-4" />
+                    <img src={props.userdetails && props.userdetails.alldatas.pimage ? `${API}${props.userdetails.alldatas.pimage}` : (assets.profileIcon)} alt="Jese image" className="w-8 h-8 rounded-full object-cover mr-4" />
                     <div className="flex items-start gap-2.5 relative">
                         <div className="flex flex-col gap-1 w-full max-w-[320px]">
                             <div className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -113,7 +113,7 @@ function Message(props) {
 
                         </div>
 
-                        <img className="justify-end w-8 h-8 rounded-full" src={userdata && userdata.pimage ? `http://localhost:8080${userdata.pimage}` : (assets.profileIcon)} alt="Jese image" />
+                        <img className="justify-end w-8 h-8 rounded-full" src={userdata && userdata.pimage ? `${API}${userdata.pimage}` : (assets.profileIcon)} alt="Jese image" />
                     </div>
                 </div>
             </div>

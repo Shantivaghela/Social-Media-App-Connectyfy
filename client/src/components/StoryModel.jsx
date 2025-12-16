@@ -6,6 +6,8 @@ import { Link, NavLink } from 'react-router-dom'
 import { story } from '../assets/videosInfo'
 import { assets } from '../assets/assets'
 import { useAuth } from '../contextAPI';
+const API = import.meta.env.VITE_API_URL;
+
 
 function StoryModel(props) {
   const [currentIndex, setCurrentIndex] = useState(props.id);
@@ -192,7 +194,7 @@ function StoryModel(props) {
                     <div className="w-full flex justify-between absolute px-2 mt-2 z-44 ml- top-0">
 
                     <Link to="/" className="flex items-center space-x-2   sticky  top-0 ">
-                      <img src={items.userId.pimage ? `http://localhost:8080${items.userId.pimage}` : (assets.profileIcon)} className="md:h-9 h-12 w-12 md:w-9  rounded-full object-cover" alt="profile pic" />
+                      <img src={items.userId.pimage ? `${API}${items.userId.pimage}` : (assets.profileIcon)} className="md:h-9 h-12 w-12 md:w-9  rounded-full object-cover" alt="profile pic" />
                       {/* <img src={assets.connectyfy} className="h-6 md:h-11 " alt="Flowbite Logo" /> */}
                       <div className='text-xl md:text-sm  '>
                         <p className="">{items.userId.username}

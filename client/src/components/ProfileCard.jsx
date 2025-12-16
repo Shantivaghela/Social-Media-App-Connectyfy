@@ -5,6 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { useAuth } from '../contextAPI/index';
 // import ShowpImage from './ShowpImage';
+const API = import.meta.env.VITE_API_URL;
+
 
 
 function ProfileCard(props) {
@@ -41,7 +43,7 @@ function ProfileCard(props) {
                     <div className="md:w-full md:pt-7 relative max-w-sm trnasition-bg bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                         
                         <div className="flex flex-col items-center pb-5">
-                            {isLoggedIn && userdata && userdata.pimage ? <NavLink onClick={()=>setShowImage(!showimage)}><img className={`${showimage ? "w-50 h-50 " : "w-24 h-24"} mb-3 rounded-full shadow-lg object-cover`} src={`http://localhost:8080${userdata.pimage}`} alt="Bonnie image "/></NavLink> :
+                            {isLoggedIn && userdata && userdata.pimage ? <NavLink onClick={()=>setShowImage(!showimage)}><img className={`${showimage ? "w-50 h-50 " : "w-24 h-24"} mb-3 rounded-full shadow-lg object-cover`} src={`${API}${userdata.pimage}`} alt="Bonnie image "/></NavLink> :
                             <NavLink onClick={()=>setShowImage(!showimage)}><img className={`${showimage ? "w-50 h-50 " : "w-24 h-24"} mb-3 rounded-full shadow-lg object-cover`} src={assets.profileIcon} alt="Bonnie image "/></NavLink>}
                              {isLoggedIn && user.username ? <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.username}</h5> :""}
                              {isLoggedIn && userdata && userdata.description ? <span className="text-sm text-gray-500 dark:text-gray-400">{userdata.description}</span> :

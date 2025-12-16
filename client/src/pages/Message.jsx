@@ -108,9 +108,9 @@ function Message() {
                             })
                             .map((user) => (
                                 <li className="py-3 px-2  rounded-xl sm:py-4 flex w-full bg-white dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800" data-aos="flip-down">
-                                    <button onClick={() => { setUserImg(user.alldatas && user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage} ` : assets.profileIcon), setIsOpen(true) }} className="z-12 shrink-0 relative cursor-pointer">
+                                    <button onClick={() => { setUserImg(user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} ` : assets.profileIcon), setIsOpen(true) }} className="z-12 shrink-0 relative cursor-pointer">
                                         <div className={`${onlineusers.includes(user._id) ? "block" : "hidden"} h-3 w-3 bg-green-500 absolute rounded-full`}></div>
-                                        <img className="w-9 h-9 rounded-full" src={user.alldatas && user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage} ` : assets.profileIcon} alt="Neil image" />
+                                        <img className="w-9 h-9 rounded-full" src={user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} ` : assets.profileIcon} alt="Neil image" />
                                     </button>
                                     <Link to={`/chat/${user._id}`} className="flex w-full items-center">
                                         <div className="flex-1 min-w-0 ms-4">

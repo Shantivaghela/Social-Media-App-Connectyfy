@@ -148,7 +148,7 @@ function Request() {
                             <li key={user._id} className="py-3 sm:py-4 flex justify-between">
                                 <NavLink to={`/userprofile/${user._id}`} className="flex items-center">
                                     <div className="shrink-0">
-                                        <img className="w-10 h-10 rounded-full" src={user.alldatas && user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage} ` : assets.profileIcon} alt="Neil image" />
+                                        <img className="w-10 h-10 rounded-full" src={user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} ` : assets.profileIcon} alt="Neil image" />
                                     </div>
                                     <div className="flex-1 min-w-0 ms-4">
                                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">

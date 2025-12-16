@@ -138,7 +138,7 @@ function Editprofile() {
             name="bimage"
             onChange={inputHandle}
             />
-          {adduserdata.bimage ? <img src={URL.createObjectURL(adduserdata.bimage)} alt="" className='h-[250px]  w-full object-cover absolute z-0 ' /> : <img src={userdata && userdata.bimage ? `http://localhost:8080${userdata.bimage}` : assets.AddBanner } alt="" className='h-[250px]  w-full object-cover absolute z-0 ' />}
+          {adduserdata.bimage ? <img src={URL.createObjectURL(adduserdata.bimage)} alt="" className='h-[250px]  w-full object-cover absolute z-0 ' /> : <img src={userdata && userdata.bimage ? `${API}${userdata.bimage}` : assets.AddBanner } alt="" className='h-[250px]  w-full object-cover absolute z-0 ' />}
 
           <div className="relative  mt-45 z-3 ">
             <label htmlFor='photo-label' className='ml-5 mt-5 h-[30px] w-[30px] bg-gray-500/50 absolute  p-2 flex rounded-full justify-center items-center hover:bg-gray-400/50 text-white hover:text-[#48a6a6]'><i className="fa-solid fa-pen fa-flip-horizontal fa-md"></i></label>
@@ -147,7 +147,7 @@ function Editprofile() {
               name='pimage'
               onChange={inputHandle}
             />
-            {adduserdata.pimage  ? <img src={URL.createObjectURL(adduserdata.pimage)} alt="photo" className='z-3 h-30 w-30 shadow-xl border-2 border-white rounded-full ml-3 mb-20 object-cover' /> : <img src={userdata && userdata.pimage ? `http://localhost:8080${userdata.pimage}` : assets.profileIcon } alt="photo" className='z-3 h-30 w-30 shadow-xl border-2 border-white rounded-full ml-3 mb-20 object-cover' />}
+            {adduserdata.pimage  ? <img src={URL.createObjectURL(adduserdata.pimage)} alt="photo" className='z-3 h-30 w-30 shadow-xl border-2 border-white rounded-full ml-3 mb-20 object-cover' /> : <img src={userdata && userdata.pimage ? `${API}${userdata.pimage}` : assets.profileIcon } alt="photo" className='z-3 h-30 w-30 shadow-xl border-2 border-white rounded-full ml-3 mb-20 object-cover' />}
 
           </div>
 

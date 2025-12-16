@@ -79,7 +79,7 @@ function Comment(props) {
                                 <div className="border-b-2 border-gray-200 dark:border-gray-700 ">
                                     <Link to={com._id._id === user._id ? '/profile':`/userprofile/${com._id._id}`} className="flex items-center">
                                         <div className="shrink-0">
-                                            <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `http://localhost:8080${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
+                                            <img className="w-4 h-4 md:w-8 md:h-8 rounded-full" src={com._id.pimage ? `${API}${com._id.pimage}` : (assets.profileIcon)} alt="Neil image" />
                                         </div>
                                         <div className="flex-1 min-w-0 ms-4">
                                             <p className="text-[7px] md:text-[10px] font-medium text-gray-900 truncate dark:text-white">

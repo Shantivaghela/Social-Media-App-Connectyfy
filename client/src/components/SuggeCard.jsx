@@ -3,6 +3,8 @@ import Sidemenu from './Sidemenu'
 import { Link, NavLink, useParams } from 'react-router-dom'
 import { useAuth } from '../contextAPI'
 import { assets } from '../assets/assets';
+const API = import.meta.env.VITE_API_URL;
+
 
 function SuggeCard() {
     const { allusers,user,userdata} = useAuth();
@@ -67,7 +69,7 @@ function SuggeCard() {
 
                                         
                                         
-                                            <img className="w-10 h-10 rounded-full" src={user.alldatas && user.alldatas.pimage ? `http://localhost:8080${user.alldatas.pimage} `:assets.profileIcon}alt="Neil image" /> 
+                                            <img className="w-10 h-10 rounded-full" src={user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} `:assets.profileIcon}alt="Neil image" /> 
                                         
 
                                             
