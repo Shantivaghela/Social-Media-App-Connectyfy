@@ -195,7 +195,7 @@ const [showlikes,setShowLikes] = useState(false)
               {userdata && userdata.pimage ? (
                 <button onClick={() => setViewPimage(!viewpimage)}>
 
-                  <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-33`} src={userdata.pimage} alt="Bonnie image" />
+                  <img className={` cursor-pointer w-24  md:w-35 md:h-35  h-24  rounded-full border-2 border-white  shadow-lg object-cover z-33`} src={`${API}${userdata.pimage}`} alt="Bonnie image" />
                 </button>
               ) :
                 (

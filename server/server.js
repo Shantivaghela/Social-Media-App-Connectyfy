@@ -27,7 +27,10 @@ app.use(cors({
 app.options('*', cors());
 
 app.use(express.json());
-app.use(express.static("public"));
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "public", "images"))
+);
 app.use("/api/auth/",router);
 app.use("/api/user/",userDatarouter);
 app.use("/api/post/",postDatarouter);
