@@ -9,7 +9,7 @@ export const useSocketContext = () => {
 }
 export const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
-    const [notifications,setNotifications] = useState([]);
+    const [notifications, setNotifications] = useState([]);
     const [onlineusers, setOnlineUsers] = useState([]);
     const { user } = useAuth();
 
@@ -18,6 +18,7 @@ export const SocketProvider = ({ children }) => {
 
 
             const socket = io(`${API}`, {
+                withCredentials: true,
                 query: {
                     userId: user._id
                 },
@@ -33,14 +34,20 @@ export const SocketProvider = ({ children }) => {
                 setSocket(null);
             }
         }
-        
+        socket.on("connect_error", (err) => {
+            console.error("Socket connect_error:", err.message, err);
+        });
+
+        socket.on("connect", () => {
+            console.log("Socket connected:", socket.id);
+        });
     }, [user])
-    useEffect(()=>{
+    useEffect(() => {
 
         socket?.on("getNotification", data => {
             setNotifications(pre => [...pre, data]);
         });
-    },[socket])
+    }, [socket])
 
 
 
@@ -48,7 +55,7 @@ export const SocketProvider = ({ children }) => {
 
 
     return (
-        <SocketContext.Provider value={{ socket, onlineusers,notifications}}>
+        <SocketContext.Provider value={{ socket, onlineusers, notifications }}>
             {children}
         </SocketContext.Provider>
     )
