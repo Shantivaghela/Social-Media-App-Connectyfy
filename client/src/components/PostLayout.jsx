@@ -244,7 +244,7 @@ function PostLayout() {
 
                         <div className="flex items-center gap-4 pl-4  h-15 ">
                             <Link to={`/userprofile/${post.userId?._id}`} className='flex gap-3'>
-                                <img className="w-10 h-10 rounded-full object-cover" src={post.userId?.pimage ? `${API}${post.userId.pimage}` : (assets.profileIcon)} alt="" />
+                                <img className="w-10 h-10 rounded-full object-cover" src={post.userId?.pimage ? `${API}/${post.userId.pimage}` : (assets.profileIcon)} alt="" />
                                 <div className="md:font-medium text-sm dark:text-white">
                                     <p className=''>{post.userId?.username}</p>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</div>
