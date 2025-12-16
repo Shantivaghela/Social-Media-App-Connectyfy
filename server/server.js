@@ -2,7 +2,7 @@ require("dotenv").config();
 require("./utils/cron-job");
 const cors = require("cors");
 const express = require("express");
-
+const path = require("path");
 const router = require('./router/auth-router');
 const userDatarouter = require('./router/userdata-router');
 const postDatarouter = require("./router/post-router");
