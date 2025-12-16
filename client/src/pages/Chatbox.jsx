@@ -46,7 +46,7 @@ function Chatbox() {
 
 
         try {
-            const response = await fetch(`http://localhost:8080/api/message/messages/${user._id}/${userId}`, {
+            const response = await fetch(`${API}/api/message/messages/${user._id}/${userId}`, {
                 method: "GET"
             })
 
@@ -107,13 +107,11 @@ function Chatbox() {
         }
     }, [socket, message, setMessages])
     const senderId = user._id;
-    console.log(senderId);
     
     const { id: receiverId } = useParams(); 
         useEffect(() => {
         socket?.on("typing", ( {senderId}) => {
             if (senderId === userId) setTyping(true);
-            console.log(senderId);
 
         });
 
