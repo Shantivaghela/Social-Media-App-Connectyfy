@@ -70,7 +70,7 @@ function Chatbox() {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API}/api/message//send-message/${userId}`, {
+            const response = await fetch(`${API}/api/message/send-message/${userId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
