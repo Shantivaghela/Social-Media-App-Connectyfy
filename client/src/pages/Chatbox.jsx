@@ -150,7 +150,7 @@ function Chatbox() {
                 <div className='float-en flex  h-[80vh] md:[70%] rounded-xl  w-full  flex-col justify-center md:ml-  overflow-hidden      ' >
 
 
-                    <div className="w-ful z-33 pb-2 fixed md:w-[75%] md:ml-0 w-full  bg-white justify-between md:top-22 top-17 flex overflow-hidden  rounded-xl  dark:bg-gray-800 ">
+                    <div className=" z-33 pb-2 fixed md:w-[75%] md:ml-0 w-full  bg-white  justify-between md:top-22 top-17 flex overflow-hidden  rounded-xl  dark:bg-gray-800 ">
                         <div className=" flex gap-3 justify-start items-center  top0- ">
                             <button onClick={() => navigate(-1)} className='cursor-pointer  m-3 dark:text-white'>
                                 <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
