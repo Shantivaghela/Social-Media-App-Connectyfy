@@ -156,7 +156,7 @@ const [showlikes,setShowLikes] = useState(false)
             {userdata && userdata.bimage ? (
 
 
-              <img src={`${API}${userdata.bimage}`} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
+              <img src={`${userdata.bimage}`} className={` w-full object-cover   h-[43%] md:h-[45%] absolute z-0`} />
 
             ) :
               (
