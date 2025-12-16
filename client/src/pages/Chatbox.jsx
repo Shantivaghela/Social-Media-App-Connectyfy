@@ -57,7 +57,10 @@ function Chatbox() {
 
 
             }
-
+            else {
+                const err = await response.text();
+                console.error("getMessages error:", response.status, err);
+            }
 
         } catch (error) {
             console.log(error);
@@ -66,7 +69,7 @@ function Chatbox() {
     }
     useEffect(() => {
         getMessages();
-    }, [userId, allusers, user]);
+    }, [userId, user?._id]);
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
@@ -86,6 +89,9 @@ function Chatbox() {
                 console.log(data);
                 setMessages([...message, data]);
                 setSend("");
+            } else {
+                const err = await response.text();
+                console.error("getMessages error:", response.status, err);
             }
             console.log(response);
 
@@ -107,10 +113,10 @@ function Chatbox() {
         }
     }, [socket, message, setMessages])
     const senderId = user._id;
-    
-    const { id: receiverId } = useParams(); 
-        useEffect(() => {
-        socket?.on("typing", ( {senderId}) => {
+
+    const { id: receiverId } = useParams();
+    useEffect(() => {
+        socket?.on("typing", ({ senderId }) => {
             if (senderId === userId) setTyping(true);
 
         });
@@ -131,7 +137,7 @@ function Chatbox() {
 
         clearTimeout(typingTimeout);
         typingTimeout = setTimeout(() => {
-            socket.emit("stopTyping", { senderId:senderId, receiverId: userId });
+            socket.emit("stopTyping", { senderId: senderId, receiverId: userId });
         }, 2000);
     };
 
@@ -155,10 +161,10 @@ function Chatbox() {
                             <div>
 
                                 <h5 className="text-md font-medium items-center text-gray-900 dark:text-white">{userdetails ? userdetails.username : ""}</h5>
-                                {typing ? 
-                                <span className="text-sm text-gray-500 place-content-start  dark:text-gray-400 loadingtext"><p>Typing</p></span>
-                                :
-                                <span className="text-sm text-gray-500 place-content-start  dark:text-gray-400">{onlineusers.includes(userId) ? `Online` : `Offline`}</span>
+                                {typing ?
+                                    <span className="text-sm text-gray-500 place-content-start  dark:text-gray-400 loadingtext"><p>Typing</p></span>
+                                    :
+                                    <span className="text-sm text-gray-500 place-content-start  dark:text-gray-400">{onlineusers.includes(userId) ? `Online` : `Offline`}</span>
                                 }
                             </div>
 
@@ -187,8 +193,8 @@ function Chatbox() {
                         {message.length > 0 ?
                             message.map((message) => (
                                 <>
-                                    <Message typing={typing} key={message._id} message={message} userdetails={userdetails} clickfun={getMessages}/>
-                                    
+                                    <Message typing={typing} key={message._id} message={message} userdetails={userdetails} clickfun={getMessages} />
+
                                 </>
                             ))
                             :
