@@ -30,6 +30,9 @@ export const SocketProvider = ({ children }) => {
             socket.on("connect_error", (err) => {
                 console.error("Socket connect_error:", err.message, err);
             });
+            socket.on("connect", () => {
+                console.log("Socket connected:", socket.id);
+            });
             return () => socket.close();
         } else {
             if (socket) {
