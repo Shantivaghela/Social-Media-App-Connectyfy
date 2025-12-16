@@ -79,17 +79,17 @@ function Message() {
     }, []);
     return (
         <>
-            <section className="md:ml-96 h-full mt-22 relative flex justify-center flex-col overflow-y-scroll scobar">
-                <div className="flex   w-[90%] mb-5 p-4 rounded-xl items-center dark:bg-gray-800 bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
+            <section className="md:ml-96 h-full pt-25  mt-22 relative flex justify-center flex-col overflow-y-scroll overflow-hidden scobar">
+                <div className="flex fixed top-25   w-[74%] mb-5 p-4 rounded-xl items-center dark:bg-gray-800 bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
                     <button onClick={() => navigate(-1)} className='cursor-pointer '>
                         <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
                     </button>
                     <h1 className='text-2xl md:text-3xl '>Messages</h1>
                 </div>
-                <div className="flow-root  px-3 h-full overflow-hidden overflow-y-scroll scobar ">
+                <div className="flow-root  px-3  overflow-hidden overflow-y-scroll scobar ">
 
 
-                    <ul role="list" className="  mb-2 rounded-lg  overflow-hidden overflow-y-scroll scobar   w-[100%] flex flex-col divide-y gap-3 divide-gray-200 dark:divide-gray-700 mr-3" >
+                    <ul role="list" className="  mb-2 rounded-lg  overflow-hidden  overflow-y-scroll scobar   w-[100%] flex flex-col divide-y gap-3 divide-gray-200 dark:divide-gray-700 mr-3" >
                         {allusers.filter(itmes => itmes._id !== user._id)
                             .sort((a, b) => {
                                 const isAFollowed = followingIds.includes(a._id);
