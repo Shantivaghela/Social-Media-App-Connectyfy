@@ -21,7 +21,7 @@ function SignUp(props) {
     useEffect(() => {
             if (isLoggedIn) {
                 navigate("/"); // Redirect to home if logged in
-                toast.error("You can not visit this page")
+                // toast.error("You can not visit this page")
             }
         }, [isLoggedIn, navigate]);
 

@@ -224,7 +224,7 @@ function Videos() {
 
       <section className='md:ml-96 md:mt-17  md:mb-0 mb-0 flex pt-5'>
         {commentshow && <Comment view={setCommentshow} commentid={comment} postId={postid} />}
-        <div className="  w-full md:max-h-[590px] max-h-[900px] overflow-y-scroll snap-y snap-mandatory scroll-mt-50 ">
+        <div className="  w-full md:max-h-[590px] max-h-[800px] overflow-y-scroll snap-y snap-mandatory scroll-mt-50 ">
           <div className=' md:mt-15 flex flex-col justify-center items-center '>
 
             {allposts ? (
@@ -236,7 +236,7 @@ function Videos() {
                     <div className="">
                       <div className="md:snap-end  snap-start  snap-always relative " key={i}>
                         <button onDoubleClick={() => addLike(post._id)} className='h-120 w-full z-11  cursor-pointer absolute mt-20'></button>
-                        <div className="absolute  w-full mt-150 md:mt-80 z-12 ">
+                        <div className="absolute  w-full mt-140 md:mt-80 z-12 ">
                           <div className="float-end flex flex-col gap-10 pr-3 text-white">
                             <button onClick={() => {addLike(post._id),handleNotification(post.userId._id,4)}} className={` cursor-pointer  flex flex-col justify-center items-center gap-3`} >
                               <i className={`${post.likes.some(f => f._id === user._id) ? "text-red-600" : ""} fa-solid fa-thumbs-up fa-xl `}></i>
@@ -269,7 +269,7 @@ function Videos() {
                             </Link>
 
                           </div>
-                          <div className={`  max-h-[200px]  z-13 relative overflow-h flex mt-60 md:mt-60 flex-col-reverse w-[85%] transition-[height  duration-300 ease-in-out`}>
+                          <div className={`  max-h-[200px]  z-13 relative overflow-h flex mt-50 md:mt-60 flex-col-reverse w-[85%] transition-[height  duration-300 ease-in-out`}>
                             <div className=" bg-gray-400/20 text-white max-h-[300px]  absolute flex flex-col w-full bottom-0 text-[10px] pl-2">
                               <div className="flex justify-items-end mb-6  items-center float-start ">
                                 <Link to={`/userprofile/${post.userId._id}`} className='flex'>
@@ -373,7 +373,7 @@ function Videos() {
                           ref={(el) => (videoRefs.current[index] = el)}
                           onTimeUpdate={() => videodurationfun(index)}
                           onLoadedMetadata={() => videodurationfun(index)}
-                          className='dura h-[900px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] '
+                          className='dura h-[800px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] '
                           loop autoPlay={true}></video>
                       </div>
                     </div>

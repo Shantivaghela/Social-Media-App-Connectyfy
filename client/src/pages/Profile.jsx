@@ -379,7 +379,7 @@ const [showlikes,setShowLikes] = useState(false)
                   <i class="fa-solid fa-arrow-right m-2"></i>
                 </button>
               </div>
-              <div key={i} className={`${post.media.length === 1 ? "block" : "hidden"} flex-col md:h-[95%] w-[35%] gap-2  rounded-xl h-[40%] bg-white dark:bg-gray-800 flex  overflow-hidden items-center relative`}>
+              <div key={i} className={`${post.media.length === 1 ? "block" : "hidden"} flex-col md:h-[95%] w-[55%] gap-2  rounded-xl h-[50%] bg-white dark:bg-gray-800 flex  overflow-hidden items-center relative`}>
 
                 <div className="flex w-full h-[90%] justify-center items-center  transition ease-out duration-400 p-2">
                   {post.media.map((media, i) => (
@@ -403,7 +403,7 @@ const [showlikes,setShowLikes] = useState(false)
                     <p>{post.content || "No description"}</p>
                   </div>
               </div>
-              <div className="h-[95%] md:w-[35%]  overflow-hidden  w-full  rounded-xl bg-white dark:bg-gray-800">
+              <div className="h-[65%] md:w-[35%]  overflow-hidden  w-full  rounded-xl bg-white dark:bg-gray-800">
                 <div className="sticky top-0  bg-white dark:bg-gray-700 w-full flex justify-center flex-col items-center dark:text-white border-b-2 border-gray-700">
                   <div className="flex justify-between items-center top-0 w-full px-3 pt-2 h-[5%]   bg-white dark:bg-gray-800">
                     <button onClick={() => addLike(post._id)} className={`float-start cursor-pointer  flex items-center  gap-1`} >

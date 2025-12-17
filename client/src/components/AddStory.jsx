@@ -107,7 +107,7 @@ function AddStory(props) {
                     </div>
 
                     <div className={`${media.length > 0 ? "block" : "hidden"} w-full flex flex-col justify-center items-center  my-1`}>
-                        <div className="h-150 w-80  bg-white rounded-xl bor overflow-hidden md:h-[450px] md:w-[250px] flex justify-center items-center md:mt-2 mt-5 ">
+                        <div className="h-130 w-70  bg-white rounded-xl bor overflow-hidden  md:h-[450px] md:w-[250px] flex justify-center items-center md:mt-2 mt-5 ">
                             <button onClick={preButton} disabled={count === 0} className={`${media.length > 1 ? "block" : "hidden"} ${count === 0 ? "opacity-35" : ""} md:mr-[20%] mr-[90%] absolute z-10 cursor-pointer rounded-full bg-gray-500 text-[10px] items-center text-white`}>
                                 <i class="fa-solid fa-arrow-left m-2"></i>
                             </button>
@@ -147,7 +147,7 @@ function AddStory(props) {
                         <div className={`${media.length > 0 ? "block" : "hidden"} w-full flex justify-center`}>
                             <label htmlFor="dropzone-files" className='flex justify-between items-center gap-6'>
 
-                                <span className="text-white bg-blue-700  hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] dark:focus:ring-blue-800 cursor-pointer"><i className="fa-regular fa-image mr-2"></i>Change</span>
+                                <span className="text-white bg-blue-700  hover:bg-[#48a6a6] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#48a6a6] flex dark:focus:ring-blue-800 cursor-pointer"><i className="fa-regular fa-image mr-2"></i>Change</span>
 
 
                                 <input id="dropzone-files" type="file"

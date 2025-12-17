@@ -493,7 +493,7 @@ function UserProfile(props) {
                                     <i class="fa-solid fa-arrow-right m-2"></i>
                                 </button>
                             </div>
-                            <div key={i} className={`${post.media.length === 1 ? "block" : "hidden"} md:h-[95%] w-[35%] gap-2 flex-col rounded-xl h-[40%] bg-white dark:bg-gray-800 flex  overflow-hidden items-center relative`}>
+                            <div key={i} className={`${post.media.length === 1 ? "block" : "hidden"} md:h-[95%] w-[55%] gap-2 flex-col rounded-xl h-[50%] bg-white dark:bg-gray-800 flex  overflow-hidden items-center relative`}>
 
                                 <div className="flex w-full h-[90%] justify-center items-center  transition ease-out duration-400 p-2">
                                     {post.media.map((media, i) => (
@@ -506,7 +506,7 @@ function UserProfile(props) {
                                             :
                                             (
 
-                                                <video className="max-h-[100%] max-w-[50%] object-fill rounded-lg" autoPlay={true} controls loop src={media.url} alt="video" />
+                                                <video className="max-h-[100%] max-w-[60%] object-fill rounded-lg" autoPlay={true} controls loop src={media.url} alt="video" />
                                             )
 
 

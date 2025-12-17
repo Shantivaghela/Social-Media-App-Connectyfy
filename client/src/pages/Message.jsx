@@ -79,17 +79,17 @@ function Message() {
     }, []);
     return (
         <>
-            <section className="md:ml-96 h-full pt-25  mt-22 relative flex justify-center flex-col overflow-y-scroll overflow-hidden scobar">
-                <div className="flex fixed top-25   w-[74%] mb-5 p-4 rounded-xl items-center dark:bg-gray-800 bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
+            <section className="md:ml-96 md:h-150 pb-20 h-200 w-full md:w-[75%]  pt-25    mt-22  flex justify-center flex-col  ">
+                <div className="flex fixed top-25  w-full  md:w-full mb-5 p-4 rounded-xl items-center dark:bg-[#2a4f78] bg-[#f2efe6]  z-12 md:gap-10 gap-5 mx-2 dark:text-white">
                     <button onClick={() => navigate(-1)} className='cursor-pointer '>
                         <i class="fa-solid fa-arrow-left text-2xl md:text-3xl"></i>
                     </button>
                     <h1 className='text-2xl md:text-3xl '>Messages</h1>
                 </div>
-                <div className="flow-root  px-3  overflow-hidden overflow-y-scroll scobar ">
+                <div className="flow-root px-3 h-full w-full mx-3  overflow-y-scroll scroll-auto overflow-hidde  scobar ">
 
 
-                    <ul role="list" className="  mb-2 rounded-lg  overflow-hidden  overflow-y-scroll scobar   w-[100%] flex flex-col divide-y gap-3 divide-gray-200 dark:divide-gray-700 mr-3" >
+                    <ul role="list" className="  mb-2 rounded-lg  overflow-hidde pr-3 overflow-y-scroll h-full scobar   w-[100%] flex flex-col divide-y gap-3 divide-gray-200 dark:divide-gray-700 mr-" >
                         {allusers.filter(itmes => itmes._id !== user._id)
                             .sort((a, b) => {
                                 const isAFollowed = followingIds.includes(a._id);
@@ -107,7 +107,7 @@ function Message() {
                                 return new Date(b.createdAt) - new Date(a.createdAt); // Newest users next
                             })
                             .map((user) => (
-                                <li className="py-3 px-2  rounded-xl sm:py-4 flex w-full bg-white dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800" data-aos="flip-down">
+                                <li className="py-3 px-2  rounded-xl sm:py-4 flex w-full bg-white dark:hover:bg-gray-900 hover:bg-gray-100 dark:bg-gray-800" data-aos="flip-dow">
                                     <button onClick={() => { setUserImg(user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} ` : assets.profileIcon), setIsOpen(true) }} className="z-12 shrink-0 relative cursor-pointer">
                                         <div className={`${onlineusers.includes(user._id) ? "block" : "hidden"} h-3 w-3 bg-green-500 absolute rounded-full`}></div>
                                         <img className="w-9 h-9 rounded-full" src={user.alldatas && user.alldatas.pimage ? `${API}${user.alldatas.pimage} ` : assets.profileIcon} alt="Neil image" />

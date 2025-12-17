@@ -111,7 +111,7 @@ function StoryModel(props) {
   };
   const bars = (i) => {
 
-    console.log(i);
+    
 
     const bar = setInterval(() => {
       setVideolength(videolength + 1)
@@ -142,8 +142,7 @@ function StoryModel(props) {
     else if (count < length - 1) setCount(count + 1)
   }
 
-  console.log(currentIndex);
-
+  
 
 
 
