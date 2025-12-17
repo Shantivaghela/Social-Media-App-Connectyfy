@@ -373,7 +373,7 @@ function Videos() {
                           ref={(el) => (videoRefs.current[index] = el)}
                           onTimeUpdate={() => videodurationfun(index)}
                           onLoadedMetadata={() => videodurationfun(index)}
-                          className='dura h-[800px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] '
+                          className='dura h-[750px] mb-3 overflow-hidden object-cover md:rounded-lg md:shadow-xl md:hover:dark:shadow-[#48a6a6] md:shadow-black  md:h-[560px] md:w-[340px] '
                           loop autoPlay={true}></video>
                       </div>
                     </div>
