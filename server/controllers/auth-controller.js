@@ -151,10 +151,10 @@ const handleForgotPassword = async (req, res) => {
             email,
             otp
         });
-        const message = `${otp}`;
-        await sendMailer(email, "Verification password from connectyfy", message);
         res.status(200).json({ message: "otp sent to your email" });
         await newOtp.save();
+        const message = `${otp}`;
+        await sendMailer(email, "Verification password from connectyfy", message);
 
     } catch (error) {
         res.status(500).json({ message: "Internal sever error", error });
