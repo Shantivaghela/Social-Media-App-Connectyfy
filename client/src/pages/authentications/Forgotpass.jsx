@@ -15,9 +15,7 @@ function Forgotpass(props) {
   const [viewOtp, setViewOpt] = useState(false);
   const [viewReset, setViewReset] = useState(false);
   const [newPass,setNewpass] = useState("");
-  // console.log(otp[5]);
-  console.log(email);
-
+  
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -121,7 +119,7 @@ function Forgotpass(props) {
 
   const verifyOtphandle = async (e) => {
     const otpValue = otp.join("");
-    console.log(otpValue);
+   
 
     try {
       e.preventDefault();
