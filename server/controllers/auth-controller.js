@@ -157,7 +157,7 @@ const handleForgotPassword = async (req, res) => {
         const message = `${otp}`;
 
     } catch (error) {
-        res.status(500).json({ message: "Internal sever error", error });
+        res.status(500).json({ message: "Internal sever error","error": error });
     }
 }
 
