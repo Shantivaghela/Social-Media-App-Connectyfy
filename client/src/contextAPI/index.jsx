@@ -153,9 +153,10 @@ const getAllposts = async() =>{
             setAllPosts(data);
 
                             
-
-
-        } 
+        } else{
+            console.log(response);
+            
+        }
     } catch (error) {
         console.log("index",error);
     }
