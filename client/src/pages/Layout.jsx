@@ -15,7 +15,7 @@ function Layout() {
 
 console.log(allposts);
 
-  if(allposts.length > 0 ){
+  if(allposts.length > 0 && isLoading){
     setTimeout(()=>{
       setIsLoading(false);
     },2000);
