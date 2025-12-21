@@ -20,12 +20,12 @@ function SignUp(props) {
     const { storeTokenInLS,isLoggedIn } = useAuth();
 
     const navigate = useNavigate();
-    // useEffect(() => {
-    //         if (isLoggedIn) {
-    //             navigate("/"); // Redirect to home if logged in
-    //             // toast.error("You can not visit this page")
-    //         }
-    //     }, [isLoggedIn, navigate]);
+    useEffect(() => {
+            if (isLoggedIn) {
+                navigate("/"); // Redirect to home if logged in
+                // toast.error("You can not visit this page")
+            }
+        }, [isLoggedIn, navigate]);
 
     const handleInput = (e) => {
         let name = e.target.name;
