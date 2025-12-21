@@ -183,6 +183,8 @@ const storyget = async() =>{
     useEffect(() => {
 
             userAuthentication();
+            getAllposts();
+
     }, [token]);
     useEffect(() => {
         if (user) {
