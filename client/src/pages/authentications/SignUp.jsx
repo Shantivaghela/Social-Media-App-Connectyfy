@@ -3,6 +3,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets';
 import { useAuth } from '../../contextAPI';
 import { toast } from 'react-toastify';
+const API = import.meta.env.VITE_API_URL;
+
 
 
 function SignUp(props) {
