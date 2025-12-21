@@ -15,7 +15,7 @@ function Layout() {
 
 console.log(allposts,isLoggedIn,isLoading);
 
-  if(allposts.length > 0 && isLoggedIn){
+  if(allposts.length > 0 || isLoggedIn){
     setTimeout(()=>{
       setIsLoading(false);
     },2000);
