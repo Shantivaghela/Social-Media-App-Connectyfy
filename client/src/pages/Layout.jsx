@@ -13,9 +13,9 @@ function Layout() {
   const { isLoggedIn,allposts, allusers } = useAuth();
   const [isLoading,setIsLoading] = useState(true);
 
-console.log(allposts);
+console.log(allposts,isLoggedIn,isLoading);
 
-  if(allposts.length > 0 && isLoading){
+  if(allposts.length > 0 && isLoggedIn){
     setTimeout(()=>{
       setIsLoading(false);
     },2000);
