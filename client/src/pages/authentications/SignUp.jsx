@@ -61,8 +61,8 @@ function SignUp(props) {
                     email: "",
                     password: "",
                 });
-                navigate("/login");
-                toast.success("SignUp successfully");
+                navigate("/");
+                toast.success(res_data.msg);
             } else {
                 toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
             }
